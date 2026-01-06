@@ -250,7 +250,7 @@ export default function FeaturesSection() {
                                         onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
                                         onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
                                     >
-                                        <Play size={20} fill="white" /> {industries[activeTab].demoUrl ? 'Play Demo Call' : industries[activeTab].demoTitle}
+                                        <Play size={20} fill="white" /> {industries[activeTab].demo}
                                     </button>
                                     <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
                                         {industries[activeTab].sample ? `Sample conversation: ${industries[activeTab].sample}` : 'Sample conversation available'}
