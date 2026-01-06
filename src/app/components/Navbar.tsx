@@ -63,7 +63,7 @@ export default function Navbar() {
             {/* Desktop Actions */}
             <button className="order-btn">
                 <ShoppingBag size={16} />
-                Book a call
+                Book a Demo
             </button>
         </nav>
     );

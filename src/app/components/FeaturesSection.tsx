@@ -1,12 +1,87 @@
 'use client';
 
-import { Mic, VolumeX, Zap, Heart, GitBranch, MessageSquare, Phone, Shield, CheckCircle, ArrowRight, Loader2, Users } from 'lucide-react';
+import { Mic, VolumeX, Zap, Heart, GitBranch, MessageSquare, Phone, Shield, CheckCircle, ArrowRight, Loader2, Users, Car, Home, Landmark, ShoppingCart, Utensils, Play, Layout, Plug, Bot, Settings2, Rocket, BarChart3, FileText, Calendar } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export default function FeaturesSection() {
     const [scrollY, setScrollY] = useState(0);
     const sectionRef = useRef<HTMLElement>(null);
-    const [activeTab, setActiveTab] = useState<'voice' | 'integrations' | 'compliance' | 'batch' | 'knowledge'>('voice');
+    const [activeTab, setActiveTab] = useState<'healthcare' | 'automotive' | 'realestate' | 'banking' | 'ecommerce' | 'restaurant'>('healthcare');
+
+    const industries = {
+        healthcare: {
+            icon: <Heart size={16} />,
+            label: "Healthcare",
+            demo: "Play Healthcare Demo Call",
+            sample: "Patient scheduling appointment",
+            title: "Healthcare Appointment Scheduling",
+            desc: "AI agent handles appointment bookings, cancellations, rescheduling, and sends automatic reminders. Integrates with EHR systems like Epic, Cerner, and sends SMS confirmations. Reduces missed appointments by 38% and eliminates 4.4-minute wait times.",
+            color: "#3b82f6",
+            gradient: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+            secondary: "#e0f2fe",
+            visualIcon: <Heart size={32} color="white" />
+        },
+        automotive: {
+            icon: <Car size={16} />,
+            label: "Automotive",
+            demo: "Play Automotive Demo Call",
+            sample: "Service appointment booking",
+            title: "Auto Service Scheduling",
+            desc: "87% automation of service appointments, parts inquiries, and maintenance reminders. Integrates with DMS systems (CDK Global, Reynolds & Reynolds). Captures $720K+ annual revenue from missed calls.",
+            color: "#ef4444",
+            gradient: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
+            secondary: "#fee2e2",
+            visualIcon: <Car size={32} color="white" />
+        },
+        realestate: {
+            icon: <Home size={16} />,
+            label: "Real Estate",
+            demo: "Play Real Estate Demo Call",
+            sample: "Property viewing request",
+            title: "Real Estate Lead Management",
+            desc: "Qualify leads 24/7, schedule property viewings, answer property questions. Integrates with MLS systems and CRM platforms. Solves the 60% unanswered calls problem and 3-day response times.",
+            color: "#10b981",
+            gradient: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+            secondary: "#d1fae5",
+            visualIcon: <Home size={32} color="white" />
+        },
+        banking: {
+            icon: <Landmark size={16} />,
+            label: "Banking",
+            demo: "Play Banking Demo Call",
+            sample: "Balance inquiry",
+            title: "Banking Customer Service",
+            desc: "80% automation of balance inquiries, card services, and payment processing. GDPR and PCI-DSS compliant. Integrates with core banking systems. Saves $1.82M annually for large banks.",
+            color: "#f59e0b",
+            gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+            secondary: "#fef3c7",
+            visualIcon: <Landmark size={32} color="white" />
+        },
+        ecommerce: {
+            icon: <ShoppingCart size={16} />,
+            label: "E-commerce",
+            demo: "Play E-commerce Demo Call",
+            sample: "Order tracking",
+            title: "E-commerce Support",
+            desc: "85% automation of order tracking, returns, and product inquiries. Handles 300%+ peak surge during Black Friday. Integrates with Shopify, WooCommerce, shipping APIs.",
+            color: "#8b5cf6",
+            gradient: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+            secondary: "#ede9fe",
+            visualIcon: <ShoppingCart size={32} color="white" />
+        },
+        restaurant: {
+            icon: <Utensils size={16} />,
+            label: "Restaurant",
+            demo: "Play Restaurant Demo Call",
+            sample: "Table reservation",
+            title: "Restaurant Reservations",
+            desc: "77% automation of reservations, takeout orders, and table management. Integrates with OpenTable, Resy, POS systems. Never miss a booking during rush hours.",
+            color: "#ec4899",
+            gradient: "linear-gradient(135deg, #ec4899 0%, #db2777 100%)",
+            secondary: "#fce7f3",
+            visualIcon: <Utensils size={32} color="white" />
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,62 +117,11 @@ export default function FeaturesSection() {
                 <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
             </div>
 
-            {/* SECTION 1: 13 Exclusive Features (RESTORED) */}
-            <div className="container" style={{ padding: '8rem 2rem 6rem', position: 'relative', zIndex: 1 }}>
-                <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: 800, lineHeight: 1.1, color: '#111' }}>
-                        <span className="text-gradient">More than just code.</span>
-                    </h2>
-                </div>
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '4rem 2rem',
-                    textAlign: 'center',
-                    maxWidth: '1000px',
-                    margin: '0 auto 6rem'
-                }}>
-                    {features.map((f, i) => (
-                        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                            <div style={{ padding: '1rem', background: '#ffffff', borderRadius: '50%', border: '1px solid #eee' }}>
-                                {f.icon}
-                            </div>
-                            <div>
-                                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem', color: '#222' }}>{f.title}</h4>
-                                <p style={{ fontSize: '0.9rem', color: '#777', maxWidth: '200px' }}>{f.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
 
-                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
-                    <span style={{
-                        background: '#34D399', /* Brighter Mint Green */
-                        color: 'white',
-                        fontSize: '0.7rem',
-                        fontWeight: 800,
-                        padding: '0.3rem 0.8rem',
-                        borderRadius: '99px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em'
-                    }}>
-                        REALISTIC
-                    </span>
-                    <p style={{ fontSize: '0.95rem', color: '#555' }}>
-                        Voice technology that passes the <span
-                            onClick={() => document.getElementById('samples')?.scrollIntoView({ behavior: 'smooth' })}
-                            style={{ textDecoration: 'underline', color: '#111', fontWeight: 'bold', cursor: 'pointer' }}
-                        >
-                            Turing test. Listen to samples.
-                        </span>
-                    </p>
-                </div>
-            </div>
-
-            {/* SECTION 2: Soft SaaS Features Redesign (INTEGRATED) */}
+            {/* SECTION 2: Use Cases Across Industries */}
             <div style={{
-                background: '#ffffff', // Kept white to blend with section
+                background: '#ffffff',
                 padding: '4rem 0',
                 position: 'relative'
             }}>
@@ -126,13 +150,14 @@ export default function FeaturesSection() {
                     {/* Header Section */}
                     <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                         <h2 style={{
-                            fontSize: '3.5rem',
-                            fontWeight: 700,
+                            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                            lineHeight: 1.05,
+                            fontWeight: 800,
+                            letterSpacing: '-0.03em',
                             color: '#111',
                             marginBottom: '1rem',
-                            letterSpacing: '-0.02em'
                         }}>
-                            {activeTab === 'voice' ? 'AI Voice Agents' : activeTab === 'integrations' ? 'Seamless Integrations' : 'Enterprise Compliance'}
+                            Use Cases Across <span className="text-gradient">Industries</span>
                         </h2>
                         <p style={{
                             fontSize: '1.1rem',
@@ -141,825 +166,118 @@ export default function FeaturesSection() {
                             margin: '0 auto 3rem',
                             lineHeight: 1.6
                         }}>
-                            {activeTab === 'voice'
-                                ? 'Highly functional, human-sounding voice AI agents that can perform different tasks in varied fields without ever needing to take a break.'
-                                : activeTab === 'integrations'
-                                    ? 'Connect with your favorite tools in seconds. Our API-first approach ensures seamless data flow across your entire stack.'
-                                    : activeTab === 'compliance'
-                                        ? 'Bank-grade security and compliance built-in. We handle the heavy lifting so you can focus on your business.'
-                                        : activeTab === 'batch'
-                                            ? 'Effortlessly run batch call campaigns without concurrency limits, with detailed conversion tracking available after each campaign.'
-                                            : 'Your AI agents stay up-to-date effortlessly by syncing directly with your company\'s knowledge base.'}
+                            See how Conekt AI agents work in different business scenarios
                         </p>
 
                         {/* Filter Pills (Interactive) */}
-                        <div className="features-filter-container">
-                            <button
-                                onClick={() => setActiveTab('voice')}
-                                style={{
-                                    padding: '0.6rem 1.2rem',
-                                    background: activeTab === 'voice' ? '#eff6ff' : 'transparent',
-                                    color: activeTab === 'voice' ? '#3b82f6' : '#666',
-                                    borderRadius: '99px',
-                                    fontSize: '0.9rem',
-                                    fontWeight: activeTab === 'voice' ? 600 : 500,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    border: '1px solid transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    boxShadow: activeTab === 'voice' ? '0 2px 5px rgba(59, 130, 246, 0.1)' : 'none'
-                                }}>
-                                <Phone size={16} /> Voice Agents
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('integrations')}
-                                style={{
-                                    padding: '0.6rem 1.2rem',
-                                    background: activeTab === 'integrations' ? '#eff6ff' : 'transparent',
-                                    color: activeTab === 'integrations' ? '#3b82f6' : '#666',
-                                    borderRadius: '99px',
-                                    fontSize: '0.9rem',
-                                    fontWeight: activeTab === 'integrations' ? 600 : 500,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    border: '1px solid transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    boxShadow: activeTab === 'integrations' ? '0 2px 5px rgba(59, 130, 246, 0.1)' : 'none'
-                                }}
-                                onMouseEnter={(e) => { if (activeTab !== 'integrations') { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#111'; } }}
-                                onMouseLeave={(e) => { if (activeTab !== 'integrations') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#666'; } }}
-                            >
-                                <Zap size={16} /> Integrations
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('compliance')}
-                                style={{
-                                    padding: '0.6rem 1.2rem',
-                                    background: activeTab === 'compliance' ? '#eff6ff' : 'transparent',
-                                    color: activeTab === 'compliance' ? '#3b82f6' : '#666',
-                                    borderRadius: '99px',
-                                    fontSize: '0.9rem',
-                                    fontWeight: activeTab === 'compliance' ? 600 : 500,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    border: '1px solid transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    boxShadow: activeTab === 'compliance' ? '0 2px 5px rgba(59, 130, 246, 0.1)' : 'none'
-                                }}
-                                onMouseEnter={(e) => { if (activeTab !== 'compliance') { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#111'; } }}
-                                onMouseLeave={(e) => { if (activeTab !== 'compliance') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#666'; } }}
-                            >
-                                <Shield size={16} /> Compliance
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('batch')}
-                                style={{
-                                    padding: '0.6rem 1.2rem',
-                                    background: activeTab === 'batch' ? '#eff6ff' : 'transparent',
-                                    color: activeTab === 'batch' ? '#3b82f6' : '#666',
-                                    borderRadius: '99px',
-                                    fontSize: '0.9rem',
-                                    fontWeight: activeTab === 'batch' ? 600 : 500,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    border: '1px solid transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    boxShadow: activeTab === 'batch' ? '0 2px 5px rgba(59, 130, 246, 0.1)' : 'none'
-                                }}
-                                onMouseEnter={(e) => { if (activeTab !== 'batch') { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#111'; } }}
-                                onMouseLeave={(e) => { if (activeTab !== 'batch') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#666'; } }}
-                            >
-                                <Phone size={16} /> Batch Calling
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('knowledge')}
-                                style={{
-                                    padding: '0.6rem 1.2rem',
-                                    background: activeTab === 'knowledge' ? '#eff6ff' : 'transparent',
-                                    color: activeTab === 'knowledge' ? '#3b82f6' : '#666',
-                                    borderRadius: '99px',
-                                    fontSize: '0.9rem',
-                                    fontWeight: activeTab === 'knowledge' ? 600 : 500,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    border: '1px solid transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    boxShadow: activeTab === 'knowledge' ? '0 2px 5px rgba(59, 130, 246, 0.1)' : 'none'
-                                }}
-                                onMouseEnter={(e) => { if (activeTab !== 'knowledge') { e.currentTarget.style.background = '#f3f4f6'; e.currentTarget.style.color = '#111'; } }}
-                                onMouseLeave={(e) => { if (activeTab !== 'knowledge') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#666'; } }}
-                            >
-                                <Zap size={16} /> Knowledge Base
-                            </button>
+                        <div className="features-filter-container" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+                            {(Object.keys(industries) as Array<keyof typeof industries>).map((key) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveTab(key)}
+                                    style={{
+                                        padding: '0.6rem 1.2rem',
+                                        background: activeTab === key ? industries[key].secondary : 'transparent',
+                                        color: activeTab === key ? industries[key].color : '#666',
+                                        borderRadius: '99px',
+                                        fontSize: '0.9rem',
+                                        fontWeight: activeTab === key ? 600 : 500,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        border: '1px solid transparent',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s ease',
+                                        whiteSpace: 'nowrap',
+                                        boxShadow: activeTab === key ? `0 2px 5px ${industries[key].color}20` : 'none'
+                                    }}
+                                >
+                                    {industries[key].icon} {industries[key].label}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Main Two-Card Grid */}
-                    <div className="features-content-grid">
-
-                        {activeTab === 'voice' && (
-                            <>
-                                {/* Left Card: AI Agent Hub / Scalability */}
-                                <div className="features-card-responsive"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    {/* Visualization Area */}
-                                    <div className="features-card-visual-responsive">
-                                        {/* Central Node */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            width: '60px',
-                                            height: '60px',
-                                            background: '#3b82f6',
-                                            borderRadius: '50%',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            color: 'white',
-                                            zIndex: 2,
-                                            boxShadow: '0 0 0 8px rgba(59, 130, 246, 0.2)',
-                                            animation: 'pulse 2s infinite'
-                                        }}>
-                                            <Mic size={24} />
-                                        </div>
-
-                                        {/* Satellite Nodes */}
-                                        <div style={{ position: 'absolute', top: '20%', left: '20%', width: '40px', height: '40px', background: '#e0f2fe', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 4s ease-in-out infinite' }}>
-                                            <Phone size={16} color="#0284c7" />
-                                        </div>
-                                        <div style={{ position: 'absolute', bottom: '20%', right: '20%', width: '40px', height: '40px', background: '#fce7f3', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite', animationDelay: '1s' }}>
-                                            <MessageSquare size={16} color="#db2777" />
-                                        </div>
-                                        <div style={{ position: 'absolute', top: '30%', right: '15%', width: '32px', height: '32px', background: '#f3f4f6', borderRadius: '50%', animation: 'float 5s ease-in-out infinite', animationDelay: '0.5s' }} />
-                                        <div style={{ position: 'absolute', bottom: '30%', left: '15%', width: '24px', height: '24px', background: '#f3f4f6', borderRadius: '50%', animation: 'float 4.5s ease-in-out infinite', animationDelay: '1.5s' }} />
-
-                                        {/* Connecting Lines (Simulated with simple divs for now, could be SVG) */}
-                                        <div style={{ position: 'absolute', top: '50%', left: '50%', width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)', transform: 'translate(-50%, -50%) rotate(45deg)' }} />
-                                        <div style={{ position: 'absolute', top: '50%', left: '50%', width: '120px', height: '1px', background: 'linear-gradient(90deg, transparent, #e5e7eb, transparent)', transform: 'translate(-50%, -50%) rotate(-45deg)' }} />
-
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '20px',
-                                            background: 'white',
-                                            color: '#3b82f6',
-                                            border: '1px solid #dbeafe',
-                                            padding: '0.4rem 1rem',
-                                            borderRadius: '99px',
-                                            fontSize: '0.8rem',
-                                            fontWeight: 600,
-                                            display: 'flex', gap: '6px', alignItems: 'center'
-                                        }}>
-                                            <Shield size={14} /> Enterprise Ready
-                                        </div>
-
-                                        <style jsx>{`
-                                            @keyframes pulse {
-                                                0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-                                                70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
-                                                100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-                                            }
-                                             @keyframes float {
-                                                0% { transform: translateY(0px); }
-                                                50% { transform: translateY(-10px); }
-                                                100% { transform: translateY(0px); }
-                                            }
-                                        `}</style>
-
-                                        {/* Tags for Inbound/Outbound */}
-                                        <div style={{ position: 'absolute', left: '15%', top: '55%', transform: 'translateY(-50%)', fontSize: '0.75rem', color: '#9ca3af', fontWeight: 500 }}>Inbound</div>
-                                        <div style={{ position: 'absolute', right: '15%', top: '55%', transform: 'translateY(-50%)', fontSize: '0.75rem', color: '#9ca3af', fontWeight: 500 }}>Outbound</div>
-                                    </div>
-
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Quick to launch. Built to scale. Enterprise ready.
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            Let AI agents handle inbound and outbound calls between your business and customers. Stop missing calls and start converting more leads by automating calls.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Right Card: Human-Like Conversations */}
-                                <div className="features-card-responsive"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    {/* Visualization Area */}
-                                    <div className="features-card-visual-responsive">
-                                        <div style={{
-                                            position: 'absolute',
-                                            left: '30px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '12px',
-                                            background: '#eff6ff',
-                                            padding: '0.6rem 1.0rem',
-                                            borderRadius: '16px',
-                                            zIndex: 2
-                                        }}>
-                                            <div style={{ width: '36px', height: '36px', background: '#3b82f6', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-                                                <Users size={18} />
-                                            </div>
-                                            <div style={{ lineHeight: 1.2 }}>
-                                                <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1f2937' }}>John Smith</div>
-                                                <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontWeight: 500 }}>Customer</div>
-                                            </div>
-                                            {/* Context Menu Dots */}
-                                            <div style={{ marginLeft: '8px', color: '#9ca3af', fontSize: '1.2rem', lineHeight: 0.5 }}>⋮</div>
-                                        </div>
-
-                                        {/* Connection Line with Pulse */}
-                                        <div style={{ width: '80px', height: '2px', background: '#e5e7eb', margin: '0 10px', marginLeft: '60px', position: 'relative' }}>
-                                            <div style={{
-                                                position: 'absolute',
-                                                top: '-3px',
-                                                left: '0',
-                                                width: '8px',
-                                                height: '8px',
-                                                background: '#3b82f6',
-                                                borderRadius: '50%',
-                                                animation: 'moveRight 2s infinite linear'
-                                            }} />
-                                            <style jsx>{`
-                                                @keyframes moveRight {
-                                                    0% { left: 0; opacity: 1; }
-                                                    100% { left: 100%; opacity: 0; }
-                                                }
-                                                @keyframes type {
-                                                    0%, 100% { transform: translateY(0); }
-                                                    50% { transform: translateY(-3px); }
-                                                }
-                                            `}</style>
-                                        </div>
-
-                                        <div style={{
-                                            position: 'absolute',
-                                            right: '30px',
-                                            top: '40px',
-                                            background: '#f3f4f6',
-                                            padding: '1.5rem',
-                                            borderRadius: '20px',
-                                            width: '200px',
-                                            boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)',
-                                            zIndex: 2
-                                        }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <div style={{ width: '32px', height: '32px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-                                                        <Zap size={16} fill="white" />
-                                                    </div>
-                                                    <div style={{ lineHeight: 1.2 }}>
-                                                        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1f2937' }}>AI Agent</div>
-                                                        <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>In Progress</div>
-                                                    </div>
-                                                </div>
-                                                <div style={{
-                                                    width: '32px',
-                                                    height: '20px',
-                                                    background: '#e5e7eb',
-                                                    borderRadius: '99px',
-                                                    position: 'relative',
-                                                    cursor: 'pointer'
-                                                }}>
-                                                    <div style={{ position: 'absolute', right: '2px', top: '2px', width: '16px', height: '16px', background: 'white', borderRadius: '50%' }} />
-                                                </div>
-                                            </div>
-
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '0.8rem' }}>
-                                                <div style={{ padding: '0.5rem 1rem', background: '#3b82f6', color: 'white', borderRadius: '16px 16px 16px 4px', fontSize: '0.75rem', fontWeight: 500, boxShadow: '0 4px 6px -2px rgba(59, 130, 246, 0.3)' }}>
-                                                    Sure! Let me assist you.
-                                                </div>
-                                            </div>
-                                            {/* Typing Indicator */}
-                                            <div style={{ display: 'flex', gap: '4px', paddingLeft: '4px' }}>
-                                                <div style={{ width: '6px', height: '6px', background: '#d1d5db', borderRadius: '50%', animation: 'type 1s infinite ease-in-out' }} />
-                                                <div style={{ width: '6px', height: '6px', background: '#d1d5db', borderRadius: '50%', animation: 'type 1s infinite ease-in-out', animationDelay: '0.2s' }} />
-                                                <div style={{ width: '6px', height: '6px', background: '#d1d5db', borderRadius: '50%', animation: 'type 1s infinite ease-in-out', animationDelay: '0.4s' }} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Human-Like Conversations
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            AI phone agents feel human, helping you build trust while reducing missed calls and manual workload.
-                                        </p>
-                                    </div>
-                                </div>
-                            </>
-                        )}
-
-                        {activeTab === 'integrations' && (
-                            <>
-                                {/* Left Card: Integrations API */}
-                                <div className="features-card-responsive"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    {/* Visualization Area */}
-                                    <div className="features-card-visual-responsive">
-                                        {/* API Connection Visual */}
-                                        <div className="integrations-flow">
-                                            {/* App Node */}
-                                            <div style={{
-                                                padding: '1rem',
-                                                background: '#f3f4f6',
-                                                borderRadius: '16px',
-                                                border: '1px solid #e5e7eb',
-                                                textAlign: 'center'
-                                            }}>
-                                                <div style={{ width: '40px', height: '40px', background: '#e5e7eb', borderRadius: '8px', marginBottom: '8px' }} />
-                                                <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6b7280' }}>Your App</div>
-                                            </div>
-
-                                            {/* Connection Line */}
-                                            <div style={{ width: '80px', height: '2px', background: '#e5e7eb', position: 'relative' }}>
-                                                <div style={{
-                                                    position: 'absolute',
-                                                    top: '-3px',
-                                                    left: '0',
-                                                    width: '8px',
-                                                    height: '8px',
-                                                    background: '#3b82f6',
-                                                    borderRadius: '50%',
-                                                    animation: 'moveRight 1.5s infinite linear'
-                                                }} />
-                                                <div style={{
-                                                    position: 'absolute',
-                                                    top: '-3px',
-                                                    left: '0',
-                                                    width: '8px',
-                                                    height: '8px',
-                                                    background: '#3b82f6',
-                                                    borderRadius: '50%',
-                                                    animation: 'moveRight 1.5s infinite linear',
-                                                    animationDelay: '0.75s'
-                                                }} />
-                                            </div>
-
-                                            {/* CONEKT Node */}
-                                            <div style={{
-                                                padding: '1rem',
-                                                background: '#eff6ff',
-                                                borderRadius: '16px',
-                                                border: '1px solid #bfdbfe',
-                                                textAlign: 'center',
-                                                boxShadow: '0 4px 15px -3px rgba(59, 130, 246, 0.2)'
-                                            }}>
-                                                <div style={{ width: '40px', height: '40px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', borderRadius: '8px', marginBottom: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-                                                    <Zap size={20} fill="white" />
-                                                </div>
-                                                <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#1e40af' }}>CONEKT</div>
-                                            </div>
-                                        </div>
-
-                                        {/* Background Code Snippet - Faded */}
-                                        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', padding: '1.5rem', opacity: 0.05, fontSize: '0.7rem', fontFamily: 'monospace', pointerEvents: 'none' }}>
-                                            color: #111;<br />
-                                            background: #fff;<br />
-                                            border-radius: 8px;<br />
-                                            display: flex;<br />
-                                            align-items: center;<br />
-                                            justify-content: center;<br />
-                                            gap: 1rem;<br />
-                                        </div>
-
-                                    </div>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Developer Friendly API
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            Integrate deep into your product with our robust API. Trigger calls, fetch transcripts, and manage agents programmatically.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Right Card: Tools Ecosystem */}
-                                <div className="features-card-responsive"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    <div className="features-card-visual-responsive">
-                                        {/* Central Hub */}
-                                        <div style={{ width: '60px', height: '60px', background: '#111', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', position: 'relative', zIndex: 2, boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-                                            <Zap size={24} fill="white" />
-                                        </div>
-
-                                        {/* Orbiting Planets - CSS Animation */}
-                                        <div style={{ position: 'absolute', width: '180px', height: '180px', border: '1px dashed #e5e7eb', borderRadius: '50%', animation: 'spin 20s linear infinite' }} />
-
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: '20%',
-                                            left: '50%',
-                                            transform: 'translateX(-50%)',
-                                            animation: 'float 3s ease-in-out infinite'
-                                        }}>
-                                            <div style={{ width: '40px', height: '40px', background: '#ffe4e6', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#be123c', fontSize: '0.7rem', fontWeight: 800 }}>hub</div>
-                                        </div>
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '25%',
-                                            left: '20%',
-                                            animation: 'float 4s ease-in-out infinite',
-                                            animationDelay: '1s'
-                                        }}>
-                                            <div style={{ width: '40px', height: '40px', background: '#dbeafe', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1d4ed8', fontSize: '1.2rem' }}>S</div>
-                                        </div>
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '30%',
-                                            right: '20%',
-                                            animation: 'float 3.5s ease-in-out infinite',
-                                            animationDelay: '0.5s'
-                                        }}>
-                                            <div style={{ width: '40px', height: '40px', background: '#ffedd5', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c2410c', fontSize: '1.2rem' }}>*</div>
-                                        </div>
-
-                                        <style jsx>{`
-                                            @keyframes float {
-                                                0% { transform: translateY(0px); }
-                                                50% { transform: translateY(-10px); }
-                                                100% { transform: translateY(0px); }
-                                            }
-                                            @keyframes spin {
-                                                100% { transform: rotate(360deg); }
-                                            }
-                                        `}</style>
-
-                                    </div>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Native Integrations
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            One-click connection to your CRM, Calendar, and Support tools. No coding required for standard workflows.
-                                        </p>
-                                    </div>
-                                </div>
-                            </>
-                        )}
-
-                        {activeTab === 'compliance' && (
-                            <>
-                                {/* Left Card: Security */}
+                    {/* Main Content Card */}
+                    <div className="features-content-grid" style={{ maxWidth: '900px', margin: '0 auto', display: 'block' }}>
+                        <div className="features-card-responsive"
+                            style={{ padding: '0', overflow: 'hidden', background: 'white', borderRadius: '24px', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.05)', border: '1px solid #f3f4f6' }}
+                        >
+                            {/* Top Section: Visualization / Demo Player */}
+                            <div style={{
+                                background: '#f8fafc',
+                                padding: '4rem 2rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderBottom: '1px solid #e5e7eb',
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}>
+                                {/* Animated Background Elements based on Industry Color */}
                                 <div style={{
-                                    background: '#f9fafb',
-                                    borderRadius: '32px',
-                                    padding: '3rem',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'space-between',
-                                    minHeight: '500px',
-                                    cursor: 'default',
-                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                                }}
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    <div className="features-card-visual-responsive">
-                                        {/* Security Shield with Scanner */}
-                                        <div style={{ position: 'relative' }}>
-                                            <Shield size={80} color="#e5e7eb" fill="#f9fafb" />
-                                            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}>
-                                                <Shield size={80} color="#3b82f6" fill="transparent" style={{ position: 'absolute', zIndex: 2 }} />
-                                                <div style={{
-                                                    position: 'absolute',
-                                                    left: 0,
-                                                    width: '100%',
-                                                    height: '20px',
-                                                    background: 'linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.2))',
-                                                    borderBottom: '2px solid #3b82f6',
-                                                    animation: 'scan 2s ease-in-out infinite',
-                                                    zIndex: 1
-                                                }} />
-                                            </div>
-                                        </div>
+                                    position: 'absolute',
+                                    width: '300px',
+                                    height: '300px',
+                                    background: industries[activeTab].gradient,
+                                    opacity: 0.05,
+                                    borderRadius: '50%',
+                                    filter: 'blur(40px)',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    transition: 'background 0.5s ease'
+                                }} />
 
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '30px',
-                                            background: '#eff6ff',
-                                            color: '#3b82f6',
-                                            padding: '0.4rem 1rem',
-                                            borderRadius: '99px',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 600,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '6px'
-                                        }}>
-                                            <CheckCircle size={14} /> SOC2 Type II
-                                        </div>
-
-                                        <style jsx>{`
-                                            @keyframes scan {
-                                                0% { top: -20%; opacity: 0; }
-                                                10% { opacity: 1; }
-                                                90% { opacity: 1; }
-                                                100% { top: 120%; opacity: 0; }
-                                            }
-                                        `}</style>
-                                    </div>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Enterprise Grade Security
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            SOC2 Type II certified. Your data is encrypted at rest and in transit. We prioritize security so you don't have to.
-                                        </p>
-                                    </div>
+                                <div style={{ zIndex: 2, textAlign: 'center' }}>
+                                    <button style={{
+                                        background: industries[activeTab].gradient,
+                                        color: 'white',
+                                        padding: '1rem 2rem',
+                                        borderRadius: '99px',
+                                        fontSize: '1rem',
+                                        fontWeight: 600,
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.8rem',
+                                        boxShadow: `0 10px 20px -5px ${industries[activeTab].color}60`,
+                                        transition: 'all 0.3s ease',
+                                        marginBottom: '1.5rem'
+                                    }}
+                                        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                                        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                                    >
+                                        <Play size={20} fill="white" /> {industries[activeTab].demoUrl ? 'Play Demo Call' : industries[activeTab].demoTitle}
+                                    </button>
+                                    <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
+                                        {industries[activeTab].sample ? `Sample conversation: ${industries[activeTab].sample}` : 'Sample conversation available'}
+                                    </p>
                                 </div>
+                            </div>
 
-                                {/* Right Card: Privacy */}
-                                <div className="features-card-responsive"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    <div className="features-card-visual-responsive">
-                                        {/* Privacy Folder */}
-                                        <div style={{ position: 'relative' }}>
-                                            <div style={{ width: '80px', height: '100px', background: '#f3f4f6', borderRadius: '12px', border: '2px solid #e5e7eb', position: 'relative' }}>
-                                                {/* Lines */}
-                                                <div style={{ width: '40%', height: '4px', background: '#e5e7eb', margin: '15px auto 0', borderRadius: '2px' }} />
-                                                <div style={{ width: '60%', height: '4px', background: '#e5e7eb', margin: '8px auto 0', borderRadius: '2px' }} />
-                                                <div style={{ width: '60%', height: '4px', background: '#e5e7eb', margin: '8px auto 0', borderRadius: '2px' }} />
-                                            </div>
+                            {/* Bottom Section: Content */}
+                            <div style={{ padding: '3rem 3rem' }}>
+                                <h3 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#1e293b' }}>
+                                    {industries[activeTab].title}
+                                </h3>
+                                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
+                                    {industries[activeTab].desc}
+                                </p>
 
-                                            {/* Lock Icon */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                top: '50%',
-                                                left: '50%',
-                                                transform: 'translate(-50%, -50%)',
-                                                width: '40px',
-                                                height: '40px',
-                                                background: '#10b981', // Emerald green
-                                                borderRadius: '50%',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                color: 'white',
-                                                boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
-                                            }}>
-                                                <Shield size={20} fill="white" />
-                                            </div>
-
-                                            {/* Floating Checkmark */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                top: '-10px',
-                                                right: '-10px',
-                                                background: 'white',
-                                                borderRadius: '50%',
-                                                padding: '4px',
-                                                boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-                                            }}>
-                                                <CheckCircle size={24} color="#10b981" fill="white" />
-                                            </div>
-                                        </div>
-
-                                        <div style={{ position: 'absolute', bottom: '24px', display: 'flex', gap: '8px' }}>
-                                            <div style={{ padding: '0.3rem 0.8rem', background: '#ecfdf5', color: '#059669', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 600 }}>GDPR</div>
-                                            <div style={{ padding: '0.3rem 0.8rem', background: '#ecfdf5', color: '#059669', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 600 }}>CCPA</div>
-                                            <div style={{ padding: '0.3rem 0.8rem', background: '#ecfdf5', color: '#059669', borderRadius: '99px', fontSize: '0.7rem', fontWeight: 600 }}>HIPAA</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Global Privacy Compliance
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6 }}>
-                                            Built for global deployment. We adhere to GDPR, CCPA, and verify all call data handling requirements.
-                                        </p>
-                                    </div>
+                                {/* Optional: Add Integration Icons or features here if needed in future */}
+                                <div style={{ display: 'flex', gap: '1rem' }}>
+                                    {/* Placeholder for dynamic tags if needed */}
                                 </div>
-                            </>
-                        )}
-
-                        {activeTab === 'batch' && (
-                            <>
-                                {/* Left Card: Campaign Visual (Full Width) */}
-                                <div className="features-card-responsive features-card-span-2"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-                                        <div className="features-split-text">
-                                            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                                Effortless Scalability
-                                            </h3>
-                                            <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6, marginBottom: '2rem' }}>
-                                                Effortlessly handle millions of calls with scalable concurrent calling. Upload batches and watch them go live instantly.
-                                            </p>
-                                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                                                <div style={{ padding: '0.5rem 1rem', background: '#eff6ff', color: '#3b82f6', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>
-                                                    10,000+ Concurrent Calls
-                                                </div>
-                                                <div style={{ padding: '0.5rem 1rem', background: '#ecfdf5', color: '#059669', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>
-                                                    99.9% Uptime
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* High Concurrency Visualization */}
-                                    <div className="batch-visual">
-                                        {/* Background Texture/Noise (Optional) */}
-                                        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.1, backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
-
-                                        {/* Left Side: Campaign Batches */}
-                                        <div className="batch-visual-left">
-                                            <div style={{ background: 'rgba(255,255,255,0.9)', padding: '0.8rem 1.2rem', borderRadius: '16px', backdropFilter: 'blur(4px)', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', gap: '10px', transform: 'scale(1.05)', borderLeft: '4px solid #3b82f6' }}>
-                                                <Phone size={20} color="#3b82f6" />
-                                                <div>
-                                                    <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#111' }}>Batch #302</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#666' }}>128 Active</div>
-                                                </div>
-                                            </div>
-                                            <div style={{ background: 'rgba(255,255,255,0.6)', padding: '0.8rem 1.2rem', borderRadius: '16px', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', gap: '10px', opacity: 0.8 }}>
-                                                <Phone size={20} color="#666" />
-                                                <div>
-                                                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#333' }}>Batch #301</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#666' }}>Finished</div>
-                                                </div>
-                                            </div>
-                                            <div style={{ background: 'rgba(255,255,255,0.6)', padding: '0.8rem 1.2rem', borderRadius: '16px', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', gap: '10px', opacity: 0.8 }}>
-                                                <Phone size={20} color="#666" />
-                                                <div>
-                                                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#333' }}>Follow-up Q3</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#666' }}>Scheduled</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Connection Lines (Simulated fan-out) */}
-                                        <div className="batch-visual-lines">
-                                            {[...Array(8)].map((_, i) => (
-                                                <div key={i} style={{
-                                                    position: 'absolute',
-                                                    left: '0',
-                                                    top: '30%', // Originating from the active batch
-                                                    width: '100%',
-                                                    height: '1px',
-                                                    background: 'linear-gradient(90deg, rgba(255,255,255,0.8), transparent)',
-                                                    transformOrigin: 'left center',
-                                                    transform: `rotate(${(i - 3.5) * 8}deg)`, // Fan out
-                                                    opacity: 0.6
-                                                }}>
-                                                    <div style={{
-                                                        position: 'absolute',
-                                                        left: '0',
-                                                        top: '-2px',
-                                                        width: '6px',
-                                                        height: '6px',
-                                                        background: 'white',
-                                                        borderRadius: '50%',
-                                                        animation: `travel 1.${5 + i % 5}s infinite linear`,
-                                                        animationDelay: `${i * 0.2}s`
-                                                    }} />
-                                                </div>
-                                            ))}
-                                            <style jsx>{`
-                                                @keyframes travel {
-                                                    0% { left: 0; opacity: 1; }
-                                                    100% { left: 100%; opacity: 0; }
-                                                }
-                                            `}</style>
-                                        </div>
-
-                                        {/* Right Side: Avatar Grid (Simulating high volume) */}
-                                        <div className="batch-visual-right">
-                                            {/* Generating 9 avatars to show scale */}
-                                            {[...Array(9)].map((_, i) => (
-                                                <div key={i} style={{
-                                                    width: '44px',
-                                                    height: '44px',
-                                                    borderRadius: '50%',
-                                                    background: `hsl(${200 + i * 20}, 70%, 80%)`,
-                                                    border: '2px solid white',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    position: 'relative',
-                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                                                    animation: 'float 3s ease-in-out infinite',
-                                                    animationDelay: `${i * 0.1}s`
-                                                }}>
-                                                    <div style={{ fontSize: '0.6rem', fontWeight: 700, color: '#333' }}>{['JD', 'AS', 'MR', 'WK', 'LB', 'ST', 'PV', 'DM', 'CK'][i]}</div>
-                                                    {/* Status Dot */}
-                                                    <div style={{
-                                                        position: 'absolute',
-                                                        bottom: '0',
-                                                        right: '0',
-                                                        width: '12px',
-                                                        height: '12px',
-                                                        background: i % 3 === 0 ? '#fbbf24' : '#22c55e', // Mix of green (talking) and yellow (ringing)
-                                                        borderRadius: '50%',
-                                                        border: '2px solid white'
-                                                    }} />
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </>
-                        )}
-
-                        {activeTab === 'knowledge' && (
-                            <>
-                                {/* Central Card: Knowledge Hub */}
-                                <div className="features-card-responsive features-card-span-2 features-card-row"
-                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.05)'; }}
-                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    <div className="features-split-text">
-                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>
-                                            Instant Knowledge Sync
-                                        </h3>
-                                        <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.6, marginBottom: '2rem' }}>
-                                            Train your AI agent in seconds. Upload PDFs, connect URLs, or plain text. It learns your business instantly and stays up-to-date with a single click.
-                                        </p>
-                                        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                                            {['PDFs', 'Websites', 'Docs', 'Notion', 'Zendesk'].map((item, i) => (
-                                                <span key={i} style={{ background: 'white', border: '1px solid #e5e7eb', padding: '0.3rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', color: '#666' }}>{item}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    {/* Visualization: File Sync Interface */}
-                                    <div className="features-card-visual-responsive features-split-visual mb-0">
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid #f3f4f6', paddingBottom: '1rem' }}>
-                                            <div style={{ fontWeight: 600, color: '#333' }}>Company Knowledge</div>
-                                            <div style={{ background: '#111', color: 'white', padding: '0.3rem 0.8rem', borderRadius: '6px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                <Loader2 size={12} className="spin-slow" /> Re-syncing
-                                            </div>
-                                        </div>
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                            {/* File Item 1 */}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', background: '#f9fafb', borderRadius: '12px', opacity: 1, transform: 'translateY(0)', transition: 'all 0.3s' }}>
-                                                <div style={{ width: '40px', height: '40px', background: '#fee2e2', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontWeight: 700, fontSize: '0.7rem' }}>PDF</div>
-                                                <div style={{ flex: 1 }}>
-                                                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#333' }}>Product_Manual_v2.pdf</div>
-                                                    <div style={{ fontSize: '0.7rem', color: '#9ca3af' }}>1.2 MB • Just now</div>
-                                                </div>
-                                                <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                    <div style={{ width: '10px', height: '10px', background: '#22c55e', borderRadius: '50%' }} />
-                                                </div>
-                                            </div>
-
-                                            {/* File Item 2 */}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', background: '#f9fafb', borderRadius: '12px' }}>
-                                                <div style={{ width: '40px', height: '40px', background: '#dbeafe', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', fontWeight: 700, fontSize: '0.7rem' }}>URL</div>
-                                                <div style={{ flex: 1 }}>
-                                                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#333' }}>website.com/pricing</div>
-                                                    <div style={{ fontSize: '0.7rem', color: '#9ca3af' }}>Synced 2m ago</div>
-                                                </div>
-                                                <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                    <Loader2 size={12} color="#3b82f6" className="spin-fast" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <style jsx>{`
-                                            .spin-slow { animation: spin 3s linear infinite; }
-                                            .spin-fast { animation: spin 1s linear infinite; }
-                                            @keyframes spin { 100% { transform: rotate(360deg); } }
-                                         `}</style>
-
-                                        {/* Upload Drop Zone Hint */}
-                                        <div style={{ marginTop: '1.5rem', border: '2px dashed #e5e7eb', borderRadius: '12px', padding: '1rem', textAlign: 'center', color: '#9ca3af', fontSize: '0.8rem' }}>
-                                            Drop files here to upload
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Bottom CTA Row (Interactive) */}
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginTop: '4rem' }}>
                         <button style={{
-                            background: 'linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)',
+                            background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
                             color: 'white',
                             padding: '1rem 2.5rem',
                             borderRadius: '99px',
@@ -967,38 +285,271 @@ export default function FeaturesSection() {
                             fontWeight: 600,
                             border: 'none',
                             cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.6rem',
                             boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.4)',
                             transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                        }}
-                            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(79, 70, 229, 0.5)'; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(79, 70, 229, 0.4)'; }}
-                        >
-                            <Phone size={18} /> Book a Demo Call
-                        </button>
-                        <button style={{
-                            background: '#f3f4f6',
-                            color: '#1f2937',
-                            padding: '1rem 2.5rem',
-                            borderRadius: '99px',
-                            fontSize: '1rem',
-                            fontWeight: 600,
-                            border: '1px solid transparent',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.6rem',
-                            transition: 'all 0.2s ease'
-                        }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = '#e5e7eb'; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.background = '#f3f4f6'; }}
-                        >
-                            Learn More
+                        }}>
+                            Explore More Industries
                         </button>
                     </div>
 
+                </div>
+            </div>
+
+
+
+            {/* SECTION: How It Works */}
+            <div className="container" style={{ padding: '8rem 2rem 6rem', position: 'relative', zIndex: 1 }}>
+                <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
+                    <h2 style={{
+                        fontSize: '3.5rem',
+                        fontWeight: 800,
+                        lineHeight: 1.1,
+                        color: '#111',
+                        marginBottom: '1.5rem'
+                    }}>
+                        How It <span className="text-gradient">Works</span>
+                    </h2>
+                    <p style={{
+                        fontSize: '1.2rem',
+                        color: '#666',
+                        maxWidth: '600px',
+                        margin: '0 auto',
+                        lineHeight: 1.6
+                    }}>
+                        Simple setup, powerful results - deploy AI agents in minutes
+                    </p>
+                </div>
+
+                {/* Service Options & Integration Grid */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: '2rem',
+                    marginBottom: '6rem',
+                    maxWidth: '1200px',
+                    margin: '0 auto 6rem'
+                }}>
+                    {/* Self-Service */}
+                    <div style={{
+                        background: '#fff',
+                        padding: '2.5rem',
+                        borderRadius: '24px',
+                        border: '1px solid #f0f0f0',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02)'
+                    }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '12px',
+                            background: '#eff6ff',
+                            color: '#3b82f6',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <Layout size={24} />
+                        </div>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>Self-Service Platform</h3>
+                        <p style={{ color: '#666', lineHeight: 1.6 }}>Configure your AI agent through our intuitive web interface. Customize responses, set business rules, and deploy in minutes without any coding required.</p>
+                    </div>
+
+                    {/* Full-Service */}
+                    <div style={{
+                        background: '#fff',
+                        padding: '2.5rem',
+                        borderRadius: '24px',
+                        border: '1px solid #f0f0f0',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02)'
+                    }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '12px',
+                            background: '#fef3c7',
+                            color: '#d97706',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <Users size={24} />
+                        </div>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>Full-Service Setup</h3>
+                        <p style={{ color: '#666', lineHeight: 1.6 }}>Our team handles everything - from configuration to deployment. We analyze your workflows and implement the perfect solution for your business.</p>
+                    </div>
+
+                    {/* Integration */}
+                    <div style={{
+                        background: '#111',
+                        padding: '2.5rem',
+                        borderRadius: '24px',
+                        color: 'white',
+                    }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '12px',
+                            background: 'rgba(255,255,255,0.1)',
+                            color: '#fff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <Plug size={24} />
+                        </div>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Seamless Integration</h3>
+                        <p style={{ color: '#aaa', lineHeight: 1.6 }}>Connect with your existing systems: CRM, ERP, calendars, and industry-specific platforms. Two-way data sync ensures everything stays updated.</p>
+                    </div>
+                </div>
+
+                {/* Deployment Process Steps */}
+                <div style={{ marginBottom: '8rem', maxWidth: '1000px', margin: '0 auto 8rem' }}>
+                    <h3 style={{ textAlign: 'center', fontSize: '2rem', fontWeight: 700, marginBottom: '4rem', color: '#111' }}>Deployment Process</h3>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(3, 1fr)',
+                        gap: '2rem',
+                        position: 'relative'
+                    }}>
+                        {[
+                            { step: "01", title: "Create Agent", desc: "Define your agent's personality, knowledge base, and response patterns", icon: <Bot size={24} /> },
+                            { step: "02", title: "Test & Refine", desc: "Run test calls, review transcripts, and optimize performance", icon: <Settings2 size={24} /> },
+                            { step: "03", title: "Deploy Live", desc: "Go live with confidence - monitor calls and make adjustments anytime", icon: <Rocket size={24} /> }
+                        ].map((item, i) => (
+                            <div key={i} style={{ textAlign: 'center', padding: '0 1rem', position: 'relative' }}>
+                                <div style={{
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '50%',
+                                    background: i === 1 ? '#34d399' : '#fff',
+                                    border: i === 1 ? 'none' : '2px solid #e5e7eb',
+                                    color: i === 1 ? 'white' : '#666',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 1.5rem',
+                                    fontSize: '1.2rem',
+                                    fontWeight: 700,
+                                    position: 'relative',
+                                    zIndex: 2
+                                }}>
+                                    {item.step}
+                                </div>
+                                <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.75rem', color: '#111' }}>{item.title}</h4>
+                                <p style={{ fontSize: '1rem', color: '#666', lineHeight: 1.5 }}>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Call Recording & Analytics */}
+                <div style={{
+                    background: '#f8fafc',
+                    borderRadius: '32px',
+                    padding: '4rem',
+                    marginBottom: '6rem',
+                    border: '1px solid #e2e8f0',
+                    maxWidth: '1200px',
+                    margin: '0 auto 6rem'
+                }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                        <div>
+                            <span style={{
+                                display: 'inline-block',
+                                padding: '0.4rem 1rem',
+                                borderRadius: '99px',
+                                background: '#fee2e2',
+                                color: '#ef4444',
+                                fontSize: '0.85rem',
+                                fontWeight: 600,
+                                marginBottom: '1.5rem',
+                                letterSpacing: '0.02em'
+                            }}>
+                                • All calls are recorded
+                            </span>
+                            <h3 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1.5rem', color: '#0f172a', lineHeight: 1.2 }}>
+                                Call Recording & Analytics
+                            </h3>
+                            <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
+                                Every conversation is transcribed, analyzed, and stored. Export data in any format (XLS, CSV, JSON, PDF) or automatically sync with your CRM, calendar, ERP, and other business systems.
+                            </p>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                                {['Real-time Analytics', 'Calendar Sync', 'CRM Integration', 'Custom Reports'].map((tag) => (
+                                    <span key={tag} style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        padding: '0.5rem 1rem',
+                                        background: 'white',
+                                        border: '1px solid #e2e8f0',
+                                        borderRadius: '8px',
+                                        color: '#64748b',
+                                        fontSize: '0.9rem',
+                                        fontWeight: 500
+                                    }}>
+                                        <CheckCircle size={14} color="#34d399" /> {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        {/* Visual Placeholder for Analytics Dashboard */}
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '24px',
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
+                            padding: '2rem',
+                            border: '1px solid #e2e8f0',
+                            minHeight: '300px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1.5rem'
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #f1f5f9', paddingBottom: '1rem' }}>
+                                <span style={{ fontWeight: 600, color: '#334155' }}>Call Volume</span>
+                                <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>Last 7 Days</span>
+                            </div>
+                            <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '1rem 0' }}>
+                                {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
+                                    <div key={i} style={{ width: '12%', height: `${h}%`, background: i === 5 ? '#3b82f6' : '#e2e8f0', borderRadius: '4px' }}></div>
+                                ))}
+                            </div>
+                            <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
+                                <div style={{ flex: 1, background: '#f8fafc', padding: '1rem', borderRadius: '12px' }}>
+                                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.2rem' }}>Conversion</div>
+                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a' }}>24.8%</div>
+                                </div>
+                                <div style={{ flex: 1, background: '#f8fafc', padding: '1rem', borderRadius: '12px' }}>
+                                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.2rem' }}>Avg Duration</div>
+                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a' }}>4m 12s</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
+                    <span style={{
+                        background: '#34D399', /* Brighter Mint Green */
+                        color: 'white',
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        padding: '0.3rem 0.8rem',
+                        borderRadius: '99px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                    }}>
+                        REALISTIC
+                    </span>
+                    <p style={{ fontSize: '0.95rem', color: '#555' }}>
+                        Voice technology that passes the <span
+                            onClick={() => document.getElementById('samples')?.scrollIntoView({ behavior: 'smooth' })}
+                            style={{ textDecoration: 'underline', color: '#111', fontWeight: 'bold', cursor: 'pointer' }}
+                        >
+                            Turing test. Listen to samples.
+                        </span>
+                    </p>
                 </div>
             </div>
 

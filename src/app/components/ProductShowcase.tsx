@@ -1,138 +1,140 @@
-import { Star, ArrowRight, Volume2, Headphones, CircuitBoard } from 'lucide-react';
+'use client';
+
+import { Star, ArrowRight, Volume2, Headphones, CircuitBoard, Globe, Mic } from 'lucide-react';
 import MultilingualSupport from './MultilingualSupport';
 
 export default function ProductShowcase() {
     return (
-        <section id="design" style={{
+        <section id="technology" style={{
             position: 'relative',
-            paddingTop: '4rem',
+            paddingTop: '6rem',
             paddingBottom: '8rem',
-            overflow: 'hidden',
-            background: '#ffffff' // Hides the global dot pattern
+            background: '#ffffff'
         }}>
 
-            {/* Background Grid Lines */}
-            <div className="grid-lines" style={{ zIndex: 0 }}>
-                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
-                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
-                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
-                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
-            </div>
-
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-
-                {/* Top Trusted Rating */}
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '1rem',
-                    marginBottom: '6rem'
-                }}>
-                    <div style={{
-                        background: '#FDB022',
-                        color: 'white',
-                        padding: '0.25rem 0.6rem',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        gap: '2px'
-                    }}>
-                        {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" stroke="none" />)}
-                    </div>
-                    <span style={{ fontSize: '1rem', fontWeight: 500, color: '#444' }}>
-                        Customers wish they could rate us <strong style={{ textDecoration: 'underline' }}>6 stars out of 5</strong>
-                    </span>
-                </div>
+            <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1200px' }}>
 
                 {/* Main Content Grid */}
-                <div className="product-showcase-grid">
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                    gap: '4rem',
+                    alignItems: 'center',
+                    marginBottom: '6rem'
+                }}>
 
-                    {/* Left: Product Image Placeholder */}
-                    <div style={{ position: 'relative', width: '100%', aspectRatio: '1' }}>
+                    {/* Left: Multilingual Animation */}
+                    <div style={{ position: 'relative' }}>
                         <MultilingualSupport />
-
-                        {/* Floating Badge (Superior Sound) */}
-                        <div className="circle-badge" style={{
-                            width: '140px',
-                            height: '140px',
+                        {/* Decorative Badge */}
+                        <div style={{
                             position: 'absolute',
                             top: '-20px',
-                            left: '-20px',
-                            border: '8px solid rgba(255,255,255,0.8)',
-                            background: 'var(--gradient-text)', // Match title gradient
-                            zIndex: 50 // Ensure it sits above flags
+                            right: '-20px',
+                            background: 'linear-gradient(135deg, #111, #333)',
+                            padding: '1rem 1.5rem',
+                            borderRadius: '16px',
+                            color: 'white',
+                            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                            zIndex: 10
                         }}>
-                            <CircuitBoard size={32} color="white" style={{ marginBottom: '0.5rem' }} />
-                            <span style={{ fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.2 }}>
-                                AI<br />POWERED
-                            </span>
+                            <div style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '0.2rem' }}>Active Connection</div>
+                            <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Global Reach</div>
                         </div>
                     </div>
 
                     {/* Right: Feature Text */}
-                    <div style={{ paddingLeft: '0' }}>
-                        <div style={{ marginBottom: '1.5rem', color: '#ccc' }}>
-                            <Headphones size={48} strokeWidth={1} />
+                    <div style={{ paddingLeft: '2rem' }}>
+                        <div style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            padding: '0.4rem 1rem',
+                            background: '#f0fdf4',
+                            borderRadius: '99px',
+                            color: '#16a34a',
+                            fontSize: '0.9rem',
+                            fontWeight: 600,
+                            marginBottom: '1.5rem',
+                            border: '1px solid #dcfce7'
+                        }}>
+                            <Globe size={16} /> Global Scale
                         </div>
-                        <h2 className="product-showcase-title">
-                            Slash Overhead. <br />
-                            Boost Service.
+
+                        <h2 style={{
+                            fontSize: '3rem',
+                            fontWeight: 800,
+                            lineHeight: 1.1,
+                            color: '#111',
+                            marginBottom: '1.5rem',
+                            letterSpacing: '-0.02em'
+                        }}>
+                            Speak Any Language, <br />
+                            <span className="text-gradient">Serve Any Market.</span>
                         </h2>
-                        <p className="product-showcase-text">
-                            Why hire a massive call center? Cut operational overhead by up to 40% by automating routine reception tasks with intelligent, human-like voice AI.
+
+                        <p style={{
+                            fontSize: '1.15rem',
+                            lineHeight: 1.7,
+                            color: '#666',
+                            marginBottom: '2.5rem'
+                        }}>
+                            Our AI agents adapt to regional accents, cultural nuances, and local business practices. Whether serving customers in New York, Tokyo, or Dubai, your AI agent sounds natural and professional.
                         </p>
 
                         <button style={{
-                            background: '#222',
+                            background: '#111',
                             color: 'white',
                             padding: '1rem 2rem',
-                            borderRadius: '6px',
+                            borderRadius: '99px',
                             fontSize: '1rem',
                             fontWeight: 600,
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.8rem',
-                            transition: 'background 0.2s',
-                            margin: '0 auto' // Center button on mobile if needed via flex parent, but text-align center handles text. 
-                            // For button, we might need explicit centering if it's block level or flex child.
-                            // Keeping it simple for now, relying on parent text-align center in mobile query.
-                        }}>
-                            Calculate Savings <ArrowRight size={18} />
+                            transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                            boxShadow: '0 10px 20px -5px rgba(0,0,0,0.2)'
+                        }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(0,0,0,0.3)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.2)';
+                            }}
+                        >
+                            <Mic size={20} /> Test in Your Language
                         </button>
                     </div>
                 </div>
 
-                {/* Bottom Features Grid (01, 02, 03) */}
-                <div className="features-grid">
+                {/* Bottom Stats Grid */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    gap: '2rem',
+                    padding: '3rem',
+                    background: '#f8fafc',
+                    borderRadius: '24px',
+                    border: '1px solid #e2e8f0'
+                }}>
                     {[
-                        { id: '01', title: 'Fraction of the Cost.', sub: 'Enterprise support on a startup budget.' },
-                        { id: '02', title: 'No Training Required.', sub: 'Pre-trained agents ready to work immediately.' },
-                        { id: '03', title: 'Performance Tracking.', sub: 'Real-time analytics on every conversation.' },
-                    ].map((item) => (
-                        <div key={item.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-                            <div className="shadow-float" style={{
-                                width: '60px',
-                                height: '60px',
-                                background: 'white',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '1.25rem',
-                                fontWeight: 700,
-                                color: '#111',
-                                flexShrink: 0
-                            }}>
-                                {item.id}
-                            </div>
-                            <div>
-                                <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111', marginBottom: '0.5rem', marginTop: '0' }}>
-                                    {item.title}
-                                </h3>
-                                <p style={{ fontSize: '1rem', lineHeight: 1.5, color: '#666', margin: 0 }}>
-                                    {item.sub}
-                                </p>
-                            </div>
+                        { title: 'Support for', highlight: '50+ languages', sub: 'instantly available' },
+                        { title: 'Reduce costs by', highlight: '40%', sub: 'vs traditional call centers' },
+                        { title: 'Available', highlight: '24/7/365', sub: 'in every time zone' },
+                    ].map((item, i) => (
+                        <div key={i} style={{ textAlign: 'center', borderRight: i !== 2 ? '1px solid #e2e8f0' : 'none' }}>
+                            <div style={{ fontSize: '1rem', color: '#64748b', marginBottom: '0.5rem' }}>{item.title}</div>
+                            <div style={{
+                                fontSize: '2.5rem',
+                                fontWeight: 800,
+                                background: 'linear-gradient(135deg, #111 0%, #444 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                marginBottom: '0.2rem'
+                            }}>{item.highlight}</div>
+                            <div style={{ fontSize: '0.9rem', color: '#94a3b8' }}>{item.sub}</div>
                         </div>
                     ))}
                 </div>

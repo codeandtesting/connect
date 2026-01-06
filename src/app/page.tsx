@@ -6,16 +6,20 @@ import CompositionSection from "./components/CompositionSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import PricingSection from "./components/PricingSection";
 import Footer from "./components/Footer";
+import FaqContactSection from "./components/FaqContactSection";
+import ChannelsSection from "./components/ChannelsSection";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
       <Hero />
-      <ProductShowcase />
       <FeaturesSection />
+      <ChannelsSection />
+      <ProductShowcase />
       <CompositionSection />
       <TestimonialsSection />
+      <FaqContactSection />
       {/* <PricingSection /> */}
       <Footer />
     </main>

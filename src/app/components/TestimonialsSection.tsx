@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
+import { Star, Stethoscope, Car, Utensils, ShoppingBag } from 'lucide-react';
 
 export default function TestimonialsSection() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -75,7 +75,14 @@ export default function TestimonialsSection() {
                     color: '#111',
                     lineHeight: 1.1
                 }}>
-                    Loved by most <br /> valuable customers
+                    Loved by most <br />
+                    <span style={{
+                        background: 'linear-gradient(to right, #2563eb, #db2777)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>
+                        valuable customers
+                    </span>
                 </h2>
 
                 {/* Testimonials Carousel Container */}
@@ -189,6 +196,118 @@ export default function TestimonialsSection() {
                     })}
                 </div>
 
+                {/* SUCCESS STORIES SECTION */}
+                <div style={{ marginTop: '8rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <h3 style={{
+                            fontSize: '3rem',
+                            fontWeight: 800,
+                            marginBottom: '1rem',
+                            background: 'linear-gradient(to right, #2563eb, #db2777)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            display: 'inline-block'
+                        }}>
+                            Success Stories
+                        </h3>
+                        <p style={{ fontSize: '1.2rem', color: '#666' }}>Real-world workflows powered by Conekt</p>
+                    </div>
+
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                        gap: '2rem'
+                    }}>
+                        {[
+                            {
+                                icon: <Stethoscope size={24} color="#3b82f6" />,
+                                title: "Medical Appointment Flow",
+                                steps: [
+                                    { title: "Patient calls", desc: "AI agent answers 24/7, gathers details about needed appointment type" },
+                                    { title: "Schedule created", desc: "Data syncs to clinic's EHR system (Epic/Cerner) and reserves time slot" },
+                                    { title: "Calendar sync", desc: "Appointment added to patient's Google/Outlook calendar automatically" },
+                                    { title: "Reminder calls", desc: "AI agent calls 24h before appointment to confirm attendance" }
+                                ]
+                            },
+                            {
+                                icon: <Car size={24} color="#8b5cf6" />,
+                                title: "Auto Service Flow",
+                                steps: [
+                                    { title: "Customer calls", desc: "AI agent checks vehicle history and available service slots" },
+                                    { title: "DMS integration", desc: "Booking syncs to dealer management system (CDK/Reynolds)" },
+                                    { title: "SMS confirmation", desc: "Customer receives text with appointment details and service advisor info" },
+                                    { title: "Ready notification", desc: "AI calls when vehicle is ready for pickup with total cost" }
+                                ]
+                            },
+                            {
+                                icon: <Utensils size={24} color="#f59e0b" />,
+                                title: "Restaurant Booking Flow",
+                                steps: [
+                                    { title: "Diner calls", desc: "AI agent checks table availability for requested party size and time" },
+                                    { title: "Table reserved", desc: "Booking syncs to OpenTable/Resy and restaurant POS system" },
+                                    { title: "Email confirmation", desc: "Customer receives confirmation with reservation details" },
+                                    { title: "Day-of reminder", desc: "SMS reminder sent 2 hours before reservation" }
+                                ]
+                            },
+                            /*
+                            {
+                                icon: <ShoppingBag size={24} color="#ec4899" />,
+                                title: "E-commerce Order Flow",
+                                steps: [
+                                    { title: "Customer inquires", desc: "AI provides real-time order status from Shopify/WooCommerce" },
+                                    { title: "Tracking shared", desc: "AI provides carrier tracking number and estimated delivery" },
+                                    { title: "Issue resolution", desc: "If delay detected, AI proactively calls customer with update" },
+                                    { title: "Delivery confirmation", desc: "AI calls to confirm receipt and collect feedback" }
+                                ]
+                            }
+                            */
+                        ].map((story, i) => (
+                            <div key={i} style={{
+                                background: 'white',
+                                padding: '2.5rem',
+                                borderRadius: '20px',
+                                border: '1px solid #f0f0f0',
+                                boxShadow: '0 10px 40px rgba(0,0,0,0.05)'
+                            }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                                    <div style={{
+                                        width: '50px', height: '50px',
+                                        borderRadius: '12px',
+                                        background: '#f8fafc',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                    }}>
+                                        {story.icon}
+                                    </div>
+                                    <h4 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0, color: '#111' }}>{story.title}</h4>
+                                </div>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                    {story.steps.map((step, idx) => (
+                                        <div key={idx} style={{ display: 'flex', gap: '1rem' }}>
+                                            <div style={{
+                                                width: '24px', height: '24px',
+                                                borderRadius: '50%',
+                                                background: '#111',
+                                                color: 'white',
+                                                fontSize: '0.8rem',
+                                                fontWeight: 700,
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                flexShrink: 0,
+                                                marginTop: '2px'
+                                            }}>
+                                                {idx + 1}
+                                            </div>
+                                            <div>
+                                                <strong style={{ display: 'block', color: '#333', marginBottom: '0.2rem' }}>{step.title}</strong>
+                                                <span style={{ fontSize: '0.95rem', color: '#666', lineHeight: 1.4, display: 'block' }}>{step.desc}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
             </div>
         </section>

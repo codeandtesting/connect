@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from 'react';
-import { Play, Pause, AudioLines, Sparkles } from 'lucide-react';
+import { Play, Pause, AudioLines, Sparkles, Activity, Car, Home, Phone } from 'lucide-react';
 
 export default function CompositionSection() {
     const [playingIndex, setPlayingIndex] = useState<number | null>(null);
@@ -121,6 +121,74 @@ export default function CompositionSection() {
                         </div>
                     );
                 })}
+            </div>
+
+            {/* Try It Live Section */}
+            <div className="container" style={{ marginTop: '6rem', marginBottom: '6rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+                <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>Try It Live</h3>
+                <p style={{ color: '#bbb', marginBottom: '4rem', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 4rem' }}>
+                    Call our AI agents now and experience the future of customer service
+                </p>
+
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: '2rem',
+                    justifyContent: 'center'
+                }}>
+                    {[
+                        { icon: <Activity size={48} color="#FF9A9E" />, title: "Healthcare Agent", sub: "Book an appointment", num: "+1 (555) 0100" },
+                        { icon: <Car size={48} color="#a18cd1" />, title: "Automotive Agent", sub: "Schedule service", num: "+1 (555) 0101" },
+                        { icon: <Home size={48} color="#84fab0" />, title: "Real Estate Agent", sub: "Inquire about property", num: "+1 (555) 0102" }
+                    ].map((item, i) => (
+                        <div key={i} style={{
+                            background: 'rgba(255,255,255,0.05)',
+                            padding: '2.5rem',
+                            borderRadius: '24px',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            backdropFilter: 'blur(10px)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '1rem',
+                            transition: 'transform 0.2s ease',
+                        }}
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                        >
+                            <div style={{ marginBottom: '0.5rem' }}>{item.icon}</div>
+                            <h4 style={{ color: 'white', fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>{item.title}</h4>
+                            <p style={{ color: '#888', margin: 0, fontSize: '1rem' }}>{item.sub}</p>
+
+                            <a href={`tel:${item.num.replace(/\D/g, '')}`} style={{
+                                marginTop: '1rem',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.8rem',
+                                background: '#333',
+                                color: 'white',
+                                padding: '1rem 2rem',
+                                borderRadius: '99px',
+                                textDecoration: 'none',
+                                fontWeight: 600,
+                                fontSize: '1.1rem',
+                                border: '1px solid #444',
+                                transition: 'background 0.2s, color 0.2s',
+                            }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'white';
+                                    e.currentTarget.style.color = 'black';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = '#333';
+                                    e.currentTarget.style.color = 'white';
+                                }}
+                            >
+                                <Phone size={18} /> {item.num}
+                            </a>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Footer Strip */}

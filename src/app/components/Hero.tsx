@@ -1,10 +1,10 @@
-import { PlayCircle } from 'lucide-react';
+import { PlayCircle, ShoppingBag } from 'lucide-react';
 
 export default function Hero() {
     return (
         <section id="overview" style={{
             position: 'relative',
-            height: 'calc(100vh - var(--header-height))',
+            minHeight: 'calc(100vh - var(--header-height))',
             width: '100%',
             maxWidth: 'var(--container-width)',
             margin: '0 auto',
@@ -12,79 +12,93 @@ export default function Hero() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingBottom: '4rem' // Optical balance
+            padding: '4rem 2rem',
+            textAlign: 'center'
         }}>
 
-            {/* Background/Main Text */}
+            {/* Main Content */}
             <div style={{
-                textAlign: 'center',
-                zIndex: 1
+                zIndex: 10,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '2rem',
+                maxWidth: '1000px'
             }}>
-                <h1 className="text-gradient" style={{
-                    fontSize: '18vw', // Massive responsive text
-                    lineHeight: 0.8,
+                <h1 style={{
+                    fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+                    lineHeight: 1.05,
                     fontWeight: 800,
-                    letterSpacing: '-0.04em',
+                    letterSpacing: '-0.03em',
                     margin: 0,
-                    userSelect: 'none',
-                    pointerEvents: 'none'
+                    color: 'var(--foreground)'
                 }}>
-                    listening
+                    Your personal <span className="text-gradient">AI call manager</span>.<br />
+                    World wide in any language
                 </h1>
-            </div>
 
-            {/* Floating Info Elements (Replacing Headphones Context) */}
-            <div style={{
-                position: 'absolute',
-                bottom: '15%',
-                left: '2rem',
-                textAlign: 'left'
-            }}>
-                <span style={{ display: 'block', fontSize: '1rem', color: '#666', marginBottom: '0.25rem' }}>AI Capabilities</span>
-                <strong style={{ fontSize: '1.5rem', fontWeight: 600 }}>Real-Time Call</strong>
-            </div>
-
-            <div style={{
-                position: 'absolute',
-                bottom: '15%',
-                right: '2rem',
-                textAlign: 'right'
-            }}>
-                <span style={{ display: 'block', fontSize: '1rem', color: '#666', marginBottom: '0.25rem' }}>Fully Automate</span>
-                <strong style={{ fontSize: '1.5rem', fontWeight: 600 }}>Call Breakdowns</strong>
-            </div>
-
-            {/* Play Video CTA */}
-            <div style={{
-                position: 'absolute',
-                bottom: '8%',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                zIndex: 10
-            }}>
-                <button className="play-btn" style={{
-                    background: 'white',
-                    padding: '0.8rem 2rem',
-                    borderRadius: 'var(--radius-pill)',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.05em',
-                    color: '#333',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    border: '1px solid rgba(0,0,0,0.05)'
+                <p style={{
+                    fontSize: '1.25rem',
+                    lineHeight: 1.6,
+                    color: '#555',
+                    maxWidth: '700px',
+                    margin: 0,
+                    fontWeight: 500
                 }}>
-                    ACTIVATE
-                    <span style={{
-                        color: 'var(--accent-pink)',
-                        display: 'flex',
-                        alignItems: 'center'
+                    Transform your phone operations with intelligent AI agents that handle calls 24/7, in any language, with perfect accuracy and unlimited scalability.
+                </p>
+
+                {/* Buttons */}
+                <div style={{
+                    display: 'flex',
+                    gap: '1.5rem',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    marginTop: '1rem'
+                }}>
+                    <button className="order-btn" style={{
+                        padding: '1rem 2.5rem',
+                        fontSize: '1.1rem',
+                        height: 'auto'
                     }}>
-                        <PlayCircle size={24} fill="currentColor" stroke="none" />
-                    </span>
-                </button>
+                        <ShoppingBag size={20} />
+                        Book a Demo
+                    </button>
+
+                    <button className="play-btn" style={{
+                        // Overriding some positioning styles from the class definition if needed, 
+                        // or just relying on the flex container
+                    }}>
+                        Try Live Demo
+                        <span style={{
+                            color: 'var(--accent-pink)',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            <PlayCircle size={24} fill="currentColor" stroke="none" />
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div style={{
+                position: 'absolute',
+                bottom: '10%',
+                left: '3rem',
+                textAlign: 'left'
+            }} className="hide-mobile">
+                <span style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '0.25rem' }}>AI Capabilities</span>
+                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>Real-Time Call</strong>
+            </div>
+
+            <div style={{
+                position: 'absolute',
+                bottom: '10%',
+                right: '3rem',
+                textAlign: 'right'
+            }} className="hide-mobile">
+                <span style={{ display: 'block', fontSize: '0.9rem', color: '#888', marginBottom: '0.25rem' }}>Fully Automate</span>
+                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>Call Breakdowns</strong>
             </div>
 
         </section >

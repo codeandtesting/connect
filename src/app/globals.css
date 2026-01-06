@@ -826,3 +826,13 @@ button,
   }
 }
 
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .hide-mobile {
+    display: block;
+  }
+}
+
