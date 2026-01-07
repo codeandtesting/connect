@@ -78,11 +78,12 @@ export default function ChannelsSection() {
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                     <h2 style={{
-                        fontSize: '3.5rem',
+                        fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
                         fontWeight: 800,
                         lineHeight: 1.1,
                         color: '#111',
-                        marginBottom: '1.5rem'
+                        marginBottom: '1.5rem',
+                        letterSpacing: '-0.02em'
                     }}>
                         Multiple Communication <span className="text-gradient">Channels</span>
                     </h2>
@@ -141,10 +142,11 @@ export default function ChannelsSection() {
                 {/* Seamless Integrations Section */}
                 <div id="integrations" className="scroll-mt-24" style={{ marginTop: '3rem', textAlign: 'center' }}>
                     <h3 style={{
-                        fontSize: '2.5rem',
+                        fontSize: 'clamp(2rem, 5vw, 2.5rem)',
                         fontWeight: 700,
                         marginBottom: '1rem',
-                        color: '#111'
+                        color: '#111',
+                        letterSpacing: '-0.01em'
                     }}>
                         Seamless Integrations
                     </h3>

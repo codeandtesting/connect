@@ -1,12 +1,31 @@
 'use client';
 
 import { Mic, VolumeX, Zap, Heart, GitBranch, MessageSquare, Phone, Shield, CheckCircle, ArrowRight, Loader2, Users, Car, Home, Landmark, ShoppingCart, Utensils, Play, Layout, Plug, Bot, Settings2, Rocket, BarChart3, FileText, Calendar } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 export default function FeaturesSection() {
     const [scrollY, setScrollY] = useState(0);
     const sectionRef = useRef<HTMLElement>(null);
     const [activeTab, setActiveTab] = useState<'healthcare' | 'automotive' | 'realestate' | 'banking' | 'ecommerce' | 'restaurant'>('healthcare');
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const togglePlay = () => {
+        setIsPlaying(!isPlaying);
+        // Reset playing state after some time to simulate track end
+        if (!isPlaying) {
+            setTimeout(() => {
+                setIsPlaying(false);
+            }, 15000);
+        }
+    };
+
+    // Reset playing state when switching tabs
+    useEffect(() => {
+        setIsPlaying(false);
+    }, [activeTab]);
+
 
     const industries = {
         healthcare: {
@@ -230,32 +249,162 @@ export default function FeaturesSection() {
                                     transition: 'background 0.5s ease'
                                 }} />
 
-                                <div style={{ zIndex: 2, textAlign: 'center' }}>
-                                    <button style={{
-                                        background: industries[activeTab].gradient,
-                                        color: 'white',
-                                        padding: '1rem 2rem',
-                                        borderRadius: '99px',
-                                        fontSize: '1rem',
-                                        fontWeight: 600,
-                                        border: 'none',
-                                        cursor: 'pointer',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.8rem',
-                                        boxShadow: `0 10px 20px -5px ${industries[activeTab].color}60`,
-                                        transition: 'all 0.3s ease',
-                                        marginBottom: '1.5rem'
-                                    }}
-                                        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                                        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                                <div style={{ zIndex: 2, textAlign: 'center', position: 'relative' }}>
+                                    {/* Pulsing Visual Effect Container */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        inset: '-20px',
+                                        background: industries[activeTab].color,
+                                        borderRadius: '50%',
+                                        opacity: isPlaying ? 0.2 : 0,
+                                        transform: isPlaying ? 'scale(1.2)' : 'scale(0.8)',
+                                        filter: 'blur(20px)',
+                                        transition: 'all 0.5s ease',
+                                        zIndex: -1,
+                                        animation: isPlaying ? 'pulse-glow 2s infinite' : 'none'
+                                    }} />
+
+                                    <button
+                                        onClick={togglePlay}
+                                        style={{
+                                            background: isPlaying ? '#1e293b' : industries[activeTab].gradient,
+                                            color: 'white',
+                                            padding: '1.2rem 2.5rem',
+                                            borderRadius: '99px',
+                                            fontSize: '1.1rem',
+                                            fontWeight: 700,
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '1rem',
+                                            boxShadow: isPlaying
+                                                ? `0 0 30px ${industries[activeTab].color}80`
+                                                : `0 10px 25px -5px ${industries[activeTab].color}60`,
+                                            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                                            marginBottom: '2rem',
+                                            position: 'relative',
+                                            overflow: 'hidden'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (!isPlaying) e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            if (!isPlaying) e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                                        }}
                                     >
-                                        <Play size={20} fill="white" /> {industries[activeTab].demo}
+                                        {isPlaying ? (
+                                            <>
+                                                <div style={{ display: 'flex', gap: '3px', height: '18px', alignItems: 'flex-end' }}>
+                                                    <div className="wave-bar" style={{ animationDelay: '0s' }} />
+                                                    <div className="wave-bar" style={{ animationDelay: '0.2s' }} />
+                                                    <div className="wave-bar" style={{ animationDelay: '0.4s' }} />
+                                                    <div className="wave-bar" style={{ animationDelay: '0.1s' }} />
+                                                </div>
+                                                Stop Demo
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div style={{
+                                                    background: 'rgba(255,255,255,0.2)',
+                                                    borderRadius: '50%',
+                                                    padding: '8px',
+                                                    display: 'flex'
+                                                }}>
+                                                    <Play size={20} fill="white" />
+                                                </div>
+                                                {industries[activeTab].demo}
+                                            </>
+                                        )}
                                     </button>
-                                    <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
-                                        {industries[activeTab].sample ? `Sample conversation: ${industries[activeTab].sample}` : 'Sample conversation available'}
-                                    </p>
+
+                                    {/* Visual Waveform Effect when playing */}
+                                    {isPlaying && (
+                                        <div style={{
+                                            display: 'flex',
+                                            gap: '4px',
+                                            height: '60px',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '1.5rem',
+                                            padding: '0 2rem'
+                                        }}>
+                                            {[...Array(24)].map((_, i) => {
+                                                const randomDuration = 0.5 + Math.random() * 1;
+                                                return (
+                                                    <div
+                                                        key={i}
+                                                        style={{
+                                                            width: '3px',
+                                                            height: activeTab === 'healthcare' ? '30%' : '50%',
+                                                            background: industries[activeTab].color,
+                                                            borderRadius: '2px',
+                                                            animation: `waveform ${randomDuration}s ease-in-out infinite`,
+                                                            animationDelay: `${i * 0.05}s`,
+                                                            opacity: 0.4 + (Math.random() * 0.6)
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+                                        {isPlaying && (
+                                            <span style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '0.4rem',
+                                                background: '#fee2e2',
+                                                color: '#ef4444',
+                                                padding: '0.2rem 0.6rem',
+                                                borderRadius: '4px',
+                                                fontSize: '0.75rem',
+                                                fontWeight: 800,
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.05em',
+                                                animation: 'pulse-live 2s infinite'
+                                            }}>
+                                                <div style={{ width: '6px', height: '6px', background: '#ef4444', borderRadius: '50%' }} />
+                                                Live demo
+                                            </span>
+                                        )}
+                                        <p style={{
+                                            color: isPlaying ? industries[activeTab].color : '#64748b',
+                                            fontSize: '1rem',
+                                            fontWeight: isPlaying ? 600 : 400,
+                                            transition: 'all 0.3s ease'
+                                        }}>
+                                            {isPlaying ? `Streaming ${industries[activeTab].label} Voice Agent...` : industries[activeTab].sample ? `Sample conversation: ${industries[activeTab].sample}` : 'Sample conversation available'}
+                                        </p>
+                                    </div>
                                 </div>
+
+                                <style jsx>{`
+                                    @keyframes pulse-live {
+                                        0%, 100% { opacity: 1; }
+                                        50% { opacity: 0.5; }
+                                    }
+                                    @keyframes pulse-glow {
+                                        0% { transform: scale(1); opacity: 0.2; }
+                                        50% { transform: scale(1.6); opacity: 0.1; }
+                                        100% { transform: scale(1); opacity: 0.2; }
+                                    }
+                                    @keyframes waveform {
+                                        0%, 100% { height: 8px; transform: scaleY(1); }
+                                        50% { height: 40px; transform: scaleY(1.2); }
+                                    }
+                                    .wave-bar {
+                                        width: 3px;
+                                        background: white;
+                                        border-radius: 1px;
+                                        animation: wave-animation 0.8s ease-in-out infinite;
+                                    }
+                                    @keyframes wave-animation {
+                                        0%, 100% { height: 4px; }
+                                        50% { height: 16px; }
+                                    }
+                                `}</style>
                             </div>
 
                             {/* Bottom Section: Content */}
@@ -276,20 +425,25 @@ export default function FeaturesSection() {
                     </div>
 
                     <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-                        <button style={{
-                            background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
-                            color: 'white',
-                            padding: '1rem 2.5rem',
-                            borderRadius: '99px',
-                            fontSize: '1rem',
-                            fontWeight: 600,
-                            border: 'none',
-                            cursor: 'pointer',
-                            boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.4)',
-                            transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                        }}>
-                            Explore More Industries
-                        </button>
+                        <Link href="/industries">
+                            <button style={{
+                                background: '#111',
+                                color: 'white',
+                                padding: '1rem 3rem',
+                                borderRadius: '99px',
+                                fontSize: '1.1rem',
+                                fontWeight: 700,
+                                border: 'none',
+                                cursor: 'pointer',
+                                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)',
+                                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                            }}
+                                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)'}
+                                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
+                            >
+                                Explore More Industries
+                            </button>
+                        </Link>
                     </div>
 
                 </div>
@@ -298,14 +452,15 @@ export default function FeaturesSection() {
 
 
             {/* SECTION: How It Works */}
-            <div className="container" style={{ padding: '8rem 2rem 6rem', position: 'relative', zIndex: 1 }}>
+            <div id="how-it-works" className="container" style={{ padding: '8rem 2rem 6rem', position: 'relative', zIndex: 1 }}>
                 <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
                     <h2 style={{
-                        fontSize: '3.5rem',
+                        fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
                         fontWeight: 800,
                         lineHeight: 1.1,
                         color: '#111',
-                        marginBottom: '1.5rem'
+                        marginBottom: '1.5rem',
+                        letterSpacing: '-0.02em'
                     }}>
                         How It <span className="text-gradient">Works</span>
                     </h2>
@@ -405,14 +560,9 @@ export default function FeaturesSection() {
                 </div>
 
                 {/* Deployment Process Steps */}
-                <div style={{ marginBottom: '8rem', maxWidth: '1000px', margin: '0 auto 8rem' }}>
-                    <h3 style={{ textAlign: 'center', fontSize: '2rem', fontWeight: 700, marginBottom: '4rem', color: '#111' }}>Deployment Process</h3>
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        gap: '2rem',
-                        position: 'relative'
-                    }}>
+                <div id="deployment-process" style={{ marginBottom: '8rem', maxWidth: '1000px', margin: '0 auto 8rem' }}>
+                    <h3 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700, marginBottom: '4rem', color: '#111', letterSpacing: '-0.01em' }}>Deployment Process</h3>
+                    <div className="deployment-grid">
                         {[
                             { step: "01", title: "Create Agent", desc: "Define your agent's personality, knowledge base, and response patterns", icon: <Bot size={24} /> },
                             { step: "02", title: "Test & Refine", desc: "Run test calls, review transcripts, and optimize performance", icon: <Settings2 size={24} /> },
@@ -445,17 +595,9 @@ export default function FeaturesSection() {
                 </div>
 
                 {/* Call Recording & Analytics */}
-                <div style={{
-                    background: '#f8fafc',
-                    borderRadius: '32px',
-                    padding: '4rem',
-                    marginBottom: '6rem',
-                    border: '1px solid #e2e8f0',
-                    maxWidth: '1200px',
-                    margin: '0 auto 6rem'
-                }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-                        <div>
+                <div className="analytics-wrapper">
+                    <div className="analytics-grid">
+                        <div className="analytics-info">
                             <span style={{
                                 display: 'inline-block',
                                 padding: '0.4rem 1rem',
@@ -469,13 +611,13 @@ export default function FeaturesSection() {
                             }}>
                                 • All calls are recorded
                             </span>
-                            <h3 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '1.5rem', color: '#0f172a', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: 700, marginBottom: '1.5rem', color: '#0f172a', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
                                 Call Recording & Analytics
                             </h3>
                             <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
                                 Every conversation is transcribed, analyzed, and stored. Export data in any format (XLS, CSV, JSON, PDF) or automatically sync with your CRM, calendar, ERP, and other business systems.
                             </p>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                            <div className="analytics-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                                 {['Real-time Analytics', 'Calendar Sync', 'CRM Integration', 'Custom Reports'].map((tag) => (
                                     <span key={tag} style={{
                                         display: 'flex',
@@ -606,6 +748,6 @@ export default function FeaturesSection() {
             </div>
 
 
-        </section>
+        </section >
     );
 }

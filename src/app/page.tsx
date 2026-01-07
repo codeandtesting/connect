@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+// import Hero from "./components/Hero";
+import HeroV2 from "./components/HeroV2";
 import ProductShowcase from "./components/ProductShowcase";
 import FeaturesSection from "./components/FeaturesSection";
 import IndustriesSection from "./components/IndustriesSection";
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Hero />
+      <HeroV2 />
       <FeaturesSection />
       <IndustriesSection />
       <ChannelsSection />

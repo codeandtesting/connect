@@ -5,7 +5,7 @@ import MultilingualSupport from './MultilingualSupport';
 
 export default function ProductShowcase() {
     return (
-        <section id="technology" style={{
+        <section id="languages" style={{
             position: 'relative',
             paddingTop: '6rem',
             paddingBottom: '8rem',
@@ -46,7 +46,7 @@ export default function ProductShowcase() {
                             boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                             zIndex: 10
                         }}>
-                            <div style={{ fontSize: '0.8rem', opacity: 0.8, marginBottom: '0.2rem' }}>Active Connection</div>
+                            <div style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Worldwide</div>
                             <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Global Reach</div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@ export default function ProductShowcase() {
                             marginBottom: '1.5rem',
                             letterSpacing: '-0.02em'
                         }}>
-                            Speak Any Language, <br />
-                            <span className="text-gradient">Serve Any Market.</span>
+                            Global Voice, <br />
+                            <span className="text-gradient">Local Fluency.</span>
                         </h2>
 
                         <p style={{
@@ -87,22 +87,27 @@ export default function ProductShowcase() {
                             color: '#666',
                             marginBottom: '2.5rem'
                         }}>
-                            Our AI agents adapt to regional accents, cultural nuances, and 50+ languages instantly. Whether serving customers in New York, Tokyo, or Dubai, your AI agent sounds natural and professional.
+                            Eliminate language barriers instantly. Our AI agents master 50+ languages with native speed, regional accents, and deep cultural nuance, ensuring your brand feels local in every market.
                         </p>
 
-                        <button style={{
-                            background: '#111',
-                            color: 'white',
-                            padding: '1rem 2rem',
-                            borderRadius: '99px',
-                            fontSize: '1rem',
-                            fontWeight: 600,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.8rem',
-                            transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                            boxShadow: '0 10px 20px -5px rgba(0,0,0,0.2)'
-                        }}
+                        <button
+                            onClick={() => {
+                                const element = document.querySelector('#technology');
+                                if (element) element.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            style={{
+                                background: '#111',
+                                color: 'white',
+                                padding: '1rem 2.5rem',
+                                borderRadius: '99px',
+                                fontSize: '1rem',
+                                fontWeight: 600,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.8rem',
+                                transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                                boxShadow: '0 10px 20px -5px rgba(0,0,0,0.2)'
+                            }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.transform = 'translateY(-2px)';
                                 e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(0,0,0,0.3)';
@@ -112,27 +117,19 @@ export default function ProductShowcase() {
                                 e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.2)';
                             }}
                         >
-                            <Mic size={20} /> Test in Your Language
+                            <Mic size={20} /> Hear the Fluency
                         </button>
                     </div>
                 </div>
 
                 {/* Bottom Stats Grid */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '2rem',
-                    padding: '3rem',
-                    background: '#f8fafc',
-                    borderRadius: '24px',
-                    border: '1px solid #e2e8f0'
-                }}>
+                <div className="stats-grid">
                     {[
-                        { title: 'Support for', highlight: '50+ languages', sub: 'instantly available' },
-                        { title: 'Reduce costs by', highlight: '40%', sub: 'vs traditional call centers' },
-                        { title: 'Available', highlight: '24/7/365', sub: 'in every time zone' },
+                        { title: 'Polyglot Core', highlight: '50+ Languages', sub: 'Native-level accuracy' },
+                        { title: 'Market Expansion', highlight: 'Instant', sub: 'Deploy globally in minutes' },
+                        { title: 'Reliability', highlight: '24/7/365', sub: 'Zero latency globe-wide' },
                     ].map((item, i) => (
-                        <div key={i} style={{ textAlign: 'center', borderRight: i !== 2 ? '1px solid #e2e8f0' : 'none' }}>
+                        <div key={i} className="stats-item">
                             <div style={{ fontSize: '1rem', color: '#64748b', marginBottom: '0.5rem' }}>{item.title}</div>
                             <div style={{
                                 fontSize: '2.5rem',

@@ -50,41 +50,28 @@ export default function FaqContactSection() {
             padding: '8rem 0',
             background: '#f9fafb'
         }}>
-            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1rem, 5vw, 2rem)' }}>
 
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                     <h2 style={{
-                        fontSize: '3rem',
+                        fontSize: 'clamp(2.4rem, 6vw, 3rem)',
                         fontWeight: 800,
                         color: '#111',
                         marginBottom: '1rem',
-                        lineHeight: 1.1
+                        lineHeight: 1.1,
+                        letterSpacing: '-0.02em'
                     }}>
                         Questions & <span className="text-gradient">Contact</span>
                     </h2>
-                    <p style={{ fontSize: '1.2rem', color: '#666' }}>Everything you need to know to get started</p>
+                    <p style={{ fontSize: 'clamp(1rem, 4vw, 1.2rem)', color: '#666' }}>Everything you need to know to get started</p>
                 </div>
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-                    gap: '4rem',
-                    alignItems: 'start'
-                }}>
+                <div className="faq-grid">
 
                     {/* LEFT: Contact Information */}
-                    <div style={{
-                        position: 'sticky',
-                        top: '100px'
-                    }}>
-                        <div style={{
-                            background: '#111',
-                            color: 'white',
-                            padding: '3rem',
-                            borderRadius: '24px',
-                            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.2)'
-                        }}>
+                    <div>
+                        <div className="contact-card">
                             <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem' }}>Get in touch</h3>
 
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

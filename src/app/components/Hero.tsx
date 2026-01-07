@@ -39,13 +39,13 @@ export default function Hero() {
 
                 <p style={{
                     fontSize: '1rem',
-                    lineHeight: 1.6,
+                    lineHeight: '1.6',
                     color: '#555',
                     maxWidth: '700px',
                     margin: 0,
                     fontWeight: 500
                 }}>
-                    Transform your phone operations with intelligent AI agents that handle calls 24/7, in any language, with perfect accuracy and unlimited scalability.
+                    Transform your phone system from a cost center into a growth engine. Eliminate wait times and human error with intelligent AI agents that handle any volume, in any language—fixing your biggest operational pain points while maximizing your ROI.
                 </p>
 
                 {/* Buttons */}

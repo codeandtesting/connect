@@ -5,6 +5,16 @@ import { Star, Stethoscope, Car, Utensils, ShoppingBag } from 'lucide-react';
 
 export default function TestimonialsSection() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const testimonials = [
         {
@@ -53,7 +63,7 @@ export default function TestimonialsSection() {
     return (
         <section id="reviews" style={{
             background: '#ffffff',
-            padding: '8rem 0',
+            padding: isMobile ? '4rem 0' : '8rem 0',
             position: 'relative',
             overflow: 'hidden'
         }}>
@@ -68,12 +78,13 @@ export default function TestimonialsSection() {
 
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <h2 style={{
-                    fontSize: '3.5rem',
+                    fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
                     fontWeight: 800,
                     textAlign: 'center',
-                    marginBottom: '6rem',
+                    marginBottom: isMobile ? '4rem' : '6rem',
                     color: '#111',
-                    lineHeight: 1.1
+                    lineHeight: 1.1,
+                    letterSpacing: '-0.02em'
                 }}>
                     Loved by most <br />
                     <span style={{
@@ -88,22 +99,17 @@ export default function TestimonialsSection() {
                 {/* Testimonials Carousel Container */}
                 <div style={{
                     position: 'relative',
-                    height: '500px', // Fixed height for absolute cards
+                    height: isMobile ? '450px' : '500px', // Adjusted height
                     maxWidth: '1200px',
                     margin: '0 auto 4rem auto',
-                    perspective: '1000px' // Adds depth for 3D feel
+                    perspective: '1000px'
                 }}>
                     {testimonials.map((testimonial, i) => {
-                        // Calculate relative position in the loop
-                        // 0 = Active
-                        // 1 = Next
-                        // 2, 3 = Hidden (Back)
-                        // 4 = Prev
                         const offset = (i - activeIndex + testimonials.length) % testimonials.length;
 
                         // Define styles for each position slot
                         let style = {};
-                        if (offset === 0) { // Active (Center)
+                        if (offset === 0) { // Active
                             style = {
                                 left: '50%',
                                 transform: 'translateX(-50%) scale(1)',
@@ -112,30 +118,28 @@ export default function TestimonialsSection() {
                                 filter: 'blur(0px)',
                                 pointerEvents: 'auto'
                             };
-                        } else if (offset === 1) { // Next (Right)
+                        } else if (offset === 1) { // Next
                             style = {
-                                left: '85%',
+                                left: isMobile ? '150%' : '85%',
                                 transform: 'translateX(-50%) scale(0.85)',
-                                opacity: 0.4,
+                                opacity: isMobile ? 0 : 0.4,
                                 zIndex: 5,
                                 filter: 'blur(2px)',
                                 pointerEvents: 'none'
                             };
-                        } else if (offset === testimonials.length - 1) { // Prev (Left)
+                        } else if (offset === testimonials.length - 1) { // Prev
                             style = {
-                                left: '15%',
+                                left: isMobile ? '-50%' : '15%',
                                 transform: 'translateX(-50%) scale(0.85)',
-                                opacity: 0.4,
+                                opacity: isMobile ? 0 : 0.4,
                                 zIndex: 5,
                                 filter: 'blur(2px)',
                                 pointerEvents: 'none'
                             };
-                        } else { // Hidden (Behind/Off-screen)
-                            // We position them far left/right so they can slide in
-                            // offset 2 is 'Hidden Right', offset 3 is 'Hidden Left'
+                        } else { // Hidden
                             const isHiddenRight = offset === 2;
                             style = {
-                                left: isHiddenRight ? '120%' : '-20%',
+                                left: isHiddenRight ? '150%' : '-50%',
                                 transform: 'translateX(-50%) scale(0.5)',
                                 opacity: 0,
                                 zIndex: 0,
@@ -200,24 +204,21 @@ export default function TestimonialsSection() {
                 <div style={{ marginTop: '8rem' }}>
                     <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                         <h3 style={{
-                            fontSize: '3rem',
+                            fontSize: 'clamp(2rem, 6vmax, 3rem)',
                             fontWeight: 800,
                             marginBottom: '1rem',
                             background: 'linear-gradient(to right, #2563eb, #db2777)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            display: 'inline-block'
+                            display: 'inline-block',
+                            letterSpacing: '-0.02em'
                         }}>
                             Success Stories
                         </h3>
                         <p style={{ fontSize: '1.2rem', color: '#666' }}>Real-world workflows powered by Conekt</p>
                     </div>
 
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-                        gap: '2rem'
-                    }}>
+                    <div className="stories-grid">
                         {[
                             {
                                 icon: <Stethoscope size={24} color="#3b82f6" />,
@@ -264,7 +265,7 @@ export default function TestimonialsSection() {
                         ].map((story, i) => (
                             <div key={i} style={{
                                 background: 'white',
-                                padding: '2.5rem',
+                                padding: isMobile ? '1.5rem' : '2.5rem',
                                 borderRadius: '20px',
                                 border: '1px solid #f0f0f0',
                                 boxShadow: '0 10px 40px rgba(0,0,0,0.05)'
@@ -278,7 +279,7 @@ export default function TestimonialsSection() {
                                     }}>
                                         {story.icon}
                                     </div>
-                                    <h4 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0, color: '#111' }}>{story.title}</h4>
+                                    <h4 style={{ fontSize: 'clamp(1.15rem, 4vw, 1.4rem)', fontWeight: 700, margin: 0, color: '#111', letterSpacing: '-0.01em' }}>{story.title}</h4>
                                 </div>
 
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

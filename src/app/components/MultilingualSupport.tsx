@@ -114,61 +114,53 @@ export default function MultilingualSupport() {
                 </div>
 
                 {/* Orbit Rings - Dense multi-ring system */}
-                {[1, 2, 3, 4].map((ring) => (
-                    <div
-                        key={ring}
-                        style={{
-                            position: 'absolute',
-                            width: `${ring * 90 + 100}px`,
-                            height: `${ring * 90 + 100}px`,
-                            border: '1px solid rgba(255,255,255,0.03)',
-                            borderRadius: '50%',
-                            animation: `spin-slow ${ring * 12 + 15}s linear infinite ${ring % 2 === 0 ? 'reverse' : ''}`,
-                        }}
-                    >
-                        {/* Satellite Flags */}
-                        {languages
-                            .filter((_, i) => i % 4 === (ring - 1)) // Distribute flags across 4 rings
-                            .map((lang, i, arr) => {
-                                const angle = (360 / arr.length) * i;
-                                return (
-                                    <div
-                                        key={lang.code}
-                                        style={{
-                                            position: 'absolute',
-                                            top: '0',
-                                            left: '50%',
-                                            transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${ring * 80 + 40}px) rotate(-${angle}deg)`, // Complex transform to place on ring but keep upright? No, simply rotate parent
-                                            // The parent div is spinning, so standard positioning works if we fix the child rotation counter to parent.
-                                            // Actually, let's just place them on the circle edge using trigonometry in CSS or simple layout
-                                        }}
-                                    >
-                                        {/* To make it simpler without complex calc in map: 
-                                            We just rotate the parent ring. The satellites are fixed children of the spinning ring.
-                                            We need to counter-rotate the satellites so the flags stay upright.
-                                         */}
+                {[1, 2, 3, 4].map((ring) => {
+                    const duration = ring * 12 + 15;
+                    const isReverse = ring % 2 === 0;
+                    return (
+                        <div
+                            key={ring}
+                            style={{
+                                position: 'absolute',
+                                width: `${ring * 90 + 100}px`,
+                                height: `${ring * 90 + 100}px`,
+                                border: '1px solid rgba(255,255,255,0.03)',
+                                borderRadius: '50%',
+                                animation: `spin-slow ${duration}s linear infinite ${isReverse ? 'reverse' : ''}`,
+                            }}
+                        >
+                            {/* Satellite Flags */}
+                            {languages
+                                .filter((_, i) => i % 4 === (ring - 1))
+                                .map((lang, i, arr) => {
+                                    const angle = (360 / arr.length) * i;
+                                    return (
                                         <div
+                                            key={lang.code}
                                             className="satellite-wrapper"
                                             style={{
                                                 transform: `rotate(${angle}deg) translateY(-${(ring * 90 + 100) / 2}px) rotate(-${angle}deg)`,
-                                                transformOrigin: `50% ${(ring * 90 + 100) / 2}px`,
                                                 position: 'absolute',
-                                                top: '50%', // Centered within the Ring DIV
+                                                top: '50%',
                                                 left: '50%',
                                                 width: '0',
                                                 height: '0'
                                             }}
                                         >
                                             <div style={{
-                                                width: '32px', // Slightly smaller to fit more
+                                                width: '32px',
                                                 height: '32px',
                                                 borderRadius: '50%',
                                                 overflow: 'hidden',
-                                                border: '1.5px solid rgba(255,255,255,0.15)',
-                                                background: 'rgba(0,0,0,0.5)',
-                                                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                                                transform: 'translate(-50%, -50%)', // Center the flag itself
-                                                animation: `spin-counter ${ring * 15 + 20}s linear infinite ${ring % 2 === 0 ? 'reverse' : ''}` // Counter rotate to keep upright
+                                                border: 'none',
+                                                background: 'transparent',
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                                                transform: 'translate(-50%, -50%)',
+                                                // Precise counter-rotation to keep horizontal
+                                                animation: `spin-counter ${duration}s linear infinite ${isReverse ? 'reverse' : ''}`,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
                                             }}>
                                                 <img
                                                     src={`https://flagcdn.com/w80/${lang.code}.png`}
@@ -177,55 +169,30 @@ export default function MultilingualSupport() {
                                                 />
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
-                    </div>
-                ))}
+                                    );
+                                })}
+                        </div>
+                    );
+                })}
             </div>
 
             {/* Information Overlay */}
             <div style={{
-                position: 'relative',
+                position: 'absolute',
+                bottom: '2rem',
+                left: '2rem',
+                right: '2rem',
                 zIndex: 20,
-                padding: '2.5rem',
-                width: '100%',
-                pointerEvents: 'none', // Let clicks pass through to orbit if needed
-                background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)', // Gradient over text for readability
-                paddingTop: '6rem'
+                padding: '2rem',
+                background: 'rgba(0, 0, 0, 0.4)',
+                backdropFilter: 'blur(12px)',
+                borderRadius: '24px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                pointerEvents: 'none',
             }}>
-                <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    background: 'rgba(255,255,255,0.08)',
-                    backdropFilter: 'blur(12px)',
-                    padding: '0.6rem 1.2rem',
-                    borderRadius: '100px',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    marginBottom: '1.5rem',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
-                }}>
-                    <span style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        background: '#10b981',
-                        boxShadow: '0 0 10px #10b981'
-                    }} />
-                    <span style={{
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        color: 'rgba(255,255,255,0.9)',
-                        letterSpacing: '0.02em',
-                        textTransform: 'uppercase'
-                    }}>
-                        Active Connection
-                    </span>
-                </div>
 
                 <h3 style={{
-                    fontSize: '2.5rem', // Larger, more impressive
+                    fontSize: '2.5rem',
                     fontWeight: 700,
                     margin: '0 0 0.5rem',
                     background: 'linear-gradient(to right, #fff, #94a3b8)',
@@ -233,15 +200,15 @@ export default function MultilingualSupport() {
                     WebkitTextFillColor: 'transparent',
                     lineHeight: 1.1
                 }}>
-                    Global Reach.
+                    Truly Universal.
                 </h3>
                 <p style={{
                     fontSize: '1rem',
                     color: '#94a3b8',
-                    maxWidth: '300px',
+                    maxWidth: '350px',
                     lineHeight: 1.6
                 }}>
-                    Support for 50+ languages instantly.
+                    Native fluency in 50+ languages with regional accents and perfect cultural nuance.
                 </p>
 
                 {/* Dynamic Greeting Flipper */}

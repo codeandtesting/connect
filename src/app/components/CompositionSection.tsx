@@ -43,7 +43,7 @@ export default function CompositionSection() {
     };
 
     return (
-        <section id="design" className="composition-section">
+        <section id="technology" className="composition-section">
 
             {/* Dark Overlay 60% for better text contrast */}
 

@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Instagram, Linkedin, Dribbble } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -18,8 +19,8 @@ export default function Footer() {
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Product</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
                                 {['Use Cases', 'How It Works', 'Live Demo', 'Channels', 'Integrations'].map((link, i) => {
-                                    const hrefs = ['#industries', '#features', '#features', '#integrations', '#integrations'];
-                                    return <li key={link}><a href={hrefs[i]}>{link}</a></li>
+                                    const hrefs = ['/#industries', '/#how-it-works', '/#features', '/#integrations', '/#integrations'];
+                                    return <li key={link}><Link href={hrefs[i]}>{link}</Link></li>
                                 })}
                             </ul>
                         </div>
@@ -28,8 +29,8 @@ export default function Footer() {
                         <div>
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Industries</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
-                                {['Healthcare', 'Automotive', 'Real Estate', 'Banking', 'E-commerce'].map(link => (
-                                    <li key={link}><a href="#industries">{link}</a></li>
+                                {['Healthcare', 'Automotive', 'Real Estate', 'Banking', 'Other'].map(link => (
+                                    <li key={link}><Link href="/industries">{link}</Link></li>
                                 ))}
                             </ul>
                         </div>
@@ -39,8 +40,8 @@ export default function Footer() {
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Company</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
                                 {['Testimonials', 'FAQ', 'Contact', 'Privacy Policy', 'Terms of Service'].map((link, i) => {
-                                    const hrefs = ['#reviews', '#faq', '#faq', '#faq', '#faq'];
-                                    return <li key={link}><a href={hrefs[i]}>{link}</a></li>
+                                    const hrefs = ['/#reviews', '/#faq', '/#faq', '/privacy', '/terms'];
+                                    return <li key={link}><Link href={hrefs[i]}>{link}</Link></li>
                                 })}
                             </ul>
                         </div>

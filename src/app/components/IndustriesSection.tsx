@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Plus, Minus, Stethoscope, Car, Building2, ShoppingBag, Home, UtensilsCrossed } from 'lucide-react';
+import Link from 'next/link';
 
 type Industry = {
     id: string;
@@ -192,7 +193,7 @@ export default function IndustriesSection() {
             <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '0 2rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <h2 style={{
-                        fontSize: '3.5rem',
+                        fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
                         fontWeight: 800,
                         marginBottom: '1rem',
                         color: '#111',
@@ -321,23 +322,25 @@ export default function IndustriesSection() {
                     <p style={{ color: '#666', marginBottom: '1.5rem', fontSize: '1.1rem' }}>
                         Don't see your industry? We can customize solutions for any business.
                     </p>
-                    <button style={{
-                        background: '#111',
-                        color: 'white',
-                        padding: '1rem 2rem',
-                        borderRadius: '99px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        border: 'none',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-                        transition: 'transform 0.2s ease'
-                    }}
-                        onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-                        onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-                    >
-                        Find Your Industry
-                    </button>
+                    <Link href="/industries">
+                        <button style={{
+                            background: '#111',
+                            color: 'white',
+                            padding: '1rem 2rem',
+                            borderRadius: '99px',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            border: 'none',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+                            transition: 'transform 0.2s ease'
+                        }}
+                            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                        >
+                            Find Your Industry
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>
