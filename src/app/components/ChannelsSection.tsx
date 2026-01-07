@@ -55,6 +55,14 @@ export default function ChannelsSection() {
             position: 'relative',
             overflow: 'hidden'
         }}>
+            {/* Background Grid Lines to match Features Section */}
+            <div className="grid-lines" style={{ zIndex: 0, opacity: 0.5 }}>
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+            </div>
+
             {/* Background Decor */}
             <div style={{
                 position: 'absolute',
@@ -130,34 +138,119 @@ export default function ChannelsSection() {
                     ))}
                 </div>
 
-                {/* CTA Button */}
-                <div style={{ textAlign: 'center' }}>
-                    <button style={{
-                        background: '#111',
-                        color: 'white',
-                        padding: '1rem 2.5rem',
-                        borderRadius: '99px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        border: 'none',
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.8rem',
-                        boxShadow: '0 10px 20px -5px rgba(0,0,0,0.2)',
-                        transition: 'all 0.2s ease'
-                    }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-2px)';
-                            e.currentTarget.style.boxShadow = '0 15px 30px -5px rgba(0,0,0,0.3)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.2)';
-                        }}
-                    >
-                        Explore Channels <ArrowRight size={18} />
-                    </button>
+                {/* Seamless Integrations Section */}
+                <div id="integrations" className="scroll-mt-24" style={{ marginTop: '3rem', textAlign: 'center' }}>
+                    <h3 style={{
+                        fontSize: '2.5rem',
+                        fontWeight: 700,
+                        marginBottom: '1rem',
+                        color: '#111'
+                    }}>
+                        Seamless Integrations
+                    </h3>
+                    <p style={{
+                        fontSize: '1.2rem',
+                        color: '#666',
+                        maxWidth: '600px',
+                        margin: '0 auto 4rem',
+                        lineHeight: 1.6
+                    }}>
+                        Connect with your existing tools and systems - no disruption to your workflow
+                    </p>
+
+                    {/* Infinite Marquee Container */}
+                    <div style={{
+                        position: 'relative',
+                        width: '100%',
+                        overflow: 'hidden',
+                        padding: '2rem 0',
+                        background: '#fcfcfc',
+                        borderTop: '1px solid #f0f0f0',
+                        borderBottom: '1px solid #f0f0f0'
+                    }}>
+                        {/* Fade Gradients */}
+                        <div style={{
+                            position: 'absolute',
+                            left: 0, top: 0, bottom: 0,
+                            width: '10%',
+                            background: 'linear-gradient(to right, #ffffff, transparent)',
+                            zIndex: 2,
+                            pointerEvents: 'none'
+                        }} />
+                        <div style={{
+                            position: 'absolute',
+                            right: 0, top: 0, bottom: 0,
+                            width: '10%',
+                            background: 'linear-gradient(to left, #ffffff, transparent)',
+                            zIndex: 2,
+                            pointerEvents: 'none'
+                        }} />
+
+                        {/* Marquee Track */}
+                        <div style={{
+                            display: 'flex',
+                            width: 'max-content',
+                            animation: 'marquee 40s linear infinite',
+                            gap: '4rem',
+                            alignItems: 'center'
+                        }}>
+                            {/* Double the logos to ensure seamless loop */}
+                            {[
+                                "1200px-SendGrid_2016_Logo.png",
+                                "CDK_Global_logo_2021.svg.png",
+                                "Google_Calendar_icon_(2020).svg.png",
+                                "Microsoft_Outlook_logo_(2024–2025).svg.png",
+                                "PayPal.svg.png",
+                                "Resy_logo.svg.png",
+                                "Shopify_logo_2018.svg.png",
+                                "Stripe_Logo,_revised_2016.svg.png",
+                                "Twilio-logo-red.svg.png",
+                                "WooCommerce2025_logo.svg.png",
+                                "hubspot.png",
+                                "1200px-SendGrid_2016_Logo.png",
+                                "CDK_Global_logo_2021.svg.png",
+                                "Google_Calendar_icon_(2020).svg.png",
+                                "Microsoft_Outlook_logo_(2024–2025).svg.png",
+                                "PayPal.svg.png",
+                                "Resy_logo.svg.png",
+                                "Shopify_logo_2018.svg.png",
+                                "Stripe_Logo,_revised_2016.svg.png",
+                                "Twilio-logo-red.svg.png",
+                                "WooCommerce2025_logo.svg.png",
+                                "hubspot.png"
+                            ].map((logo, i) => (
+                                <div key={i} style={{
+                                    flexShrink: 0,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: '60px',
+                                    opacity: 0.6,
+                                    filter: 'grayscale(100%)',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.opacity = '1';
+                                        e.currentTarget.style.filter = 'grayscale(0%)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.opacity = '0.6';
+                                        e.currentTarget.style.filter = 'grayscale(100%)';
+                                    }}
+                                >
+                                    <img
+                                        src={`/logos/${logo}`}
+                                        alt="Integration Partner"
+                                        style={{
+                                            maxHeight: '40px',
+                                            maxWidth: '120px',
+                                            objectFit: 'contain'
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
             </div>

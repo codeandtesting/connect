@@ -2,12 +2,13 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProductShowcase from "./components/ProductShowcase";
 import FeaturesSection from "./components/FeaturesSection";
+import IndustriesSection from "./components/IndustriesSection";
+import ChannelsSection from "./components/ChannelsSection";
 import CompositionSection from "./components/CompositionSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import PricingSection from "./components/PricingSection";
 import Footer from "./components/Footer";
 import FaqContactSection from "./components/FaqContactSection";
-import ChannelsSection from "./components/ChannelsSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <FeaturesSection />
+      <IndustriesSection />
       <ChannelsSection />
       <ProductShowcase />
       <CompositionSection />

@@ -17,9 +17,10 @@ export default function Footer() {
                         <div>
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Product</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
-                                {['Use Cases', 'How It Works', 'Live Demo', 'Channels', 'Integrations'].map(link => (
-                                    <li key={link}><a href="#">{link}</a></li>
-                                ))}
+                                {['Use Cases', 'How It Works', 'Live Demo', 'Channels', 'Integrations'].map((link, i) => {
+                                    const hrefs = ['#industries', '#features', '#features', '#integrations', '#integrations'];
+                                    return <li key={link}><a href={hrefs[i]}>{link}</a></li>
+                                })}
                             </ul>
                         </div>
 
@@ -28,7 +29,7 @@ export default function Footer() {
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Industries</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
                                 {['Healthcare', 'Automotive', 'Real Estate', 'Banking', 'E-commerce'].map(link => (
-                                    <li key={link}><a href="#">{link}</a></li>
+                                    <li key={link}><a href="#industries">{link}</a></li>
                                 ))}
                             </ul>
                         </div>
@@ -37,9 +38,10 @@ export default function Footer() {
                         <div>
                             <h5 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>Company</h5>
                             <ul className="footer-links" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0 }}>
-                                {['Testimonials', 'FAQ', 'Contact', 'Privacy Policy', 'Terms of Service'].map(link => (
-                                    <li key={link}><a href="#">{link}</a></li>
-                                ))}
+                                {['Testimonials', 'FAQ', 'Contact', 'Privacy Policy', 'Terms of Service'].map((link, i) => {
+                                    const hrefs = ['#reviews', '#faq', '#faq', '#faq', '#faq'];
+                                    return <li key={link}><a href={hrefs[i]}>{link}</a></li>
+                                })}
                             </ul>
                         </div>
                     </div>

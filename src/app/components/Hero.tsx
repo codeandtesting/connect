@@ -26,7 +26,7 @@ export default function Hero() {
                 maxWidth: '1000px'
             }}>
                 <h1 style={{
-                    fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+                    fontSize: 'clamp(2.4rem, 4.8vw, 4.4rem)',
                     lineHeight: 1.05,
                     fontWeight: 800,
                     letterSpacing: '-0.03em',
@@ -38,7 +38,7 @@ export default function Hero() {
                 </h1>
 
                 <p style={{
-                    fontSize: '1.25rem',
+                    fontSize: '1rem',
                     lineHeight: 1.6,
                     color: '#555',
                     maxWidth: '700px',

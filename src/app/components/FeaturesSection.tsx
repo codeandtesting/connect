@@ -107,7 +107,7 @@ export default function FeaturesSection() {
     ];
 
     return (
-        <section ref={sectionRef} style={{ background: '#ffffff', paddingBottom: '0', position: 'relative', overflow: 'hidden' }}>
+        <section id="features" ref={sectionRef} style={{ background: '#ffffff', paddingBottom: '0', position: 'relative', overflow: 'hidden' }}>
 
             {/* Background Grid Lines */}
             <div className="grid-lines" style={{ zIndex: 0 }}>
@@ -498,33 +498,85 @@ export default function FeaturesSection() {
                         <div style={{
                             background: 'white',
                             borderRadius: '24px',
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
-                            padding: '2rem',
+                            boxShadow: '0 30px 60px -12px rgba(0, 0, 0, 0.15)',
+                            padding: '1.5rem',
                             border: '1px solid #e2e8f0',
-                            minHeight: '300px',
+                            minHeight: '380px',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '1.5rem'
+                            gap: '1rem',
+                            position: 'relative',
+                            overflow: 'hidden'
                         }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #f1f5f9', paddingBottom: '1rem' }}>
-                                <span style={{ fontWeight: 600, color: '#334155' }}>Call Volume</span>
-                                <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>Last 7 Days</span>
+                            {/* Header: Live Status */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <div style={{ width: '8px', height: '8px', background: '#ef4444', borderRadius: '50%', animation: 'pulse 1.5s infinite' }} />
+                                    <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#ef4444', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Live Call Intelligence</span>
+                                </div>
+                                <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>ID: #8829-X</span>
                             </div>
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '1rem 0' }}>
-                                {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
-                                    <div key={i} style={{ width: '12%', height: `${h}%`, background: i === 5 ? '#3b82f6' : '#e2e8f0', borderRadius: '4px' }}></div>
+
+                            {/* Voice Waveform Animation */}
+                            <div style={{
+                                height: '60px',
+                                background: '#f8fafc',
+                                borderRadius: '12px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '3px',
+                                padding: '0 1rem',
+                                border: '1px solid #f1f5f9'
+                            }}>
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((i) => (
+                                    <div key={i} style={{
+                                        width: '3px',
+                                        height: `${Math.random() * 30 + 10}px`,
+                                        background: i > 12 ? '#cbd5e1' : '#3b82f6',
+                                        borderRadius: '10px',
+                                        animation: `wave 1s ease-in-out infinite ${i * 0.05}s`
+                                    }} />
                                 ))}
                             </div>
-                            <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
-                                <div style={{ flex: 1, background: '#f8fafc', padding: '1rem', borderRadius: '12px' }}>
-                                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.2rem' }}>Conversion</div>
-                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a' }}>24.8%</div>
+
+                            {/* Scrolling Transcript */}
+                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem' }}>
+                                <div style={{ padding: '0.75rem', background: '#f1f5f9', borderRadius: '12px 12px 12px 0', alignSelf: 'flex-start', maxWidth: '85%', color: '#475569' }}>
+                                    "I'm looking to reschedule my service appointment for Tuesday."
                                 </div>
-                                <div style={{ flex: 1, background: '#f8fafc', padding: '1rem', borderRadius: '12px' }}>
-                                    <div style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.2rem' }}>Avg Duration</div>
-                                    <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#0f172a' }}>4m 12s</div>
+                                <div style={{ padding: '0.75rem', background: '#3b82f6', borderRadius: '12px 12px 0 12px', alignSelf: 'flex-end', maxWidth: '85%', color: 'white' }}>
+                                    "I can certainly help with that. Looking at Tuesday, I have 10:00 AM or 2:30 PM available."
+                                </div>
+                                <div style={{ padding: '0.75rem', background: '#f1f5f9', borderRadius: '12px 12px 12px 0', alignSelf: 'flex-start', maxWidth: '85%', color: '#475569', opacity: 0.6 }}>
+                                    "Let's go with 2:30 PM please..."
                                 </div>
                             </div>
+
+                            {/* Insight Bar */}
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', paddingTop: '1rem', borderTop: '1px solid #f1f5f9' }}>
+                                <div style={{ padding: '0.3rem 0.6rem', background: '#dcfce7', color: '#166534', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <div style={{ width: '4px', height: '4px', background: '#166534', borderRadius: '50%' }} /> SENTIMENT: POSITIVE
+                                </div>
+                                <div style={{ padding: '0.3rem 0.6rem', background: '#fef9c3', color: '#854d0e', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700 }}>
+                                    INTENT: RESCHEDULE
+                                </div>
+                                <div style={{ padding: '0.3rem 0.6rem', background: '#f1f5f9', color: '#475569', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700 }}>
+                                    CRM SYNC: SUCCESS
+                                </div>
+                            </div>
+
+                            <style jsx>{`
+                                @keyframes wave {
+                                    0%, 100% { height: 10px; }
+                                    50% { height: 35px; }
+                                }
+                                @keyframes pulse {
+                                    0% { opacity: 1; transform: scale(1); }
+                                    50% { opacity: 0.5; transform: scale(1.2); }
+                                    100% { opacity: 1; transform: scale(1); }
+                                }
+                            `}</style>
                         </div>
                     </div>
                 </div>
@@ -553,30 +605,6 @@ export default function FeaturesSection() {
                 </div>
             </div>
 
-            {/* SECTION 3: Bottom Marquee Text (RESTORED) */}
-            <div style={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                padding: '5rem 0 2rem',
-                background: 'white',
-                borderTop: '1px solid #f0f0f0',
-                position: 'relative',
-                zIndex: 10
-            }}>
-                <h2 className="marquee-text" style={{
-                    fontSize: '10vw',
-                    fontWeight: 800,
-                    background: 'linear-gradient(to bottom, #d1d1d1, #f0f0f0)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textTransform: 'uppercase',
-                    margin: 0,
-                    lineHeight: 1,
-                    letterSpacing: '-0.04em'
-                }}>
-                    Infinite Scale. Natural Voice. Intelligent Interaction.
-                </h2>
-            </div>
 
         </section>
     );

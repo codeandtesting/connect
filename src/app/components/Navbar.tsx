@@ -6,9 +6,26 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const links = ['Overview', 'Features', 'Technology', 'Design', 'Review'];
+    const links = [
+        { name: 'Overview', href: '#overview' },
+        { name: 'Features', href: '#features' }, // Moved up to match page flow
+        { name: 'Industries', href: '#industries' },
+        { name: 'Integrations', href: '#integrations' },
+        { name: 'Technology', href: '#technology' },
+        { name: 'Reviews', href: '#reviews' },
+        { name: 'Contact', href: '#faq' } // Added Contact
+    ];
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setIsMenuOpen(false);
+        }
+    };
 
     return (
         <nav className="navbar">
@@ -21,13 +38,14 @@ export default function Navbar() {
             {/* Desktop Links */}
             <div className="nav-links">
                 {links.map((link) => (
-                    <Link
-                        key={link}
-                        href={`#${link.toLowerCase()}`}
+                    <a
+                        key={link.name}
+                        href={link.href}
                         className="nav-link"
+                        onClick={(e) => handleScroll(e, link.href)}
                     >
-                        {link}
-                    </Link>
+                        {link.name}
+                    </a>
                 ))}
             </div>
 
@@ -43,14 +61,14 @@ export default function Navbar() {
             {/* Mobile Menu Overlay */}
             <div className={`mobile-overlay ${isMenuOpen ? 'open' : ''}`}>
                 {links.map((link) => (
-                    <Link
-                        key={link}
-                        href={`#${link.toLowerCase()}`}
+                    <a
+                        key={link.name}
+                        href={link.href}
                         className="mobile-nav-link"
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={(e) => handleScroll(e, link.href)}
                     >
-                        {link}
-                    </Link>
+                        {link.name}
+                    </a>
                 ))}
 
                 {/* Mobile Call to Action */}

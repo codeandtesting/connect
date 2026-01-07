@@ -43,15 +43,10 @@ export default function CompositionSection() {
     };
 
     return (
-        <section id="technology" className="composition-section">
+        <section id="design" className="composition-section">
 
             {/* Dark Overlay 60% for better text contrast */}
-            <div style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'rgba(0,0,0,0.6)',
-                zIndex: 0
-            }} />
+
 
             {/* Main Content Area */}
             <div className="container" style={{ position: 'relative', textAlign: 'center', marginBottom: '4rem', zIndex: 1, minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

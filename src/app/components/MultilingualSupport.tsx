@@ -14,6 +14,30 @@ export default function MultilingualSupport() {
         { code: 'gb', name: 'British', greeting: 'Hello' },
         { code: 'cn', name: 'Chinese', greeting: '你好' },
         { code: 'kr', name: 'Korean', greeting: '안녕하세요' },
+        { code: 'it', name: 'Italian', greeting: 'Ciao' },
+        { code: 'br', name: 'Portuguese', greeting: 'Olá' },
+        { code: 'ru', name: 'Russian', greeting: 'Привет' },
+        { code: 'tr', name: 'Turkish', greeting: 'Merhaba' },
+        { code: 'in', name: 'Hindi', greeting: 'नमस्ते' },
+        { code: 'ae', name: 'Arabic', greeting: 'مرحبا' },
+        { code: 'nl', name: 'Dutch', greeting: 'Hallo' },
+        { code: 'se', name: 'Swedish', greeting: 'Hej' },
+        { code: 'pt', name: 'Portugal', greeting: 'Olá' },
+        { code: 'mx', name: 'Mexico', greeting: 'Hola' },
+        { code: 'ca', name: 'Canada', greeting: 'Hello' },
+        { code: 'au', name: 'Australia', greeting: 'Hello' },
+        { code: 'ch', name: 'Swiss', greeting: 'Grüezi' },
+        { code: 'pl', name: 'Polish', greeting: 'Cześć' },
+        { code: 'vn', name: 'Vietnam', greeting: 'Xin chào' },
+        { code: 'th', name: 'Thai', greeting: 'สวัสดี' },
+        { code: 'id', name: 'Indonesia', greeting: 'Halo' },
+        { code: 'il', name: 'Hebrew', greeting: 'שלום' },
+        { code: 'gr', name: 'Greek', greeting: 'Γεια σας' },
+        { code: 'no', name: 'Norway', greeting: 'Hallo' },
+        { code: 'dk', name: 'Denmark', greeting: 'Hej' },
+        { code: 'fi', name: 'Finland', greeting: 'Hei' },
+        { code: 'be', name: 'Belgium', greeting: 'Salut' },
+        { code: 'at', name: 'Austria', greeting: 'Servus' },
     ];
 
     useEffect(() => {
@@ -26,9 +50,9 @@ export default function MultilingualSupport() {
     return (
         <div style={{
             width: '100%',
-            height: '100%',
-            background: 'linear-gradient(145deg, #0f0f10 0%, #1a1a1e 100%)', // Richer dark gradient
-            borderRadius: '3rem', // More modern curve
+            minHeight: '450px', // Ensure height so many flags are visible
+            background: 'linear-gradient(145deg, #0f0f10 0%, #1a1a1e 100%)',
+            borderRadius: '3rem',
             position: 'relative',
             overflow: 'hidden',
             display: 'flex',
@@ -89,22 +113,22 @@ export default function MultilingualSupport() {
                     }} />
                 </div>
 
-                {/* Orbit Rings */}
-                {[1, 2].map((ring) => (
+                {/* Orbit Rings - Dense multi-ring system */}
+                {[1, 2, 3, 4].map((ring) => (
                     <div
                         key={ring}
                         style={{
                             position: 'absolute',
-                            width: `${ring * 160 + 80}px`,
-                            height: `${ring * 160 + 80}px`,
+                            width: `${ring * 90 + 100}px`,
+                            height: `${ring * 90 + 100}px`,
                             border: '1px solid rgba(255,255,255,0.03)',
                             borderRadius: '50%',
-                            animation: `spin-slow ${ring * 15 + 20}s linear infinite ${ring % 2 === 0 ? 'reverse' : ''}`,
+                            animation: `spin-slow ${ring * 12 + 15}s linear infinite ${ring % 2 === 0 ? 'reverse' : ''}`,
                         }}
                     >
                         {/* Satellite Flags */}
                         {languages
-                            .filter((_, i) => i % 2 === (ring - 1)) // Distribute flags across rings
+                            .filter((_, i) => i % 4 === (ring - 1)) // Distribute flags across 4 rings
                             .map((lang, i, arr) => {
                                 const angle = (360 / arr.length) * i;
                                 return (
@@ -126,8 +150,8 @@ export default function MultilingualSupport() {
                                         <div
                                             className="satellite-wrapper"
                                             style={{
-                                                transform: `rotate(${angle}deg) translateY(-${(ring * 160 + 80) / 2}px) rotate(-${angle}deg)`,
-                                                transformOrigin: `50% ${(ring * 160 + 80) / 2}px`,
+                                                transform: `rotate(${angle}deg) translateY(-${(ring * 90 + 100) / 2}px) rotate(-${angle}deg)`,
+                                                transformOrigin: `50% ${(ring * 90 + 100) / 2}px`,
                                                 position: 'absolute',
                                                 top: '50%', // Centered within the Ring DIV
                                                 left: '50%',
@@ -136,11 +160,11 @@ export default function MultilingualSupport() {
                                             }}
                                         >
                                             <div style={{
-                                                width: '40px',
-                                                height: '40px',
+                                                width: '32px', // Slightly smaller to fit more
+                                                height: '32px',
                                                 borderRadius: '50%',
                                                 overflow: 'hidden',
-                                                border: '2px solid rgba(255,255,255,0.15)',
+                                                border: '1.5px solid rgba(255,255,255,0.15)',
                                                 background: 'rgba(0,0,0,0.5)',
                                                 boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
                                                 transform: 'translate(-50%, -50%)', // Center the flag itself
@@ -217,7 +241,7 @@ export default function MultilingualSupport() {
                     maxWidth: '300px',
                     lineHeight: 1.6
                 }}>
-                    Support for 18+ languages instantly.
+                    Support for 50+ languages instantly.
                 </p>
 
                 {/* Dynamic Greeting Flipper */}

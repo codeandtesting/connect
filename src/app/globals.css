@@ -43,6 +43,17 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  /* Offset for fixed header */
+}
+
+section,
+div[id] {
+  scroll-margin-top: 100px;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -647,13 +658,10 @@ button,
     padding: 1.5rem;
   }
 }
+
 /* Composition Section Responsive Styles */
 .composition-section {
-  background: #000000;
-  background-image: url('/images/blackphone.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: radial-gradient(ellipse at center, #2a2a2a 0%, #000000 80%);
   color: white;
   position: relative;
   padding-top: 7rem;
@@ -665,7 +673,7 @@ button,
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.03em;
-  text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
   background: linear-gradient(to bottom, #ffffff, #999999);
   -webkit-background-clip: text;
@@ -718,7 +726,7 @@ button,
   .composition-heading {
     font-size: 3rem;
   }
-  
+
   .composition-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
@@ -733,7 +741,7 @@ button,
   .composition-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .composition-play-btn {
     width: 80px;
     height: 80px;
@@ -810,7 +818,7 @@ button,
     flex-direction: column;
     gap: 3rem;
   }
-  
+
   .footer-social-section {
     text-align: left;
     width: 100%;
@@ -820,7 +828,7 @@ button,
   .footer-social-icons {
     justify-content: flex-start;
   }
-  
+
   .footer-links {
     gap: 1rem 1.5rem;
   }
@@ -835,4 +843,3 @@ button,
     display: block;
   }
 }
-

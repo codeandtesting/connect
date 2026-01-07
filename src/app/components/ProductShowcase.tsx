@@ -12,6 +12,14 @@ export default function ProductShowcase() {
             background: '#ffffff'
         }}>
 
+            {/* Background Grid Lines to match Features Section */}
+            <div className="grid-lines" style={{ zIndex: 0, opacity: 0.5 }}>
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+                <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
+            </div>
+
             <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1200px' }}>
 
                 {/* Main Content Grid */}
@@ -79,7 +87,7 @@ export default function ProductShowcase() {
                             color: '#666',
                             marginBottom: '2.5rem'
                         }}>
-                            Our AI agents adapt to regional accents, cultural nuances, and local business practices. Whether serving customers in New York, Tokyo, or Dubai, your AI agent sounds natural and professional.
+                            Our AI agents adapt to regional accents, cultural nuances, and 50+ languages instantly. Whether serving customers in New York, Tokyo, or Dubai, your AI agent sounds natural and professional.
                         </p>
 
                         <button style={{
