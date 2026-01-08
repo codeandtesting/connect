@@ -3,12 +3,14 @@
 import { Mic, VolumeX, Zap, Heart, GitBranch, MessageSquare, Phone, Shield, CheckCircle, ArrowRight, Loader2, Users, Car, Home, Landmark, ShoppingCart, Utensils, Play, Layout, Plug, Bot, Settings2, Rocket, BarChart3, FileText, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from '@/i18n/context';
 
 export default function FeaturesSection() {
     const [scrollY, setScrollY] = useState(0);
     const sectionRef = useRef<HTMLElement>(null);
     const [activeTab, setActiveTab] = useState<'healthcare' | 'automotive' | 'realestate' | 'banking' | 'ecommerce' | 'restaurant'>('healthcare');
     const [isPlaying, setIsPlaying] = useState(false);
+    const { t } = useTranslation();
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const togglePlay = () => {
@@ -30,11 +32,11 @@ export default function FeaturesSection() {
     const industries = {
         healthcare: {
             icon: <Heart size={16} />,
-            label: "Healthcare",
-            demo: "Play Healthcare Demo Call",
-            sample: "Patient scheduling appointment",
-            title: "Healthcare Appointment Scheduling",
-            desc: "AI agent handles appointment bookings, cancellations, rescheduling, and sends automatic reminders. Integrates with EHR systems like Epic, Cerner, and sends SMS confirmations. Reduces missed appointments by 38% and eliminates 4.4-minute wait times.",
+            label: t.industries.healthcare.label,
+            demo: t.industries.healthcare.demo,
+            sample: t.industries.healthcare.sample,
+            title: t.industries.healthcare.title,
+            desc: t.industries.healthcare.desc,
             color: "#3b82f6",
             gradient: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
             secondary: "#e0f2fe",
@@ -42,11 +44,11 @@ export default function FeaturesSection() {
         },
         automotive: {
             icon: <Car size={16} />,
-            label: "Automotive",
-            demo: "Play Automotive Demo Call",
-            sample: "Service appointment booking",
-            title: "Auto Service Scheduling",
-            desc: "87% automation of service appointments, parts inquiries, and maintenance reminders. Integrates with DMS systems (CDK Global, Reynolds & Reynolds). Captures $720K+ annual revenue from missed calls.",
+            label: t.industries.automotive.label,
+            demo: t.industries.automotive.demo,
+            sample: t.industries.automotive.sample,
+            title: t.industries.automotive.title,
+            desc: t.industries.automotive.desc,
             color: "#ef4444",
             gradient: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
             secondary: "#fee2e2",
@@ -54,11 +56,11 @@ export default function FeaturesSection() {
         },
         realestate: {
             icon: <Home size={16} />,
-            label: "Real Estate",
-            demo: "Play Real Estate Demo Call",
-            sample: "Property viewing request",
-            title: "Real Estate Lead Management",
-            desc: "Qualify leads 24/7, schedule property viewings, answer property questions. Integrates with MLS systems and CRM platforms. Solves the 60% unanswered calls problem and 3-day response times.",
+            label: t.industries.realestate.label,
+            demo: t.industries.realestate.demo,
+            sample: t.industries.realestate.sample,
+            title: t.industries.realestate.title,
+            desc: t.industries.realestate.desc,
             color: "#10b981",
             gradient: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
             secondary: "#d1fae5",
@@ -66,11 +68,11 @@ export default function FeaturesSection() {
         },
         banking: {
             icon: <Landmark size={16} />,
-            label: "Banking",
-            demo: "Play Banking Demo Call",
-            sample: "Balance inquiry",
-            title: "Banking Customer Service",
-            desc: "80% automation of balance inquiries, card services, and payment processing. GDPR and PCI-DSS compliant. Integrates with core banking systems. Saves $1.82M annually for large banks.",
+            label: t.industries.banking.label,
+            demo: t.industries.banking.demo,
+            sample: t.industries.banking.sample,
+            title: t.industries.banking.title,
+            desc: t.industries.banking.desc,
             color: "#f59e0b",
             gradient: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
             secondary: "#fef3c7",
@@ -78,11 +80,11 @@ export default function FeaturesSection() {
         },
         ecommerce: {
             icon: <ShoppingCart size={16} />,
-            label: "E-commerce",
-            demo: "Play E-commerce Demo Call",
-            sample: "Order tracking",
-            title: "E-commerce Support",
-            desc: "85% automation of order tracking, returns, and product inquiries. Handles 300%+ peak surge during Black Friday. Integrates with Shopify, WooCommerce, shipping APIs.",
+            label: t.industries.ecommerce.label,
+            demo: t.industries.ecommerce.demo,
+            sample: t.industries.ecommerce.sample,
+            title: t.industries.ecommerce.title,
+            desc: t.industries.ecommerce.desc,
             color: "#8b5cf6",
             gradient: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
             secondary: "#ede9fe",
@@ -90,11 +92,11 @@ export default function FeaturesSection() {
         },
         restaurant: {
             icon: <Utensils size={16} />,
-            label: "Restaurant",
-            demo: "Play Restaurant Demo Call",
-            sample: "Table reservation",
-            title: "Restaurant Reservations",
-            desc: "77% automation of reservations, takeout orders, and table management. Integrates with OpenTable, Resy, POS systems. Never miss a booking during rush hours.",
+            label: t.industries.restaurant.label,
+            demo: t.industries.restaurant.demo,
+            sample: t.industries.restaurant.sample,
+            title: t.industries.restaurant.title,
+            desc: t.industries.restaurant.desc,
             color: "#ec4899",
             gradient: "linear-gradient(135deg, #ec4899 0%, #db2777 100%)",
             secondary: "#fce7f3",
@@ -164,7 +166,7 @@ export default function FeaturesSection() {
                     pointerEvents: 'none'
                 }} />
 
-                <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1 }}>
+                <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1rem, 5vw, 2rem)', position: 'relative', zIndex: 1 }}>
 
                     {/* Header Section */}
                     <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -176,7 +178,7 @@ export default function FeaturesSection() {
                             color: '#111',
                             marginBottom: '1rem',
                         }}>
-                            Use Cases Across <span className="text-gradient">Industries</span>
+                            {t.features.use_cases_title} <span className="text-gradient">{t.features.use_cases_highlight}</span>
                         </h2>
                         <p style={{
                             fontSize: '1.1rem',
@@ -185,35 +187,56 @@ export default function FeaturesSection() {
                             margin: '0 auto 3rem',
                             lineHeight: 1.6
                         }}>
-                            See how Conekt AI agents work in different business scenarios
+                            {t.features.use_cases_desc}
                         </p>
 
                         {/* Filter Pills (Interactive) */}
-                        <div className="features-filter-container" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
-                            {(Object.keys(industries) as Array<keyof typeof industries>).map((key) => (
-                                <button
-                                    key={key}
-                                    onClick={() => setActiveTab(key)}
-                                    style={{
-                                        padding: '0.6rem 1.2rem',
-                                        background: activeTab === key ? industries[key].secondary : 'transparent',
-                                        color: activeTab === key ? industries[key].color : '#666',
-                                        borderRadius: '99px',
-                                        fontSize: '0.9rem',
-                                        fontWeight: activeTab === key ? 600 : 500,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
-                                        border: '1px solid transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s ease',
-                                        whiteSpace: 'nowrap',
-                                        boxShadow: activeTab === key ? `0 2px 5px ${industries[key].color}20` : 'none'
-                                    }}
-                                >
-                                    {industries[key].icon} {industries[key].label}
-                                </button>
-                            ))}
+                        <div style={{ position: 'relative', margin: '0 -2rem' }}>
+                            <div className="features-filter-container" style={{
+                                flexWrap: 'nowrap',
+                                overflowX: 'auto',
+                                justifyContent: 'flex-start',
+                                padding: '0.5rem 2rem 1.5rem',
+                                scrollbarWidth: 'none',
+                                msOverflowStyle: 'none'
+                            }}>
+                                {(Object.keys(industries) as Array<keyof typeof industries>).map((key) => (
+                                    <button
+                                        key={key}
+                                        onClick={() => setActiveTab(key)}
+                                        style={{
+                                            padding: '0.6rem 1.2rem',
+                                            background: activeTab === key ? industries[key].secondary : '#f3f4f6',
+                                            color: activeTab === key ? industries[key].color : '#666',
+                                            borderRadius: '99px',
+                                            fontSize: '0.9rem',
+                                            fontWeight: activeTab === key ? 600 : 500,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.5rem',
+                                            border: '1px solid transparent',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2s ease',
+                                            whiteSpace: 'nowrap',
+                                            flexShrink: 0,
+                                            boxShadow: activeTab === key ? `0 2px 5px ${industries[key].color}20` : 'none'
+                                        }}
+                                    >
+                                        {industries[key].icon} {industries[key].label}
+                                    </button>
+                                ))}
+                            </div>
+                            {/* Scroll indicators for mobile */}
+                            <div className="hide-desktop" style={{
+                                position: 'absolute',
+                                right: 0,
+                                top: 0,
+                                bottom: '1rem',
+                                width: '40px',
+                                background: 'linear-gradient(to left, white, transparent)',
+                                pointerEvents: 'none',
+                                zIndex: 2
+                            }} />
                         </div>
                     </div>
 
@@ -225,7 +248,7 @@ export default function FeaturesSection() {
                             {/* Top Section: Visualization / Demo Player */}
                             <div style={{
                                 background: '#f8fafc',
-                                padding: '4rem 2rem',
+                                padding: 'clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 2rem)',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
@@ -301,7 +324,7 @@ export default function FeaturesSection() {
                                                     <div className="wave-bar" style={{ animationDelay: '0.4s' }} />
                                                     <div className="wave-bar" style={{ animationDelay: '0.1s' }} />
                                                 </div>
-                                                Stop Demo
+                                                {t.features.stop_demo}
                                             </>
                                         ) : (
                                             <>
@@ -366,7 +389,7 @@ export default function FeaturesSection() {
                                                 animation: 'pulse-live 2s infinite'
                                             }}>
                                                 <div style={{ width: '6px', height: '6px', background: '#ef4444', borderRadius: '50%' }} />
-                                                Live demo
+                                                {t.features.live_demo}
                                             </span>
                                         )}
                                         <p style={{
@@ -375,7 +398,7 @@ export default function FeaturesSection() {
                                             fontWeight: isPlaying ? 600 : 400,
                                             transition: 'all 0.3s ease'
                                         }}>
-                                            {isPlaying ? `Streaming ${industries[activeTab].label} Voice Agent...` : industries[activeTab].sample ? `Sample conversation: ${industries[activeTab].sample}` : 'Sample conversation available'}
+                                            {isPlaying ? t.features.streaming_agent.replace('{industry}', industries[activeTab].label) : industries[activeTab].sample ? t.features.sample_conversation.replace('{sample}', industries[activeTab].sample) : 'Sample conversation available'}
                                         </p>
                                     </div>
                                 </div>
@@ -408,7 +431,7 @@ export default function FeaturesSection() {
                             </div>
 
                             {/* Bottom Section: Content */}
-                            <div style={{ padding: '3rem 3rem' }}>
+                            <div style={{ padding: 'clamp(1.5rem, 5vw, 3rem)' }}>
                                 <h3 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#1e293b' }}>
                                     {industries[activeTab].title}
                                 </h3>
@@ -441,7 +464,7 @@ export default function FeaturesSection() {
                                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
                             >
-                                Explore More Industries
+                                {t.features.explore_more}
                             </button>
                         </Link>
                     </div>
@@ -462,23 +485,23 @@ export default function FeaturesSection() {
                         marginBottom: '1.5rem',
                         letterSpacing: '-0.02em'
                     }}>
-                        How It <span className="text-gradient">Works</span>
+                        {t.features.how_it_works_title} <span className="text-gradient">{t.features.how_it_works_highlight}</span>
                     </h2>
                     <p style={{
-                        fontSize: '1.2rem',
+                        fontSize: 'clamp(1rem, 4vw, 1.2rem)',
                         color: '#666',
                         maxWidth: '600px',
                         margin: '0 auto',
                         lineHeight: 1.6
                     }}>
-                        Simple setup, powerful results - deploy AI agents in minutes
+                        {t.features.how_it_works_desc}
                     </p>
                 </div>
 
                 {/* Service Options & Integration Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
                     gap: '2rem',
                     marginBottom: '6rem',
                     maxWidth: '1200px',
@@ -505,8 +528,8 @@ export default function FeaturesSection() {
                         }}>
                             <Layout size={24} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>Self-Service Platform</h3>
-                        <p style={{ color: '#666', lineHeight: 1.6 }}>Configure your AI agent through our intuitive web interface. Customize responses, set business rules, and deploy in minutes without any coding required.</p>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>{t.features.self_service_title}</h3>
+                        <p style={{ color: '#666', lineHeight: 1.6 }}>{t.features.self_service_desc}</p>
                     </div>
 
                     {/* Full-Service */}
@@ -530,8 +553,8 @@ export default function FeaturesSection() {
                         }}>
                             <Users size={24} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>Full-Service Setup</h3>
-                        <p style={{ color: '#666', lineHeight: 1.6 }}>Our team handles everything - from configuration to deployment. We analyze your workflows and implement the perfect solution for your business.</p>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: '#111' }}>{t.features.full_service_title}</h3>
+                        <p style={{ color: '#666', lineHeight: 1.6 }}>{t.features.full_service_desc}</p>
                     </div>
 
                     {/* Integration */}
@@ -554,19 +577,19 @@ export default function FeaturesSection() {
                         }}>
                             <Plug size={24} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>Seamless Integration</h3>
-                        <p style={{ color: '#aaa', lineHeight: 1.6 }}>Connect with your existing systems: CRM, ERP, calendars, and industry-specific platforms. Two-way data sync ensures everything stays updated.</p>
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>{t.features.seamless_integration_title}</h3>
+                        <p style={{ color: '#aaa', lineHeight: 1.6 }}>{t.features.seamless_integration_desc}</p>
                     </div>
                 </div>
 
                 {/* Deployment Process Steps */}
                 <div id="deployment-process" style={{ marginBottom: '8rem', maxWidth: '1000px', margin: '0 auto 8rem' }}>
-                    <h3 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700, marginBottom: '4rem', color: '#111', letterSpacing: '-0.01em' }}>Deployment Process</h3>
+                    <h3 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700, marginBottom: '4rem', color: '#111', letterSpacing: '-0.01em' }}>{t.features.deployment_process_title}</h3>
                     <div className="deployment-grid">
                         {[
-                            { step: "01", title: "Create Agent", desc: "Define your agent's personality, knowledge base, and response patterns", icon: <Bot size={24} /> },
-                            { step: "02", title: "Test & Refine", desc: "Run test calls, review transcripts, and optimize performance", icon: <Settings2 size={24} /> },
-                            { step: "03", title: "Deploy Live", desc: "Go live with confidence - monitor calls and make adjustments anytime", icon: <Rocket size={24} /> }
+                            { step: "01", title: t.features.step_01_title, desc: t.features.step_01_desc, icon: <Bot size={24} /> },
+                            { step: "02", title: t.features.step_02_title, desc: t.features.step_02_desc, icon: <Settings2 size={24} /> },
+                            { step: "03", title: t.features.step_03_title, desc: t.features.step_03_desc, icon: <Rocket size={24} /> }
                         ].map((item, i) => (
                             <div key={i} style={{ textAlign: 'center', padding: '0 1rem', position: 'relative' }}>
                                 <div style={{
@@ -609,16 +632,16 @@ export default function FeaturesSection() {
                                 marginBottom: '1.5rem',
                                 letterSpacing: '0.02em'
                             }}>
-                                • All calls are recorded
+                                {t.features.analytics_badge}
                             </span>
                             <h3 style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: 700, marginBottom: '1.5rem', color: '#0f172a', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                                Call Recording & Analytics
+                                {t.features.analytics_title}
                             </h3>
                             <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
-                                Every conversation is transcribed, analyzed, and stored. Export data in any format (XLS, CSV, JSON, PDF) or automatically sync with your CRM, calendar, ERP, and other business systems.
+                                {t.features.analytics_desc}
                             </p>
                             <div className="analytics-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                                {['Real-time Analytics', 'Calendar Sync', 'CRM Integration', 'Custom Reports'].map((tag) => (
+                                {[t.features.analytics_tag1, t.features.analytics_tag2, t.features.analytics_tag3, t.features.analytics_tag4].map((tag) => (
                                     <span key={tag} style={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -725,7 +748,7 @@ export default function FeaturesSection() {
 
                 <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' }}>
                     <span style={{
-                        background: '#34D399', /* Brighter Mint Green */
+                        background: '#34D399',
                         color: 'white',
                         fontSize: '0.7rem',
                         fontWeight: 800,
@@ -734,14 +757,14 @@ export default function FeaturesSection() {
                         textTransform: 'uppercase',
                         letterSpacing: '0.05em'
                     }}>
-                        REALISTIC
+                        {t.features.realistic_badge}
                     </span>
                     <p style={{ fontSize: '0.95rem', color: '#555' }}>
-                        Voice technology that passes the <span
+                        {t.features.turing_test_text} <span
                             onClick={() => document.getElementById('samples')?.scrollIntoView({ behavior: 'smooth' })}
                             style={{ textDecoration: 'underline', color: '#111', fontWeight: 'bold', cursor: 'pointer' }}
                         >
-                            Turing test. Listen to samples.
+                            {t.features.listen_samples}
                         </span>
                     </p>
                 </div>

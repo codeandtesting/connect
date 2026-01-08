@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { Star, Stethoscope, Car, Utensils, ShoppingBag } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 export default function TestimonialsSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const checkMobile = () => {
@@ -20,32 +22,32 @@ export default function TestimonialsSection() {
         {
             company: "SIA GOD",
             website: "dvieluzavetaji.lv",
-            text: "With 28 years of experience, we know the value of staying current. Voice AI increased our client reach by 321% for 1/10th of the budget. Ignoring AI is no longer an option.",
-            title: "High ROI & Efficiency Focus"
+            text: t.testimonials.t1_text,
+            title: t.testimonials.t1_title
         },
         {
             company: "MMD serviss",
             website: "mmdserviss.eu",
-            text: "Cold calling is tough due to human unpredictability. The AI Agent nailed it—delivering consistent, professional calls across time zones and achieving results we never thought possible.",
-            title: "Professionalism & Consistency"
+            text: t.testimonials.t2_text,
+            title: t.testimonials.t2_title
         },
         {
             company: "Amber Asian Food",
             website: "amberrestaurant.no",
-            text: "In the restaurant business, warmth is everything. The AI calls were so natural that customers actually asked to meet the 'nice guy' they spoke with! It has helped us treat every customer like family.",
-            title: "Human-Like Quality"
+            text: t.testimonials.t3_text,
+            title: t.testimonials.t3_title
         },
         {
             company: "Pasta Bar Restaurant",
             website: "pastabarrestaurant.no",
-            text: "As a new restaurant, we found that standard email marketing just doesn't work anymore. The 1:1 personalized voice contact helped us secure a stable flow of clients in record time.",
-            title: "New Business & Lead Generation"
+            text: t.testimonials.t4_text,
+            title: t.testimonials.t4_title
         },
         {
             company: "SIA Kreiss",
             website: "kreiss.lv",
-            text: "In logistics, staying connected with drivers 24/7 is vital. The AI agent handles complex cargo queries seamlessly, providing a unified solution that completely replaced our private call center.",
-            title: "Technical Support & Operations"
+            text: t.testimonials.t5_text,
+            title: t.testimonials.t5_title
         }
     ];
 
@@ -86,13 +88,13 @@ export default function TestimonialsSection() {
                     lineHeight: 1.1,
                     letterSpacing: '-0.02em'
                 }}>
-                    Loved by most <br />
+                    {t.testimonials.title_main} <br />
                     <span style={{
                         background: 'linear-gradient(to right, #2563eb, #db2777)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
-                        valuable customers
+                        {t.testimonials.title_highlight}
                     </span>
                 </h2>
 
@@ -201,67 +203,55 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* SUCCESS STORIES SECTION */}
-                <div style={{ marginTop: '8rem' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                <div style={{ marginTop: isMobile ? '4rem' : '8rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '4rem' }}>
                         <h3 style={{
-                            fontSize: 'clamp(2rem, 6vmax, 3rem)',
+                            fontSize: 'clamp(2rem, 8vw, 3rem)',
                             fontWeight: 800,
-                            marginBottom: '1rem',
+                            marginBottom: '0.5rem',
                             background: 'linear-gradient(to right, #2563eb, #db2777)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             display: 'inline-block',
                             letterSpacing: '-0.02em'
                         }}>
-                            Success Stories
+                            {t.testimonials.stories_title}
                         </h3>
-                        <p style={{ fontSize: '1.2rem', color: '#666' }}>Real-world workflows powered by Conekt</p>
+                        <p style={{ fontSize: 'clamp(1rem, 4vw, 1.2rem)', color: '#666' }}>{t.testimonials.stories_subtitle}</p>
                     </div>
 
                     <div className="stories-grid">
                         {[
                             {
                                 icon: <Stethoscope size={24} color="#3b82f6" />,
-                                title: "Medical Appointment Flow",
+                                title: t.testimonials.medical_title,
                                 steps: [
-                                    { title: "Patient calls", desc: "AI agent answers 24/7, gathers details about needed appointment type" },
-                                    { title: "Schedule created", desc: "Data syncs to clinic's EHR system (Epic/Cerner) and reserves time slot" },
-                                    { title: "Calendar sync", desc: "Appointment added to patient's Google/Outlook calendar automatically" },
-                                    { title: "Reminder calls", desc: "AI agent calls 24h before appointment to confirm attendance" }
+                                    { title: t.testimonials.medical_step1_title, desc: t.testimonials.medical_step1_desc },
+                                    { title: t.testimonials.medical_step2_title, desc: t.testimonials.medical_step2_desc },
+                                    { title: t.testimonials.medical_step3_title, desc: t.testimonials.medical_step3_desc },
+                                    { title: t.testimonials.medical_step4_title, desc: t.testimonials.medical_step4_desc }
                                 ]
                             },
                             {
                                 icon: <Car size={24} color="#8b5cf6" />,
-                                title: "Auto Service Flow",
+                                title: t.testimonials.auto_title,
                                 steps: [
-                                    { title: "Customer calls", desc: "AI agent checks vehicle history and available service slots" },
-                                    { title: "DMS integration", desc: "Booking syncs to dealer management system (CDK/Reynolds)" },
-                                    { title: "SMS confirmation", desc: "Customer receives text with appointment details and service advisor info" },
-                                    { title: "Ready notification", desc: "AI calls when vehicle is ready for pickup with total cost" }
+                                    { title: t.testimonials.auto_step1_title, desc: t.testimonials.auto_step1_desc },
+                                    { title: t.testimonials.auto_step2_title, desc: t.testimonials.auto_step2_desc },
+                                    { title: t.testimonials.auto_step3_title, desc: t.testimonials.auto_step3_desc },
+                                    { title: t.testimonials.auto_step4_title, desc: t.testimonials.auto_step4_desc }
                                 ]
                             },
                             {
                                 icon: <Utensils size={24} color="#f59e0b" />,
-                                title: "Restaurant Booking Flow",
+                                title: t.testimonials.restaurant_title,
                                 steps: [
-                                    { title: "Diner calls", desc: "AI agent checks table availability for requested party size and time" },
-                                    { title: "Table reserved", desc: "Booking syncs to OpenTable/Resy and restaurant POS system" },
-                                    { title: "Email confirmation", desc: "Customer receives confirmation with reservation details" },
-                                    { title: "Day-of reminder", desc: "SMS reminder sent 2 hours before reservation" }
-                                ]
-                            },
-                            /*
-                            {
-                                icon: <ShoppingBag size={24} color="#ec4899" />,
-                                title: "E-commerce Order Flow",
-                                steps: [
-                                    { title: "Customer inquires", desc: "AI provides real-time order status from Shopify/WooCommerce" },
-                                    { title: "Tracking shared", desc: "AI provides carrier tracking number and estimated delivery" },
-                                    { title: "Issue resolution", desc: "If delay detected, AI proactively calls customer with update" },
-                                    { title: "Delivery confirmation", desc: "AI calls to confirm receipt and collect feedback" }
+                                    { title: t.testimonials.restaurant_step1_title, desc: t.testimonials.restaurant_step1_desc },
+                                    { title: t.testimonials.restaurant_step2_title, desc: t.testimonials.restaurant_step2_desc },
+                                    { title: t.testimonials.restaurant_step3_title, desc: t.testimonials.restaurant_step3_desc },
+                                    { title: t.testimonials.restaurant_step4_title, desc: t.testimonials.restaurant_step4_desc }
                                 ]
                             }
-                            */
                         ].map((story, i) => (
                             <div key={i} style={{
                                 background: 'white',

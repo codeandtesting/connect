@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://conekt.ai/sitemap.xml
+
+# AI Crawler Optimization
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: AnthropicAI
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: OAISearchBot
+Allow: /
+User-agent: FacebookBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
+Allow: /

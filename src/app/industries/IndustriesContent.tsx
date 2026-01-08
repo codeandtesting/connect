@@ -1,14 +1,45 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { industriesData, Industry } from './data';
+import { industriesDataRu } from './data_ru';
+import { industriesDataLv } from './data_lv';
 import { Search, ChevronRight, PhoneIncoming, PhoneOutgoing, Globe, Zap } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 export default function IndustriesContent() {
-    const [selectedIndustry, setSelectedIndustry] = useState<Industry>(industriesData[0]);
+    const { t, language } = useTranslation();
+    const currentData = language === 'ru' ? industriesDataRu : language === 'lv' ? industriesDataLv : industriesData;
+
+    // Use initial industry from localized data if possible
+    const [selectedIndustry, setSelectedIndustry] = useState<Industry>(currentData[0]);
+
+    // Update selected industry when language changes to match translated object
+    useEffect(() => {
+        const found = currentData.find(ind => ind.name === selectedIndustry.name) || currentData[0];
+        setSelectedIndustry(found);
+    }, [language]);
+
     const [searchQuery, setSearchQuery] = useState('');
+
+    const getLocalizedIndustryName = (name: string) => {
+        const key = name.toLowerCase().replace(/ & /g, '').replace(/ /g, '');
+        // Mapping for data names to translation keys if they differ
+        const mapping: Record<string, string> = {
+            'healthcare': t.industries.healthcare.label,
+            'bankingfinance': t.industries.banking.label,
+            'ecommerceretail': t.industries.ecommerce.label,
+            'realestate': t.industries.realestate.label,
+            'automotive': t.industries.automotive.label,
+            'restaurants': t.industries.restaurant.label,
+            'logisticstransportation': t.footer.other, // Fallback
+            'professionalservices': t.navbar.overview, // fallback
+            // Add more mappings as needed or use a default
+        };
+        return mapping[key] || name;
+    };
 
     const filteredSubSectors = selectedIndustry.subSectors.map(sub => ({
         ...sub,
@@ -23,13 +54,7 @@ export default function IndustriesContent() {
             <Navbar />
 
             {/* Header / Hero */}
-            <section style={{
-                background: '#ffffff',
-                padding: 'calc(var(--header-height) + 3rem) 2rem 4rem',
-                borderBottom: '1px solid #e2e8f0',
-                position: 'relative',
-                overflow: 'hidden'
-            }}>
+            <section className="industries-header">
                 <div className="grid-lines" style={{ zIndex: 0, opacity: 0.4 }}>
                     <div className="grid-line" style={{ background: 'rgba(0,0,0,0.04)' }} />
                     <div className="grid-line" style={{ background: 'rgba(0,0,0,0.04)' }} />
@@ -50,7 +75,7 @@ export default function IndustriesContent() {
                             marginBottom: '1.5rem',
                             border: '1px solid #e0f2fe'
                         }}>
-                            <Globe size={14} /> Comprehensive Coverage
+                            <Globe size={14} /> {t.industries_page.badge}
                         </div>
                         <h1 style={{
                             fontSize: 'clamp(2.5rem, 5vw, 4rem)',
@@ -60,33 +85,28 @@ export default function IndustriesContent() {
                             lineHeight: 1.1,
                             marginBottom: '1.5rem'
                         }}>
-                            Industry <span className="text-gradient">Capabilities</span>
+                            {t.industries_page.title_main} <span className="text-gradient">{t.industries_page.title_highlight}</span>
                         </h1>
                         <p style={{ fontSize: '1.25rem', color: '#64748b', lineHeight: 1.6, maxWidth: '650px' }}>
-                            Explore our database of 200+ pre-trained AI operations. Select your industry to see exactly how our agents can automate your workflows.
+                            {t.industries_page.description}
                         </p>
                     </div>
                 </div>
             </section>
 
             {/* Main Content Area */}
-            <div className="container" style={{
+            <div className="container industries-layout" style={{
                 maxWidth: '1400px',
-                flex: 1,
-                padding: '3rem 2rem',
-                display: 'grid',
-                gridTemplateColumns: 'minmax(250px, 300px) 1fr',
-                gap: '3rem',
-                alignItems: 'start'
+                flex: 1
             }}>
 
                 {/* Sidebar Navigation */}
-                <aside style={{ position: 'sticky', top: 'calc(var(--header-height) + 2rem)' }}>
+                <aside className="industries-sidebar">
                     <h3 style={{ fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', color: '#94a3b8', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-                        Select Industry
+                        {t.industries_page.sidebar_title}
                     </h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        {industriesData.map((ind) => (
+                    <div className="industries-nav-list">
+                        {currentData.map((ind) => (
                             <button
                                 key={ind.name}
                                 onClick={() => setSelectedIndustry(ind)}
@@ -119,23 +139,23 @@ export default function IndustriesContent() {
                                     }
                                 }}
                             >
-                                {ind.name}
+                                {getLocalizedIndustryName(ind.name)}
                                 {selectedIndustry.name === ind.name && <ChevronRight size={18} />}
                             </button>
                         ))}
                     </div>
 
                     {/* CTA Box */}
-                    <div style={{
+                    <div className="industries-cta-box" style={{
                         marginTop: '3rem',
                         padding: '1.5rem',
                         background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
                         borderRadius: '20px',
                         border: '1px solid #bae6fd'
                     }}>
-                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0369a1', marginBottom: '0.5rem' }}>Need something custom?</h4>
+                        <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0369a1', marginBottom: '0.5rem' }}>{t.industries_page.custom_title}</h4>
                         <p style={{ fontSize: '0.9rem', color: '#0c4a6e', lineHeight: 1.5, marginBottom: '1rem' }}>
-                            We can train agents for unique workflows in just 48 hours.
+                            {t.industries_page.custom_desc}
                         </p>
                         <button style={{
                             background: 'white',
@@ -148,7 +168,7 @@ export default function IndustriesContent() {
                             width: '100%',
                             cursor: 'pointer'
                         }}>
-                            Talk to Sales
+                            {t.industries_page.cta_button}
                         </button>
                     </div>
                 </aside>
@@ -156,27 +176,20 @@ export default function IndustriesContent() {
                 {/* Content Panel */}
                 <div style={{ minWidth: 0 }}>
                     {/* Toolbar */}
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginBottom: '3rem',
-                        flexWrap: 'wrap',
-                        gap: '1rem'
-                    }}>
+                    <div className="toolbar-container">
                         <div>
-                            <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>{selectedIndustry.name}</h2>
+                            <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>{getLocalizedIndustryName(selectedIndustry.name)}</h2>
                             <p style={{ color: '#64748b' }}>
-                                Found {selectedIndustry.subSectors.reduce((acc, sub) => acc + sub.operations.length, 0)} specialized operations
+                                {t.industries_page.found_ops.replace('{count}', selectedIndustry.subSectors.reduce((acc, sub) => acc + sub.operations.length, 0).toString())}
                             </p>
                         </div>
 
                         {/* Search */}
-                        <div style={{ position: 'relative', width: '100%', maxWidth: '350px' }}>
+                        <div className="toolbar-search" style={{ position: 'relative', width: '100%', maxWidth: '350px' }}>
                             <Search size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
                             <input
                                 type="text"
-                                placeholder="Search operations..."
+                                placeholder={t.industries_page.search_placeholder}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 style={{
@@ -204,11 +217,7 @@ export default function IndustriesContent() {
                                     <div style={{ height: '1px', flex: 1, background: '#e2e8f0' }} />
                                 </div>
 
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-                                    gap: '1.5rem'
-                                }}>
+                                <div className="operations-grid">
                                     {subSector.operations.map((op, idx) => (
                                         <div key={idx} style={{
                                             background: 'white',
@@ -237,7 +246,7 @@ export default function IndustriesContent() {
                                                             gap: '0.3rem',
                                                             textTransform: 'uppercase'
                                                         }}>
-                                                            <PhoneIncoming size={12} /> Inbound
+                                                            <PhoneIncoming size={12} /> {t.industries_page.inbound}
                                                         </span>
                                                     ) : (
                                                         <span style={{
@@ -252,7 +261,7 @@ export default function IndustriesContent() {
                                                             gap: '0.3rem',
                                                             textTransform: 'uppercase'
                                                         }}>
-                                                            <PhoneOutgoing size={12} /> Outbound
+                                                            <PhoneOutgoing size={12} /> {t.industries_page.outbound}
                                                         </span>
                                                     )}
                                                 </div>
@@ -267,7 +276,7 @@ export default function IndustriesContent() {
 
                                             <div style={{ paddingTop: '1.5rem', borderTop: '1px solid #f8fafc' }}>
                                                 <h5 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                                    <Zap size={12} /> Technical Integrations
+                                                    <Zap size={12} /> {t.industries_page.tech_integrations}
                                                 </h5>
                                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                                                     {op.integrations.split(',').slice(0, 3).map((integ, i) => (
@@ -284,7 +293,7 @@ export default function IndustriesContent() {
                                                     ))}
                                                     {op.integrations.split(',').length > 3 && (
                                                         <span style={{ fontSize: '0.8rem', color: '#94a3b8', padding: '0.3rem' }}>
-                                                            +{op.integrations.split(',').length - 3} more
+                                                            {t.industries_page.more_labels.replace('{count}', (op.integrations.split(',').length - 3).toString())}
                                                         </span>
                                                     )}
                                                 </div>
@@ -298,7 +307,7 @@ export default function IndustriesContent() {
                         {filteredSubSectors.length === 0 && (
                             <div style={{ textAlign: 'center', padding: '4rem', color: '#94a3b8' }}>
                                 <Search size={48} style={{ opacity: 0.2, marginBottom: '1rem' }} />
-                                <p>No operations found matching "{searchQuery}" in {selectedIndustry.name}</p>
+                                <p>{t.industries_page.no_results.replace('{query}', searchQuery).replace('{industry}', getLocalizedIndustryName(selectedIndustry.name))}</p>
                             </div>
                         )}
                     </div>

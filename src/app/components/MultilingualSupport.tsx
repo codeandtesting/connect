@@ -1,43 +1,46 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from '@/i18n/context';
 
 export default function MultilingualSupport() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const { t } = useTranslation();
 
     const languages = [
-        { code: 'us', name: 'English', greeting: 'Hello' },
-        { code: 'fr', name: 'French', greeting: 'Bonjour' },
-        { code: 'de', name: 'German', greeting: 'Hallo' },
-        { code: 'jp', name: 'Japanese', greeting: 'こんにちは' },
-        { code: 'es', name: 'Spanish', greeting: 'Hola' },
-        { code: 'gb', name: 'British', greeting: 'Hello' },
-        { code: 'cn', name: 'Chinese', greeting: '你好' },
-        { code: 'kr', name: 'Korean', greeting: '안녕하세요' },
-        { code: 'it', name: 'Italian', greeting: 'Ciao' },
-        { code: 'br', name: 'Portuguese', greeting: 'Olá' },
-        { code: 'ru', name: 'Russian', greeting: 'Привет' },
-        { code: 'tr', name: 'Turkish', greeting: 'Merhaba' },
-        { code: 'in', name: 'Hindi', greeting: 'नमस्ते' },
-        { code: 'ae', name: 'Arabic', greeting: 'مرحبا' },
-        { code: 'nl', name: 'Dutch', greeting: 'Hallo' },
-        { code: 'se', name: 'Swedish', greeting: 'Hej' },
-        { code: 'pt', name: 'Portugal', greeting: 'Olá' },
-        { code: 'mx', name: 'Mexico', greeting: 'Hola' },
-        { code: 'ca', name: 'Canada', greeting: 'Hello' },
-        { code: 'au', name: 'Australia', greeting: 'Hello' },
-        { code: 'ch', name: 'Swiss', greeting: 'Grüezi' },
-        { code: 'pl', name: 'Polish', greeting: 'Cześć' },
-        { code: 'vn', name: 'Vietnam', greeting: 'Xin chào' },
-        { code: 'th', name: 'Thai', greeting: 'สวัสดี' },
-        { code: 'id', name: 'Indonesia', greeting: 'Halo' },
-        { code: 'il', name: 'Hebrew', greeting: 'שלום' },
-        { code: 'gr', name: 'Greek', greeting: 'Γεια σας' },
-        { code: 'no', name: 'Norway', greeting: 'Hallo' },
-        { code: 'dk', name: 'Denmark', greeting: 'Hej' },
-        { code: 'fi', name: 'Finland', greeting: 'Hei' },
-        { code: 'be', name: 'Belgium', greeting: 'Salut' },
-        { code: 'at', name: 'Austria', greeting: 'Servus' },
+        { code: 'us', name: t.multilingual_support.lang_english, greeting: 'Hello' },
+        { code: 'fr', name: t.multilingual_support.lang_french, greeting: 'Bonjour' },
+        { code: 'de', name: t.multilingual_support.lang_german, greeting: 'Hallo' },
+        { code: 'jp', name: t.multilingual_support.lang_japanese, greeting: 'こんにちは' },
+        { code: 'es', name: t.multilingual_support.lang_spanish, greeting: 'Hola' },
+        { code: 'gb', name: t.multilingual_support.lang_british, greeting: 'Hello' },
+        { code: 'cn', name: t.multilingual_support.lang_chinese, greeting: '你好' },
+        { code: 'kr', name: t.multilingual_support.lang_korean, greeting: '안녕하세요' },
+        { code: 'it', name: t.multilingual_support.lang_italian, greeting: 'Ciao' },
+        { code: 'br', name: t.multilingual_support.lang_portuguese, greeting: 'Olá' },
+        { code: 'ru', name: t.multilingual_support.lang_russian, greeting: 'Привет' },
+        { code: 'tr', name: t.multilingual_support.lang_turkish, greeting: 'Merhaba' },
+        { code: 'in', name: t.multilingual_support.lang_hindi, greeting: 'नमस्ते' },
+        { code: 'ae', name: t.multilingual_support.lang_arabic, greeting: 'مرحبا' },
+        { code: 'nl', name: t.multilingual_support.lang_dutch, greeting: 'Hallo' },
+        { code: 'se', name: t.multilingual_support.lang_swedish, greeting: 'Hej' },
+        { code: 'pt', name: t.multilingual_support.lang_portugal, greeting: 'Olá' },
+        { code: 'mx', name: t.multilingual_support.lang_mexico, greeting: 'Hola' },
+        { code: 'ca', name: t.multilingual_support.lang_canada, greeting: 'Hello' },
+        { code: 'au', name: t.multilingual_support.lang_australia, greeting: 'Hello' },
+        { code: 'ch', name: t.multilingual_support.lang_swiss, greeting: 'Grüezi' },
+        { code: 'pl', name: t.multilingual_support.lang_polish, greeting: 'Cześć' },
+        { code: 'vn', name: t.multilingual_support.lang_vietnam, greeting: 'Xin chào' },
+        { code: 'th', name: t.multilingual_support.lang_thai, greeting: 'สวัสดี' },
+        { code: 'id', name: t.multilingual_support.lang_indonesia, greeting: 'Halo' },
+        { code: 'il', name: t.multilingual_support.lang_hebrew, greeting: 'שלום' },
+        { code: 'gr', name: t.multilingual_support.lang_greek, greeting: 'Γεια σας' },
+        { code: 'no', name: t.multilingual_support.lang_norway, greeting: 'Hallo' },
+        { code: 'dk', name: t.multilingual_support.lang_denmark, greeting: 'Hej' },
+        { code: 'fi', name: t.multilingual_support.lang_finland, greeting: 'Hei' },
+        { code: 'be', name: t.multilingual_support.lang_belgium, greeting: 'Salut' },
+        { code: 'at', name: t.multilingual_support.lang_austria, greeting: 'Servus' },
+        { code: 'lv', name: t.multilingual_support.lang_latvian, greeting: 'Sveiki' },
     ];
 
     useEffect(() => {
@@ -50,9 +53,9 @@ export default function MultilingualSupport() {
     return (
         <div style={{
             width: '100%',
-            minHeight: '450px', // Ensure height so many flags are visible
+            minHeight: 'clamp(380px, 80vh, 500px)',
             background: 'linear-gradient(145deg, #0f0f10 0%, #1a1a1e 100%)',
-            borderRadius: '3rem',
+            borderRadius: 'clamp(1.5rem, 4vw, 3rem)',
             position: 'relative',
             overflow: 'hidden',
             display: 'flex',
@@ -87,7 +90,7 @@ export default function MultilingualSupport() {
             <div style={{
                 position: 'absolute',
                 inset: 0,
-                top: '-15%', // Move up to leave room for bottom text
+                top: '-25%', // Move up more on mobile to leave room for bottom text
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -117,13 +120,17 @@ export default function MultilingualSupport() {
                 {[1, 2, 3, 4].map((ring) => {
                     const duration = ring * 12 + 15;
                     const isReverse = ring % 2 === 0;
+                    const size = `calc(${ring * 15}vw + 100px)`;
+                    const maxSize = ring * 90 + 100;
+                    const finalSize = `min(${size}, ${maxSize}px)`;
+
                     return (
                         <div
                             key={ring}
                             style={{
                                 position: 'absolute',
-                                width: `${ring * 90 + 100}px`,
-                                height: `${ring * 90 + 100}px`,
+                                width: finalSize,
+                                height: finalSize,
                                 border: '1px solid rgba(255,255,255,0.03)',
                                 borderRadius: '50%',
                                 animation: `spin-slow ${duration}s linear infinite ${isReverse ? 'reverse' : ''}`,
@@ -139,7 +146,7 @@ export default function MultilingualSupport() {
                                             key={lang.code}
                                             className="satellite-wrapper"
                                             style={{
-                                                transform: `rotate(${angle}deg) translateY(-${(ring * 90 + 100) / 2}px) rotate(-${angle}deg)`,
+                                                transform: `rotate(${angle}deg) translateY(calc(${finalSize} / -2)) rotate(-${angle}deg)`,
                                                 position: 'absolute',
                                                 top: '50%',
                                                 left: '50%',
@@ -179,36 +186,37 @@ export default function MultilingualSupport() {
             {/* Information Overlay */}
             <div style={{
                 position: 'absolute',
-                bottom: '2rem',
-                left: '2rem',
-                right: '2rem',
+                bottom: 'clamp(1rem, 3vw, 2rem)',
+                left: 'clamp(1rem, 3vw, 2rem)',
+                right: 'clamp(1rem, 3vw, 2rem)',
                 zIndex: 20,
-                padding: '2rem',
+                padding: 'clamp(1.5rem, 4vw, 2rem)',
                 background: 'rgba(0, 0, 0, 0.4)',
                 backdropFilter: 'blur(12px)',
-                borderRadius: '24px',
+                borderRadius: 'clamp(16px, 4vw, 24px)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 pointerEvents: 'none',
             }}>
 
                 <h3 style={{
-                    fontSize: '2.5rem',
+                    fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
                     fontWeight: 700,
                     margin: '0 0 0.5rem',
                     background: 'linear-gradient(to right, #fff, #94a3b8)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    lineHeight: 1.1
+                    lineHeight: 1.1,
+                    wordBreak: 'break-word'
                 }}>
-                    Truly Universal.
+                    {t.multilingual_support.title}
                 </h3>
                 <p style={{
-                    fontSize: '1rem',
+                    fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
                     color: '#94a3b8',
-                    maxWidth: '350px',
+                    maxWidth: '100%',
                     lineHeight: 1.6
                 }}>
-                    Native fluency in 50+ languages with regional accents and perfect cultural nuance.
+                    {t.multilingual_support.desc}
                 </p>
 
                 {/* Dynamic Greeting Flipper */}

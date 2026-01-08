@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { PlayCircle, ShoppingBag } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 const particleVertex = `
     attribute float scale;
@@ -44,6 +45,7 @@ const particleFragment = `
 
 export default function HeroV2() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (!canvasRef.current) return;
@@ -124,7 +126,7 @@ export default function HeroV2() {
 
         let animationFrameId: number;
         const animate = () => {
-            particleMaterial.uniforms.uTime.value += 0.03;
+            particleMaterial.uniforms.uTime.value += 0.022;
 
             // Subtle camera tilt based on mouse
             camera.position.x += (mouse.x * 3 - camera.position.x) * 0.05;
@@ -187,16 +189,18 @@ export default function HeroV2() {
                 position: 'relative' // Ensure content is above canvas
             }}>
                 <h1 style={{
-                    fontSize: 'clamp(2.4rem, 4.8vw, 4.4rem)',
-                    lineHeight: 1.05,
+                    fontSize: 'clamp(2rem, 10vw, 4rem)',
+                    lineHeight: 1.1,
                     fontWeight: 800,
                     letterSpacing: '-0.03em',
                     margin: 0,
                     color: 'var(--foreground)',
-                    textShadow: '0 0 40px rgba(255,255,255,0.5)'
+                    textShadow: '0 0 40px rgba(255,255,255,0.4)',
+                    wordBreak: 'break-word',
+                    maxWidth: '100%'
                 }}>
-                    Your personal <span className="text-gradient">AI call manager</span>.<br />
-                    World wide in any language
+                    {t.hero.title_part1} <span className="text-gradient">{t.hero.title_gradient}</span>.<br />
+                    {t.hero.title_part2}
                 </h1>
 
                 <p style={{
@@ -207,7 +211,7 @@ export default function HeroV2() {
                     margin: 0,
                     fontWeight: 500
                 }}>
-                    Transform your phone system from a cost center into a growth engine. Eliminate wait times and human error with intelligent AI agents that handle any volume, in any language—fixing your biggest operational pain points while maximizing your ROI.
+                    {t.hero.description}
                 </p>
 
                 {/* Buttons */}
@@ -224,11 +228,11 @@ export default function HeroV2() {
                         height: 'auto'
                     }}>
                         <ShoppingBag size={20} />
-                        Book a Demo
+                        {t.hero.book_demo}
                     </button>
 
                     <button className="play-btn">
-                        Try Live Demo
+                        {t.hero.try_demo}
                         <span style={{
                             color: 'var(--accent-pink)',
                             display: 'flex',
@@ -247,8 +251,8 @@ export default function HeroV2() {
                 textAlign: 'left',
                 zIndex: 10
             }} className="hide-mobile">
-                <span style={{ display: 'block', fontSize: '0.9rem', color: '#666', marginBottom: '0.25rem' }}>AI Capabilities</span>
-                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>Real-Time Call</strong>
+                <span style={{ display: 'block', fontSize: '0.9rem', color: '#666', marginBottom: '0.25rem' }}>{t.hero.ai_capabilities}</span>
+                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>{t.hero.real_time_call}</strong>
             </div>
 
             <div style={{
@@ -258,8 +262,8 @@ export default function HeroV2() {
                 textAlign: 'right',
                 zIndex: 10
             }} className="hide-mobile">
-                <span style={{ display: 'block', fontSize: '0.9rem', color: '#666', marginBottom: '0.25rem' }}>Fully Automate</span>
-                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>Call Breakdowns</strong>
+                <span style={{ display: 'block', fontSize: '0.9rem', color: '#666', marginBottom: '0.25rem' }}>{t.hero.fully_automate}</span>
+                <strong style={{ fontSize: '1.2rem', fontWeight: 600 }}>{t.hero.call_breakdowns}</strong>
             </div>
         </section >
     );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/i18n/context";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -9,11 +10,24 @@ export const metadata: Metadata = {
     default: "CONEKT | 24/7 Professional AI Voice Agents for Business",
     template: "%s | CONEKT"
   },
-  description: "Transform your phone system from a cost center into a growth engine. Intelligent AI agents that handle calls 24/7 in 50+ languages with perfect accuracy and unlimited scalability.",
-  keywords: ["AI Voice Agent", "Call Automation", "Customer Support AI", "Multilingual AI", "AI Call Manager", "Voice AI for Business", "CONEKT AI"],
+  description: "Transform your business with professional AI Voice Agents. Handle 10,000+ simultaneous calls 24/7 in 50+ languages with native fluency. Perfect for Healthcare, Real Estate, and Automotive industries.",
+  keywords: [
+    "AI Voice Agent", "Automated Phone System", "Voice AI for Business",
+    "Conversational AI", "AI Call Center", "Call Automation Platform",
+    "Multilingual AI Agent", "Healthcare Call Automation", "Real Estate AI Secretary",
+    "Automotive Service AI", "B2B Voice AI", "CONEKT AI Solutions"
+  ],
   authors: [{ name: "CONEKT Team" }],
   creator: "CONEKT",
   publisher: "CONEKT",
+  alternates: {
+    canonical: 'https://conekt.ai',
+    languages: {
+      'en-US': 'https://conekt.ai',
+      'ru-RU': 'https://conekt.ai/ru', // If subfolders are implemented later
+      'lv-LV': 'https://conekt.ai/lv',
+    },
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -62,7 +76,41 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <LanguageProvider>
+          {children}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "CONEKT AI",
+                "operatingSystem": "Web-based",
+                "applicationCategory": "BusinessApplication",
+                "browserRequirements": "requires HTML5 support",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "299.00",
+                  "priceCurrency": "USD",
+                  "description": "Monthly subscription starting at $299 for 1,000 minutes"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "reviewCount": "124"
+                },
+                "description": "Professional AI voice agents that pass the Turing test. Fully automate your business phone operations with native fluency in 50+ languages.",
+                "featureList": [
+                  "24/7 Availability",
+                  "50+ Languages Support",
+                  "CRM & ERP Integrations",
+                  "Real-time Call Analytics",
+                  "Neural Voice Engine"
+                ]
+              })
+            }}
+          />
+        </LanguageProvider>
       </body>
     </html>
   );

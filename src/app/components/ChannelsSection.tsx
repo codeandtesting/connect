@@ -1,48 +1,50 @@
 'use client';
 
 import { PhoneCall, Server, Globe, MessageSquareText, Send, ArrowRight, Webhook } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 export default function ChannelsSection() {
+    const { t } = useTranslation();
     const channels = [
         {
             icon: <PhoneCall size={32} />,
-            title: "Batch Calls",
-            desc: "Run massive outbound campaigns with thousands of simultaneous calls. Perfect for appointment reminders, payment notifications, and marketing campaigns.",
+            title: t.channels.batch_title,
+            desc: t.channels.batch_desc,
             color: "#3b82f6", // Blue
             bg: "#eff6ff"
         },
         {
             icon: <Server size={32} />, // SIP often relates to servers/infrastructure
-            title: "SIP Calls",
-            desc: "Standard telephony integration with your existing phone systems. Support for all major VoIP providers and PBX systems.",
+            title: t.channels.sip_title,
+            desc: t.channels.sip_desc,
             color: "#8b5cf6", // Purple
             bg: "#f3e8ff"
         },
         {
             icon: <Globe size={32} />,
-            title: "Web Calls",
-            desc: "Browser-based calling directly from your website. No phone number needed - customers click and talk instantly.",
+            title: t.channels.web_title,
+            desc: t.channels.web_desc,
             color: "#10b981", // Emerald
             bg: "#ecfdf5"
         },
         {
             icon: <MessageSquareText size={32} />,
-            title: "SMS",
-            desc: "Text message conversations with full context awareness. Confirmations, reminders, and two-way communication via SMS.",
+            title: t.channels.sms_title,
+            desc: t.channels.sms_desc,
             color: "#f59e0b", // Amber
             bg: "#fffbeb"
         },
         {
             icon: <Send size={32} />,
-            title: "Messengers",
-            desc: "Integrate with WhatsApp, Telegram, Facebook Messenger, and more. Meet customers on their preferred platforms.",
+            title: t.channels.messengers_title,
+            desc: t.channels.messengers_desc,
             color: "#ec4899", // Pink
             bg: "#fdf2f8"
         },
         {
             icon: <Webhook size={32} />,
-            title: "Custom API",
-            desc: "Connect with almost any custom API. Seamlessly integrate AI agents into your unique workflows and internal tools.",
+            title: t.channels.api_title,
+            desc: t.channels.api_desc,
             color: "#ef4444", // Red
             bg: "#fef2f2"
         }
@@ -73,7 +75,7 @@ export default function ChannelsSection() {
                 background: 'linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)'
             }} />
 
-            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1 }}>
+            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1rem, 5vw, 2rem)', position: 'relative', zIndex: 1 }}>
 
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -85,22 +87,22 @@ export default function ChannelsSection() {
                         marginBottom: '1.5rem',
                         letterSpacing: '-0.02em'
                     }}>
-                        Multiple Communication <span className="text-gradient">Channels</span>
+                        {t.channels.title_main} <span className="text-gradient">{t.channels.title_highlight}</span>
                     </h2>
                     <p style={{
-                        fontSize: '1.2rem',
+                        fontSize: 'clamp(1rem, 3vw, 1.2rem)',
                         color: '#666',
                         maxWidth: '600px',
                         margin: '0 auto'
                     }}>
-                        Connect with your customers however they prefer
+                        {t.channels.subtitle}
                     </p>
                 </div>
 
                 {/* Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))',
                     gap: '2rem',
                     marginBottom: '4rem'
                 }}>
@@ -148,7 +150,7 @@ export default function ChannelsSection() {
                         color: '#111',
                         letterSpacing: '-0.01em'
                     }}>
-                        Seamless Integrations
+                        {t.channels.integrations_title}
                     </h3>
                     <p style={{
                         fontSize: '1.2rem',
@@ -157,13 +159,14 @@ export default function ChannelsSection() {
                         margin: '0 auto 4rem',
                         lineHeight: 1.6
                     }}>
-                        Connect with your existing tools and systems - no disruption to your workflow
+                        {t.channels.integrations_subtitle}
                     </p>
 
                     {/* Infinite Marquee Container */}
                     <div style={{
                         position: 'relative',
                         width: '100%',
+                        maxWidth: '100vw',
                         overflow: 'hidden',
                         padding: '2rem 0',
                         background: '#fcfcfc',
@@ -255,7 +258,7 @@ export default function ChannelsSection() {
                     </div>
                 </div>
 
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

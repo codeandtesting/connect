@@ -2,8 +2,17 @@
 
 import { Star, ArrowRight, Volume2, Headphones, CircuitBoard, Globe, Mic } from 'lucide-react';
 import MultilingualSupport from './MultilingualSupport';
+import { useTranslation } from '@/i18n/context';
 
 export default function ProductShowcase() {
+    const { t } = useTranslation();
+
+    const stats = [
+        { title: t.product_showcase.stat1_title, highlight: t.product_showcase.stat1_value, sub: t.product_showcase.stat1_sub },
+        { title: t.product_showcase.stat2_title, highlight: t.product_showcase.stat2_value, sub: t.product_showcase.stat2_sub },
+        { title: t.product_showcase.stat3_title, highlight: t.product_showcase.stat3_value, sub: t.product_showcase.stat3_sub },
+    ];
+
     return (
         <section id="languages" style={{
             position: 'relative',
@@ -25,10 +34,10 @@ export default function ProductShowcase() {
                 {/* Main Content Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                    gap: '4rem',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))',
+                    gap: 'clamp(2rem, 5vw, 4rem)',
                     alignItems: 'center',
-                    marginBottom: '6rem'
+                    marginBottom: 'clamp(3rem, 10vw, 6rem)'
                 }}>
 
                     {/* Left: Multilingual Animation */}
@@ -37,22 +46,22 @@ export default function ProductShowcase() {
                         {/* Decorative Badge */}
                         <div style={{
                             position: 'absolute',
-                            top: '-20px',
-                            right: '-20px',
+                            top: '-10px',
+                            right: '-10px',
                             background: 'linear-gradient(135deg, #111, #333)',
-                            padding: '1rem 1.5rem',
+                            padding: 'clamp(0.6rem, 2vw, 1rem) clamp(0.8rem, 3vw, 1.5rem)',
                             borderRadius: '16px',
                             color: 'white',
                             boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
                             zIndex: 10
                         }}>
-                            <div style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Worldwide</div>
-                            <div style={{ fontSize: '1.1rem', fontWeight: 700 }}>Global Reach</div>
+                            <div style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)', opacity: 0.6, marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.product_showcase.worldwide_badge}</div>
+                            <div style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', fontWeight: 700 }}>{t.product_showcase.global_reach_badge}</div>
                         </div>
                     </div>
 
                     {/* Right: Feature Text */}
-                    <div style={{ paddingLeft: '2rem' }}>
+                    <div style={{ paddingLeft: 'clamp(0px, 2vw, 2rem)' }}>
                         <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -66,19 +75,19 @@ export default function ProductShowcase() {
                             marginBottom: '1.5rem',
                             border: '1px solid #dcfce7'
                         }}>
-                            <Globe size={16} /> Global Scale
+                            <Globe size={16} /> {t.product_showcase.global_scale}
                         </div>
 
                         <h2 style={{
-                            fontSize: '3rem',
+                            fontSize: 'clamp(1.8rem, 6vw, 3rem)',
                             fontWeight: 800,
                             lineHeight: 1.1,
                             color: '#111',
                             marginBottom: '1.5rem',
                             letterSpacing: '-0.02em'
                         }}>
-                            Global Voice, <br />
-                            <span className="text-gradient">Local Fluency.</span>
+                            {t.product_showcase.title_part1} <br />
+                            <span className="text-gradient">{t.product_showcase.title_gradient}</span>
                         </h2>
 
                         <p style={{
@@ -87,7 +96,7 @@ export default function ProductShowcase() {
                             color: '#666',
                             marginBottom: '2.5rem'
                         }}>
-                            Eliminate language barriers instantly. Our AI agents master 50+ languages with native speed, regional accents, and deep cultural nuance, ensuring your brand feels local in every market.
+                            {t.product_showcase.desc}
                         </p>
 
                         <button
@@ -117,18 +126,14 @@ export default function ProductShowcase() {
                                 e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.2)';
                             }}
                         >
-                            <Mic size={20} /> Hear the Fluency
+                            <Mic size={20} /> {t.product_showcase.cta_button}
                         </button>
                     </div>
                 </div>
 
                 {/* Bottom Stats Grid */}
                 <div className="stats-grid">
-                    {[
-                        { title: 'Polyglot Core', highlight: '50+ Languages', sub: 'Native-level accuracy' },
-                        { title: 'Market Expansion', highlight: 'Instant', sub: 'Deploy globally in minutes' },
-                        { title: 'Reliability', highlight: '24/7/365', sub: 'Zero latency globe-wide' },
-                    ].map((item, i) => (
+                    {stats.map((item, i) => (
                         <div key={i} className="stats-item">
                             <div style={{ fontSize: '1rem', color: '#64748b', marginBottom: '0.5rem' }}>{item.title}</div>
                             <div style={{
@@ -143,6 +148,7 @@ export default function ProductShowcase() {
                         </div>
                     ))}
                 </div>
+
 
             </div>
         </section>

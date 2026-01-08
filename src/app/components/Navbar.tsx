@@ -2,18 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Globe } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { t, language, setLanguage } = useTranslation();
+
     const links = [
-        { name: 'Overview', href: '#overview' },
-        { name: 'Features', href: '#deployment-process' }, // Points to Deployment Process
-        { name: 'Industries', href: '/industries' },
-        { name: 'Integrations', href: '#integrations' },
-        { name: 'Languages', href: '#languages' }, // Renamed from Technology
-        { name: 'Reviews', href: '#reviews' },
-        { name: 'Contact', href: '#faq' } // Added Contact
+        { name: t.navbar.overview, href: '#overview' },
+        { name: t.navbar.features, href: '#deployment-process' },
+        { name: t.navbar.industries, href: '/industries' },
+        { name: t.navbar.integrations, href: '#integrations' },
+        { name: t.navbar.languages, href: '#languages' },
+        { name: t.navbar.reviews, href: '#reviews' },
+        { name: t.navbar.contact, href: '#faq' }
     ];
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -102,18 +105,42 @@ export default function Navbar() {
                         </Link>
                     ))}
 
+                    {/* Mobile Language Switcher */}
+                    <button
+                        onClick={() => {
+                            const nextLang = language === 'en' ? 'ru' : language === 'ru' ? 'lv' : 'en';
+                            setLanguage(nextLang);
+                        }}
+                        className="mobile-lang-switcher"
+                    >
+                        <Globe size={18} />
+                        {language === 'en' ? 'Русский' : language === 'ru' ? 'Latviešu' : 'English'}
+                    </button>
+
                     {/* Mobile Call to Action */}
                     <button className="order-btn" style={{ marginTop: '1rem' }}>
                         <ShoppingBag size={16} />
-                        Book a call
+                        {t.navbar.book_demo}
                     </button>
                 </div>
 
                 {/* Desktop Actions */}
-                <button className="order-btn">
-                    <ShoppingBag size={16} />
-                    Book a Demo
-                </button>
+                <div className="nav-actions">
+                    <button
+                        onClick={() => {
+                            const nextLang = language === 'en' ? 'ru' : language === 'ru' ? 'lv' : 'en';
+                            setLanguage(nextLang);
+                        }}
+                        className="lang-switcher"
+                    >
+                        <Globe size={14} />
+                        {language.toUpperCase()}
+                    </button>
+                    <button className="order-btn">
+                        <ShoppingBag size={16} />
+                        {t.navbar.book_demo}
+                    </button>
+                </div>
             </nav>
         </header>
     );

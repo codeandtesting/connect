@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Plus, Minus, Stethoscope, Car, Building2, ShoppingBag, Home, UtensilsCrossed } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslation } from '@/i18n/context';
 
 type Industry = {
     id: string;
@@ -16,159 +17,64 @@ type Industry = {
     }[];
 };
 
-const industriesData: Industry[] = [
-    {
-        id: 'healthcare',
-        category: 'healthcare',
-        title: 'Healthcare & Medical',
-        icon: <Stethoscope size={24} />,
-        operations: [
-            {
-                title: 'Appointment Scheduling',
-                purpose: 'Book, reschedule, and cancel patient appointments',
-                integrations: 'EHR/EMR (Epic, Cerner, Meditech), Calendar systems, SMS notifications'
-            },
-            {
-                title: 'Prescription Refills',
-                purpose: 'Process medication refill requests',
-                integrations: 'Pharmacy management systems, E-prescribing platforms'
-            },
-            {
-                title: 'Insurance Verification',
-                purpose: 'Verify patient insurance coverage and eligibility',
-                integrations: 'Insurance clearinghouses (Availity, Change Healthcare), Payer APIs'
-            }
-        ]
-    },
-    {
-        id: 'automotive',
-        category: 'automotive',
-        title: 'Automotive Dealerships',
-        icon: <Car size={24} />,
-        operations: [
-            {
-                title: 'Service Appointment Scheduling',
-                purpose: 'Schedule maintenance, repairs, and service appointments',
-                integrations: 'DMS (CDK Global, Reynolds & Reynolds), Service scheduling, Calendar'
-            },
-            {
-                title: 'Parts Availability Inquiry',
-                purpose: 'Check parts availability and pricing',
-                integrations: 'DMS parts module, Parts catalogs, Distributor APIs'
-            },
-            {
-                title: 'Maintenance Reminders',
-                purpose: 'Proactive reminders based on mileage and service history',
-                integrations: 'DMS service history, Customer database, SMS/Voice platforms'
-            }
-        ]
-    },
-    {
-        id: 'banking',
-        category: 'business',
-        title: 'Banking & Finance',
-        icon: <Building2 size={24} />,
-        operations: [
-            {
-                title: 'Balance & Transaction Inquiries',
-                purpose: 'Provide account balance and transaction history',
-                integrations: 'Core banking systems (Temenos, FIS, Fiserv), Mobile banking APIs'
-            },
-            {
-                title: 'Card Services',
-                purpose: 'Card activation, PIN reset, card blocking',
-                integrations: 'Card management systems, Fraud detection systems'
-            },
-            {
-                title: 'Fraud Alerts',
-                purpose: 'Verify suspicious transactions and fraud alerts',
-                integrations: 'Fraud detection systems, Real-time analytics platforms'
-            }
-        ]
-    },
-    {
-        id: 'retail',
-        category: 'retail',
-        title: 'E-commerce & Retail',
-        icon: <ShoppingBag size={24} />,
-        operations: [
-            {
-                title: 'Order Tracking',
-                purpose: 'Provide real-time order status and delivery updates',
-                integrations: 'E-commerce platforms (Shopify, WooCommerce), Shipping APIs (FedEx, UPS, DHL)'
-            },
-            {
-                title: 'Returns & Exchanges',
-                purpose: 'Process product returns and exchanges',
-                integrations: 'Return management systems, Payment processors'
-            },
-            {
-                title: 'Product Information',
-                purpose: 'Answer product questions and provide specifications',
-                integrations: 'Product catalogs, Inventory management systems'
-            }
-        ]
-    },
-    {
-        id: 'realestate',
-        category: 'business',
-        title: 'Real Estate',
-        icon: <Home size={24} />,
-        operations: [
-            {
-                title: 'Property Viewing Scheduling',
-                purpose: 'Schedule property showings and open houses',
-                integrations: 'MLS systems, Calendar systems, Showing scheduling tools (ShowingTime)'
-            },
-            {
-                title: 'Lead Qualification',
-                purpose: 'Qualify potential buyers and gather requirements',
-                integrations: 'CRM (Follow Up Boss, kvCORE), Lead management systems'
-            },
-            {
-                title: 'Property Information',
-                purpose: 'Provide property details, pricing, and availability',
-                integrations: 'MLS databases, Property management systems'
-            }
-        ]
-    },
-    {
-        id: 'hospitality',
-        category: 'hospitality',
-        title: 'Restaurants & Food Service',
-        icon: <UtensilsCrossed size={24} />,
-        operations: [
-            {
-                title: 'Table Reservations',
-                purpose: 'Book, modify, and confirm restaurant reservations',
-                integrations: 'Reservation systems (OpenTable, Resy), POS integration'
-            },
-            {
-                title: 'Takeout Orders',
-                purpose: 'Take phone orders for pickup and delivery',
-                integrations: 'POS systems (Toast, Square, Clover), Online ordering platforms'
-            },
-            {
-                title: 'Wait Time Inquiries',
-                purpose: 'Provide current wait times and waitlist management',
-                integrations: 'Waitlist management (Nowait, Yelp), Host systems'
-            }
-        ]
-    }
-];
-
-const filters = [
-    { id: 'all', label: 'All Industries' },
-    { id: 'healthcare', label: 'Healthcare' },
-    { id: 'business', label: 'Business Services' },
-    { id: 'retail', label: 'Retail & E-commerce' },
-    { id: 'automotive', label: 'Automotive' },
-    { id: 'hospitality', label: 'Hospitality' }
-];
-
 export default function IndustriesSection() {
     const [activeFilter, setActiveFilter] = useState('all');
     const [expandedIds, setExpandedIds] = useState<string[]>([]);
+    const { t } = useTranslation();
+
+    const industriesData: Industry[] = [
+        {
+            id: 'healthcare',
+            category: 'healthcare',
+            title: t.industries.healthcare.label,
+            icon: <Stethoscope size={24} />,
+            operations: t.industries.healthcare.ops
+        },
+        {
+            id: 'automotive',
+            category: 'automotive',
+            title: t.industries.automotive.label,
+            icon: <Car size={24} />,
+            operations: t.industries.automotive.ops
+        },
+        {
+            id: 'banking',
+            category: 'business',
+            title: t.industries.banking.label,
+            icon: <Building2 size={24} />,
+            operations: t.industries.banking.ops
+        },
+        {
+            id: 'retail',
+            category: 'retail',
+            title: t.industries.ecommerce.label,
+            icon: <ShoppingBag size={24} />,
+            operations: t.industries.ecommerce.ops
+        },
+        {
+            id: 'realestate',
+            category: 'business',
+            title: t.industries.realestate.label,
+            icon: <Home size={24} />,
+            operations: t.industries.realestate.ops
+        },
+        {
+            id: 'hospitality',
+            category: 'hospitality',
+            title: t.industries.restaurant.label,
+            icon: <UtensilsCrossed size={24} />,
+            operations: t.industries.restaurant.ops
+        }
+    ];
+
+    const filters = [
+        { id: 'all', label: t.industries_section.filter_all },
+        { id: 'healthcare', label: t.industries_section.filter_healthcare },
+        { id: 'business', label: t.industries_section.filter_business },
+        { id: 'retail', label: t.industries_section.filter_retail },
+        { id: 'automotive', label: t.industries_section.filter_automotive },
+        { id: 'hospitality', label: t.industries_section.filter_hospitality }
+    ];
 
     const toggleExpand = (id: string) => {
         setExpandedIds(prev =>
@@ -190,56 +96,75 @@ export default function IndustriesSection() {
                 <div className="grid-line" style={{ background: 'rgba(0,0,0,0.06)' }} />
             </div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '0 2rem' }}>
+            <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto', padding: '0 clamp(1rem, 5vw, 2rem)' }}>
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <h2 style={{
-                        fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
+                        fontSize: 'clamp(2rem, 8vw, 3.5rem)',
                         fontWeight: 800,
                         marginBottom: '1rem',
                         color: '#111',
                         letterSpacing: '-0.02em',
                         lineHeight: 1.1
                     }}>
-                        Industries We <span className="text-gradient">Serve</span>
+                        {t.industries_section.title_main} <span className="text-gradient">{t.industries_section.title_highlight}</span>
                     </h2>
                     <p style={{
-                        fontSize: '1.2rem',
+                        fontSize: 'clamp(1rem, 4vw, 1.2rem)',
                         color: '#666',
                         maxWidth: '600px',
                         margin: '0 auto'
                     }}>
-                        Comprehensive solutions for 25+ industries with specialized AI agents
+                        {t.industries_section.subtitle}
                     </p>
                 </div>
 
                 {/* Filter Buttons */}
-                <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '0.8rem',
-                    justifyContent: 'center',
-                    marginBottom: '4rem'
-                }}>
-                    {filters.map(filter => (
-                        <button
-                            key={filter.id}
-                            onClick={() => setActiveFilter(filter.id)}
-                            style={{
-                                padding: '0.6rem 1.4rem',
-                                borderRadius: '99px',
-                                background: activeFilter === filter.id ? '#111' : '#f3f4f6',
-                                color: activeFilter === filter.id ? 'white' : '#666',
-                                border: 'none',
-                                fontSize: '0.95rem',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease',
-                                boxShadow: activeFilter === filter.id ? '0 4px 12px rgba(0,0,0,0.2)' : 'none'
-                            }}
-                        >
-                            {filter.label}
-                        </button>
-                    ))}
+                <div style={{ position: 'relative', margin: '0 -2rem' }}>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'nowrap',
+                        overflowX: 'auto',
+                        gap: '0.8rem',
+                        justifyContent: 'flex-start',
+                        padding: '0.5rem 2rem 1.5rem',
+                        marginBottom: '2.5rem',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none'
+                    }} className="no-scrollbar">
+                        {filters.map(filter => (
+                            <button
+                                key={filter.id}
+                                onClick={() => setActiveFilter(filter.id)}
+                                style={{
+                                    padding: '0.6rem 1.4rem',
+                                    borderRadius: '99px',
+                                    background: activeFilter === filter.id ? '#111' : '#f3f4f6',
+                                    color: activeFilter === filter.id ? 'white' : '#666',
+                                    border: 'none',
+                                    fontSize: '0.95rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    whiteSpace: 'nowrap',
+                                    flexShrink: 0,
+                                    boxShadow: activeFilter === filter.id ? '0 4px 12px rgba(0,0,0,0.2)' : 'none'
+                                }}
+                            >
+                                {filter.label}
+                            </button>
+                        ))}
+                    </div>
+                    {/* Scroll indicators for mobile */}
+                    <div className="hide-desktop" style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 0,
+                        bottom: '1rem',
+                        width: '40px',
+                        background: 'linear-gradient(to left, white, transparent)',
+                        pointerEvents: 'none',
+                        zIndex: 2
+                    }} />
                 </div>
 
                 {/* Industries List (Accordion) */}
@@ -258,7 +183,7 @@ export default function IndustriesSection() {
                                 <div
                                     onClick={() => toggleExpand(industry.id)}
                                     style={{
-                                        padding: '1.5rem 2rem',
+                                        padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
@@ -296,17 +221,17 @@ export default function IndustriesSection() {
                                     overflow: 'hidden',
                                     transition: 'all 0.3s ease'
                                 }}>
-                                    <div style={{ padding: '0 2rem 2rem 2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', borderTop: '1px solid #f0f0f0', marginTop: '0.5rem', paddingTop: '1.5rem' }}>
+                                    <div style={{ padding: '0 clamp(1rem, 5vw, 2rem) 2rem clamp(1rem, 5vw, 2rem)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem', borderTop: '1px solid #f0f0f0', marginTop: '0.5rem', paddingTop: '1.5rem' }}>
                                         {industry.operations.map((op, i) => (
                                             <div key={i}>
                                                 <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#111', marginBottom: '0.5rem' }}>
                                                     {op.title}
                                                 </h4>
                                                 <div style={{ fontSize: '0.9rem', color: '#666', lineHeight: 1.6, marginBottom: '0.5rem' }}>
-                                                    <strong style={{ color: '#444' }}>Purpose:</strong> {op.purpose}
+                                                    <strong style={{ color: '#444' }}>{t.industries_section.purpose_label}</strong> {op.purpose}
                                                 </div>
                                                 <div style={{ fontSize: '0.9rem', color: '#666', lineHeight: 1.6 }}>
-                                                    <strong style={{ color: '#444' }}>Integrations:</strong> {op.integrations}
+                                                    <strong style={{ color: '#444' }}>{t.industries_section.integrations_label}</strong> {op.integrations}
                                                 </div>
                                             </div>
                                         ))}
@@ -320,7 +245,7 @@ export default function IndustriesSection() {
                 {/* Footer CTA */}
                 <div style={{ textAlign: 'center', marginTop: '4rem' }}>
                     <p style={{ color: '#666', marginBottom: '1.5rem', fontSize: '1.1rem' }}>
-                        Don't see your industry? We can customize solutions for any business.
+                        {t.industries_section.footer_text}
                     </p>
                     <Link href="/industries">
                         <button style={{
@@ -338,11 +263,11 @@ export default function IndustriesSection() {
                             onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                             onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
                         >
-                            Find Your Industry
+                            {t.industries_section.cta_button}
                         </button>
                     </Link>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

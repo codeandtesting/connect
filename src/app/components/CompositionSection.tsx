@@ -2,18 +2,20 @@
 
 import { useState, useRef } from 'react';
 import { Play, Pause, AudioLines, Sparkles, Activity, Car, Home, Phone } from 'lucide-react';
+import { useTranslation } from '@/i18n/context';
 
 export default function CompositionSection() {
     const [playingIndex, setPlayingIndex] = useState<number | null>(null);
     const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+    const { t } = useTranslation();
 
     const agents = [
-        { name: "Sarah", role: "Support", gradient: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)", audioSrc: "/voice/voice1.wav" },
-        { name: "Michael", role: "Sales", gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", audioSrc: "/voice/voice2.wav" },
-        { name: "Emma", role: "Scheduling", gradient: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", audioSrc: "/voice/voice3.wav" },
-        { name: "David", role: "Technical", gradient: "linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)", audioSrc: "/voice/voice1.wav" },
-        { name: "Sofia", role: "Global", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", audioSrc: "/voice/voice2.wav" },
-        { name: "James", role: "Executive", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", audioSrc: "/voice/voice3.wav" },
+        { name: "Sarah", role: t.composition.role_support, gradient: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)", audioSrc: "/voice/voice1.wav" },
+        { name: "Michael", role: t.composition.role_sales, gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", audioSrc: "/voice/voice2.wav" },
+        { name: "Emma", role: t.composition.role_scheduling, gradient: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", audioSrc: "/voice/voice3.wav" },
+        { name: "David", role: t.composition.role_technical, gradient: "linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)", audioSrc: "/voice/voice1.wav" },
+        { name: "Sofia", role: t.composition.role_global, gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", audioSrc: "/voice/voice2.wav" },
+        { name: "James", role: t.composition.role_executive, gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", audioSrc: "/voice/voice3.wav" },
     ];
 
     const togglePlay = (index: number) => {
@@ -53,18 +55,16 @@ export default function CompositionSection() {
 
                 {/* Overlay Text */}
                 <div style={{ width: '100%' }}>
-                    <h2 className="composition-heading">
-                        Indistinguishable <br /> From Reality.
-                    </h2>
+                    <h2 className="composition-heading" dangerouslySetInnerHTML={{ __html: t.composition.title.replace('From', '<br /> From') }} />
                     <p style={{
-                        fontSize: '1.2rem',
+                        fontSize: 'clamp(1rem, 3vw, 1.2rem)',
                         color: '#bbb',
                         maxWidth: '600px',
                         margin: '0 auto',
                         lineHeight: 1.5,
                         opacity: 0.8
                     }}>
-                        Listen for yourself. Six distinct personalities, one powerful AI core.
+                        {t.composition.subtitle}
                     </p>
                 </div>
             </div>
@@ -119,26 +119,26 @@ export default function CompositionSection() {
             </div>
 
             {/* Try It Live Section */}
-            <div className="container" style={{ marginTop: '6rem', marginBottom: '6rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-                <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>Try It Live</h3>
-                <p style={{ color: '#bbb', marginBottom: '4rem', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 4rem' }}>
-                    Call our AI agents now and experience the future of customer service
+            <div className="container" style={{ marginTop: 'clamp(4rem, 10vw, 6rem)', marginBottom: 'clamp(4rem, 10vw, 6rem)', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+                <h3 style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>{t.composition.try_live_title}</h3>
+                <p style={{ color: '#bbb', marginBottom: 'clamp(2rem, 8vw, 4rem)', fontSize: 'clamp(1rem, 3vw, 1.2rem)', maxWidth: '600px', margin: '0 auto clamp(2rem, 8vw, 4rem)' }}>
+                    {t.composition.try_live_subtitle}
                 </p>
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2rem',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+                    gap: 'clamp(1.5rem, 4vw, 2rem)',
                     justifyContent: 'center'
                 }}>
                     {[
-                        { icon: <Activity size={48} color="#FF9A9E" />, title: "Healthcare Agent", sub: "Book an appointment", num: "+1 (555) 0100" },
-                        { icon: <Car size={48} color="#a18cd1" />, title: "Automotive Agent", sub: "Schedule service", num: "+1 (555) 0101" },
-                        { icon: <Home size={48} color="#84fab0" />, title: "Real Estate Agent", sub: "Inquire about property", num: "+1 (555) 0102" }
+                        { icon: <Activity size={48} color="#FF9A9E" />, title: t.composition.agent_healthcare, sub: t.composition.sub_healthcare, num: "+1 (555) 0100" },
+                        { icon: <Car size={48} color="#a18cd1" />, title: t.composition.agent_automotive, sub: t.composition.sub_automotive, num: "+1 (555) 0101" },
+                        { icon: <Home size={48} color="#84fab0" />, title: t.composition.agent_realestate, sub: t.composition.sub_realestate, num: "+1 (555) 0102" }
                     ].map((item, i) => (
                         <div key={i} style={{
                             background: 'rgba(255,255,255,0.05)',
-                            padding: '2.5rem',
+                            padding: 'clamp(1.5rem, 5vw, 2.5rem)',
                             borderRadius: '24px',
                             border: '1px solid rgba(255,255,255,0.1)',
                             backdropFilter: 'blur(10px)',
@@ -210,7 +210,7 @@ export default function CompositionSection() {
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: '#888' }}>
                         <Sparkles size={18} color="var(--accent-pink)" />
-                        <span>Powered by our Proprietary Neural Voice Engine</span>
+                        <span>{t.composition.neural_engine}</span>
                     </div>
                 </div>
             </div>
