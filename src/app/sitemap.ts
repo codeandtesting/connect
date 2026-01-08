@@ -1,6 +1,6 @@
-import { Industry, industriesData } from './data';
-import { industriesDataRu } from './data_ru';
-import { industriesDataLv } from './data_lv';
+import { Industry, industriesData } from './industries/data';
+import { industriesDataRu } from './industries/data_ru';
+import { industriesDataLv } from './industries/data_lv';
 
 export default async function sitemap() {
     const baseUrl = 'https://conekt.ai';
