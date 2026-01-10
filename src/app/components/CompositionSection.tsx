@@ -119,7 +119,7 @@ export default function CompositionSection() {
             </div>
 
             {/* Try It Live Section */}
-            <div className="container" style={{ marginTop: 'clamp(4rem, 10vw, 6rem)', marginBottom: 'clamp(4rem, 10vw, 6rem)', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+            <div id="live-demo" className="container" style={{ marginTop: 'clamp(4rem, 10vw, 6rem)', marginBottom: 'clamp(4rem, 10vw, 6rem)', textAlign: 'center', position: 'relative', zIndex: 2 }}>
                 <h3 style={{ fontSize: 'clamp(1.8rem, 6vw, 2.5rem)', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>{t.composition.try_live_title}</h3>
                 <p style={{ color: '#bbb', marginBottom: 'clamp(2rem, 8vw, 4rem)', fontSize: 'clamp(1rem, 3vw, 1.2rem)', maxWidth: '600px', margin: '0 auto clamp(2rem, 8vw, 4rem)' }}>
                     {t.composition.try_live_subtitle}
@@ -132,9 +132,9 @@ export default function CompositionSection() {
                     justifyContent: 'center'
                 }}>
                     {[
-                        { icon: <Activity size={48} color="#FF9A9E" />, title: t.composition.agent_healthcare, sub: t.composition.sub_healthcare, num: "+1 (555) 0100" },
-                        { icon: <Car size={48} color="#a18cd1" />, title: t.composition.agent_automotive, sub: t.composition.sub_automotive, num: "+1 (555) 0101" },
-                        { icon: <Home size={48} color="#84fab0" />, title: t.composition.agent_realestate, sub: t.composition.sub_realestate, num: "+1 (555) 0102" }
+                        { icon: <Activity size={48} color="#FF9A9E" />, title: t.composition.agent_healthcare, sub: t.composition.sub_healthcare, num: "+37125892069" },
+                        { icon: <Car size={48} color="#a18cd1" />, title: t.composition.agent_automotive, sub: t.composition.sub_automotive, num: "+37125892069" },
+                        { icon: <Home size={48} color="#84fab0" />, title: t.composition.agent_realestate, sub: t.composition.sub_realestate, num: "+37125892069" }
                     ].map((item, i) => (
                         <div key={i} style={{
                             background: 'rgba(255,255,255,0.05)',

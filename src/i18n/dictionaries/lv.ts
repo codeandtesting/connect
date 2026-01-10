@@ -273,7 +273,7 @@ export const lv: TranslationDict = {
         ready_text: 'Vēlaties redzēt sistēmu darbībā?',
         book_demo_button: 'Pieteikt demo',
         q1: "Kā veidojas cenas?",
-        a1: "Mēs piedāvājam elastīgu cenu noteikšanu, pamatojoties uz zvanu apjomu un nepieciešamajām funkcijām. Plāni sākas no 299 eiro mēnesī par līdz pat 1000 minūtēm. Uzņēmumu plāni ietver pielāgotas integrācijas un īpašu atbalstu. Sazinieties ar mums, lai saņemtu personīgu piedāvājumu.",
+        a1: "Mēs piedāvājam elastīgu cenu noteikšanu, kas tiek pielāgota individuāli katram biznesam, balstoties uz zvanu apjomu un nepieciešamajām funkcijām. Uzņēmumu plāni ietver pielāgotas integrācijas un īpašu atbalstu. Sazinieties ar mums, lai saņemtu personīgu piedāvājumu.",
         q2: "Kādas valodas tiek atbalstītas?",
         a2: "Mēs atbalstām vairāk nekā 50 valodas, tostarp angļu, spāņu, vācu, franču, krievu, ķīniešu, japāņu, arābu un daudzas citas. Katra valoda ietver reģionālos akcentus un kultūras adaptāciju dabiskai saziņai.",
         q3: "Cik ilgu laiku aizņem uzstādīšana?",

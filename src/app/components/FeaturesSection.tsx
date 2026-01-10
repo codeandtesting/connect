@@ -10,23 +10,60 @@ export default function FeaturesSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const [activeTab, setActiveTab] = useState<'healthcare' | 'automotive' | 'realestate' | 'banking' | 'ecommerce' | 'restaurant'>('healthcare');
     const [isPlaying, setIsPlaying] = useState(false);
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const togglePlay = () => {
-        setIsPlaying(!isPlaying);
-        // Reset playing state after some time to simulate track end
-        if (!isPlaying) {
-            setTimeout(() => {
-                setIsPlaying(false);
-            }, 15000);
+        if (isPlaying) {
+            audioRef.current?.pause();
+            if (audioRef.current) audioRef.current.currentTime = 0;
+            setIsPlaying(false);
+            return;
         }
+
+        const src = getAudioSrc(activeTab, language);
+        if (!src) {
+            alert("Audio demo for this industry is coming soon!");
+            return;
+        }
+
+        if (!audioRef.current) {
+            audioRef.current = new Audio();
+        }
+
+        audioRef.current.src = src;
+        audioRef.current.onended = () => setIsPlaying(false);
+        audioRef.current.play().then(() => {
+            setIsPlaying(true);
+        }).catch(err => {
+            console.error("Playback failed:", err);
+            setIsPlaying(false);
+        });
+    };
+
+    const getAudioSrc = (tab: string, lang: string) => {
+        let baseName = tab;
+        if (tab === 'banking') baseName = 'bank';
+        if (tab === 'ecommerce') baseName = 'e-commerce';
+        if (tab === 'restaurant') baseName = 'rest';
+
+        const validIndustries = ['healthcare', 'banking', 'ecommerce', 'restaurant'];
+        if (!validIndustries.includes(tab)) return null;
+
+        // Fallback lv to en since we don't have lv files yet
+        const audioLang = lang === 'lv' ? 'en' : lang;
+
+        return `/voice/dialogue/${baseName}-${audioLang}.mp3`;
     };
 
     // Reset playing state when switching tabs
     useEffect(() => {
-        setIsPlaying(false);
-    }, [activeTab]);
+        if (isPlaying) {
+            audioRef.current?.pause();
+            if (audioRef.current) audioRef.current.currentTime = 0;
+            setIsPlaying(false);
+        }
+    }, [activeTab, language]);
 
 
     const industries = {

@@ -273,7 +273,7 @@ export const en: TranslationDict = {
         ready_text: 'Ready to see it in action?',
         book_demo_button: 'Book a Live Demo',
         q1: "How does pricing work?",
-        a1: "We offer flexible pricing based on call volume and features needed. Plans start at $299/month for up to 1,000 minutes. Enterprise plans include custom integrations, dedicated support, and unlimited scalability. Contact us for a personalized quote.",
+        a1: "We offer flexible pricing tailored individually to each business based on call volume and features needed. Enterprise plans include custom integrations, dedicated support, and unlimited scalability. Contact us for a personalized quote.",
         q2: "What languages are supported?",
         a2: "We support 50+ languages including English, Spanish, German, French, Russian, Chinese, Japanese, Arabic, and many more. Each language includes regional accent variations and cultural adaptations for natural conversations.",
         q3: "How long does setup take?",

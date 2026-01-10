@@ -22,7 +22,7 @@ export default function Footer() {
                         flex: '1 1 auto'
                     }}>
                         <h4>{t.footer.talk_with_us}</h4>
-                        <p className="footer-phone">1-800-222-000</p>
+                        <p className="footer-email"><a href="mailto:info@progressit.online" style={{ color: 'inherit', textDecoration: 'none' }}>info@progressit.online</a></p>
                     </div>
 
                     {/* Links Columns (Center) */}
@@ -140,7 +140,7 @@ export default function Footer() {
                         </div>
 
                         <h4>{t.footer.customer_care}</h4>
-                        <p className="footer-email">info@domain.com</p>
+                        {/* <p className="footer-email">info@domain.com</p> */}
                     </div>
                 </div>
 

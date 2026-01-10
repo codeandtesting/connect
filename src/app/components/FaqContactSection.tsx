@@ -68,11 +68,11 @@ export default function FaqContactSection() {
                                     <div>
                                         <h4 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', color: '#60a5fa' }}>{t.faq.business_inquiries}</h4>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', color: '#ccc' }}>
-                                            <a href="tel:+15550001111" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <Phone size={14} /> +1 (555) 000-1111
+                                            <a href="tel:+37128674827" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <Phone size={14} /> +371 286 74827
                                             </a>
-                                            <a href="mailto:sales@conekt.ai" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <Mail size={14} /> sales@conekt.ai
+                                            <a href="mailto:v.polski@progressit.online" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <Mail size={14} /> v.polski@progressit.online
                                             </a>
                                         </div>
                                     </div>
@@ -92,11 +92,11 @@ export default function FaqContactSection() {
                                     <div>
                                         <h4 style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', color: '#34d399' }}>{t.faq.customer_support}</h4>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', color: '#ccc' }}>
-                                            <a href="tel:+15550002222" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <Phone size={14} /> +1 (555) 000-2222
+                                            <a href="tel:+37125981382" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <Phone size={14} /> +371 259 81382
                                             </a>
-                                            <a href="mailto:support@conekt.ai" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                <Mail size={14} /> support@conekt.ai
+                                            <a href="mailto:a.lupjak@progressit.online" style={{ color: '#ccc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <Mail size={14} /> a.lupjak@progressit.online
                                             </a>
                                         </div>
                                     </div>

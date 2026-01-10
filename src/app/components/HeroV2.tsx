@@ -231,7 +231,10 @@ export default function HeroV2() {
                         {t.hero.book_demo}
                     </button>
 
-                    <button className="play-btn">
+                    <button className="play-btn" onClick={() => {
+                        const el = document.getElementById('live-demo');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}>
                         {t.hero.try_demo}
                         <span style={{
                             color: 'var(--accent-pink)',
